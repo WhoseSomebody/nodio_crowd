@@ -23,9 +23,9 @@ block content
           use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
         .line
   #generator
-    #formspace.pass-phrase
+    #formspace1.pass-phrase
       #generate.label gen
-      input#generator(
+      input#gen(
         type="text",
         placeholder="Enter Your Pass Phrase",
         value="one fish empty night purse siren fancy dutch always hold effort father",
@@ -35,7 +35,7 @@ block content
       #save-to-file.label dwnl
 
   #login
-    #formspace.pass-phrase
+    #formspace2.pass-phrase
       #paste.label Paste
       input.password(
         type="password",
@@ -61,5 +61,5 @@ block content
     |  and all your data will be permanently lost.
 
   #new.signin
-    a(href="/wallet").label.button
+    a(href="/account").label.button
       | Sign In As A New StakeHolder
