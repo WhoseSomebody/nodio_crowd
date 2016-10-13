@@ -10,8 +10,15 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.13.4",
+    "express-bootstrap-service": "^1.0.0",
+    "express-stylus": "^0.1.0",
+    "express-svg-fallback": "^0.1.4",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
+    "nib": "^1.1.2",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "kouto-swiss": "^0.13.0"
   }
 }

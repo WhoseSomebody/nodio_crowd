@@ -1,0 +1,65 @@
+extends layout
+
+block content
+  .row
+    .progress
+      .first
+        .step1
+          .number
+            | 01
+          .text
+            | Generate & Copy Pass Phrase
+        svg.active
+          use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')  
+        .line.active
+
+      .second
+        .step2
+          .number
+            | 02
+          .text
+            | Enter Your Pass Phrase
+        svg.active
+          use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
+        .line
+  #generator
+    #formspace.pass-phrase
+      #generate.label gen
+      input#generator(
+        type="text",
+        placeholder="Enter Your Pass Phrase",
+        value="one fish empty night purse siren fancy dutch always hold effort father",
+        onFocus="focusLink(true)",
+        onBlur="focusLink(false)"
+      )
+      #save-to-file.label dwnl
+
+  #login
+    #formspace.pass-phrase
+      #paste.label Paste
+      input.password(
+        type="password",
+        placeholder="Enter Your Pass Phrase",
+        onFocus="focusLink(true)",
+        onBlur="focusLink(false)"
+      )
+      #file.label Use txt
+
+  .terms
+    |By creating an account, I agree to the 
+    a(href="#")
+      | Terms Of Crowdsale Offer
+    |.
+
+  .attention
+    | It's highly important to
+    br
+    span.bolded
+      |  keep your passphrase memorized.
+      br
+    |  Note, that you won't be able to restore your account without it.
+    |  and all your data will be permanently lost.
+
+  #new.signin
+    a(href="/wallet").label.button
+      | Sign In As A New StakeHolder

@@ -1,0 +1,89 @@
++media-query(all, max-width $tabletWidth)
+  .desktop,
+  .tablet
+    display none
+  .mobile 
+    display block
+    
+  .logo
+    width 323px
+    height 58px
+    margin 32px auto 0 -20px
+    
+  .bars
+    width 300px
+    min-width 300px
+    margin 30px 0 0 0 
+    .bar-item
+      position relative
+      width: 100px
+      padding 0
+      margin 0
+      text-align center
+      text-align -webkit-center
+      & > *
+        margin 0 auto
+      &.active
+        color white
+
+  .wal
+    height initial
+    margin-top 28px
+    padding 28px 30px 23px 28px
+    .top-part
+      height initial
+      .left-part,
+      .right-part
+        display block
+        width initial
+        float none
+        margin 0
+      .left-part
+        padding-bottom 29px 
+        .numbers
+          line-height 38px
+      .right-part
+        padding-bottom 29px 
+        .numbers
+          line-height 39px
+          
+    .bottom-part
+      height initial
+      .left-part
+      .right-part
+        display block
+        width initial
+        float none
+        margin 0
+        .qr
+          float none
+          margin 23px 30px 6px 30px
+      .left-part
+        .label
+          &.code
+            font-size 20px
+            padding 12px 0
+            line-height 19px  
+      
+  
+  .history
+    .hist-line
+      .col
+        &.confirm
+          display none
+        &.date
+          width 35%
+          .date-font
+            font-size 15px
+        &.amount
+          width 52%
+          .label.num
+            font-size 15px
+        &.details
+          width 5%
+          .detail-arrow
+            margin -42px 0 0 -9px
+  .footer
+    margin -22px 0 28px 0
+    padding-bottom 15px
+

@@ -1,0 +1,117 @@
+@import "variables.styl"
+
+/* Content styles */
+#background
+  overflow hidden
+  relative false
+  width 100%
+  background-image url('../images/background.svg')
+  background-position 50% 0
+  background-size 60px 60px
+  background-repeat repeat
+
+#glow
+  fixed 0
+  z-index 0
+  overflow hidden
+  opacity 0
+  transition opacity 1s linear
+  &.show
+    opacity 0.7
+  .glow-container
+    absolute 50% false false 50%
+    transform translate(-50%, -50%)
+    size 100%
+    size 100vmax
+    
+.container
+  relative false
+  width auto
+  // min-width 360px
+  // min-height 736px
+  margin auto
+  // padding 0 90px 0 89px
+  box-sizing border-box
+  transition width 0.3s linear,
+             padding-left 0.3s linear,
+             padding-right 0.3s linear
+  .navigation
+    absolute 0 0 false
+
+#sidebar
+  opacity 0
+  max-height 0
+  transition opacity $content-show-transition-time linear,
+             max-height 0s linear $content-show-transition-time,
+             overflow 0s linear $content-show-transition-time
+  &.show
+    z-index 2
+    opacity 1
+    max-height 10000px
+    transition opacity $content-show-transition-time linear,
+               max-height 0s linear,
+               overflow 0s linear
+.label 
+  text-transform uppercase
+  text-decoration none
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  &.general
+    color $white-50
+  &.numbers
+    color rgb(255, 255, 255)
+    font-weight 400
+    letter-spacing 3px
+  &.link
+    color rgb(25, 253, 197)
+    font-weight 700
+    letter-spacing 3.5px
+  &.info
+    color rgb(25, 253, 197)
+  &.code
+    color #fff
+    font-weight 400
+    letter-spacing 3px
+    text-transform none
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  &.head
+    color $white
+    font-weight 700
+       
++media-query(only screen, max-width $mobileWidth)
+  #background
+    background-image none
+    min-height 100%
+  .container
+    min-height 100%
+    width 100%
+    padding 0
+    
++media-query(only screen, min-width $mobileWidth, max-width $tabletWidth)
+  .container
+    width 301px
++media-query(only screen, min-width $tabletWidth, max-width $bigWidth)
+  .container
+    width 540px
+
++media-query(only screen, min-width $bigWidth)
+  .container
+    width 900px
+  .label 
+    &.general
+      font-size 14px
+      line-height 17px
+    &.numbers
+      font-size 36px
+      line-height 54px
+    &.link
+      font-size 14px
+      line-height 17px
+    &.code
+      font-size 24px
+      line-height 65px
+    &.head
+      font-size 14px
+      line-height 17px
+      

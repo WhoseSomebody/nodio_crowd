@@ -1,5 +1,28 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .total
+    .label.head
+      | Total invested
+    .label.numbers
+      | 1 000 232 342 234 BTC
+
+  #login
+    #formspace.pass-phrase
+      #paste.label Paste
+      input.password(
+        type="text",
+        placeholder="Enter Your Pass Phrase",
+        onFocus="focusLink(true)",
+        onBlur="focusLink(false)",
+        onChange="toggle_pass()"
+      )
+      #file.label Use txt
+
+  .signin.disabled
+    a(href="#").label.button
+      | Sign In
+
+  .signup
+    a(href="new").label.button
+      | New account

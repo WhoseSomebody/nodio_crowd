@@ -1,0 +1,112 @@
+extends layout
+
+block content
+  .row.bars
+    .bar-item
+      a 
+        .desktop.tablet
+          | Reports
+          .line
+        .mobile
+          .arrow.left
+            a(href="#")#arrow-left
+    .bar-item.active
+      a General
+      .line.desktop.tablet
+    .bar-item
+      a 
+        .desktop.tablet
+          | Updates
+          .line
+        .mobile
+          .arrow.right
+            a(href="#")#arrow-right
+    //- p Welcome to #{title}
+  .row.wal
+    .point.bottom.left
+    .point.bottom.right
+    .point.top.left
+    .point.top.right
+    .wallet
+      .top-part
+        .left-part
+          .label.general
+            | Your stakeholder ID
+          .label.numbers
+            | 1234567890
+          a(href="/").label.link
+              | Log Out
+        .right-part
+          .label.general
+            | Your investment
+          .label.numbers#invest-amount
+            | 1 000 001.789 BTC
+          #nods-amount
+            .label.info
+              | ∽ 1 000 001 Nods
+            .line
+      .line(style="width: 100%;")
+      .bottom-part
+        .left-part
+          .label.general
+            | Wallet to put bitcoins
+          .label.code
+            | 1NodiZJ98vLPsAmEy3WqvtVSutf4RodvdG
+          .copy
+            .point.bottom.left
+            .point.bottom.right
+            .point.top.left
+            .point.top.right
+            a(href="#").label.button
+              span.desktop
+                | Copy wallet number to clipboard
+              span.mobile.tablet
+                | Copy number
+        .right-part
+          .qr
+            .point.bottom.left
+            .point.bottom.right
+            .point.top.left
+            .point.top.right
+            img(src="../images/MM_QRcode.png")
+  .history
+    .hist-line
+      .point.bottom.left
+      .point.bottom.right
+      .col.date
+        .date-font
+          | 6 Sep 2016
+      .col.confirm
+        .confirm-num
+          span.num
+            | 0
+          | Confirmatons
+      .col.amount
+        .label.num
+          | + 1 000 000 BTC
+      .col.details
+        .detail-arrow
+          a(href="#")
+    .hist-line
+      .point.bottom.left
+      .point.bottom.right
+      .col.date
+        .date-font
+          | 25 Aug 2016
+      .col.confirm
+        .confirm-num
+          span.num
+            | 6+
+          | Confirmatons
+      .col.amount
+        .label.num
+          | + 1.789 BTC
+      .col.details
+        .detail-arrow
+          a(href="#")
+      //- .next-link
+      //-   svg.full
+      //-     use(xlink:href="#next")
+  
+
+

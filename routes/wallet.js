@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET wallet page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Nodio Crowd' });
+  res.render('wallet', { title: 'Wallet | Nodio Crowd' });
 });
 
 module.exports = router;
