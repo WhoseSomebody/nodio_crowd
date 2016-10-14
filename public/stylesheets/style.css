@@ -1159,7 +1159,6 @@ input:-webkit-autofill:active {
   border: 1px solid #ddd;
 }
 .pass-phrase .password {
-  clear: both;
   height: 100%;
   width: 85%;
   background: transparent;
@@ -1172,6 +1171,11 @@ input:-webkit-autofill:active {
   font-weight: 300;
   letter-spacing: 1.5px;
   resize: none;
+}
+@media (min-width: 900px) {
+  .pass-phrase .password {
+    line-height: 50px;
+  }
 }
 .pass-phrase .password:focus::-webkit-input-placeholder {
   color: transparent;
@@ -1418,68 +1422,68 @@ svg.active {
     line-height: 19px;
     padding: 27px 0 28px 0;
   }
-}
-.total {
-  margin: 36px 0 25px 0;
-}
-.total .label.head {
-  font-weight: 500;
-  line-height: 30px;
-  font-size: 15px;
-}
-.total .label.numbers {
-  font-size: 35px;
-  line-height: 60px;
-  letter-spacing: 2.5px;
-}
-.pass-phrase {
-  height: 121px;
-  padding: 13px;
-}
-.pass-phrase .password {
-  line-height: 28px;
-  font-size: 17px;
-  letter-spacing: 1.6px;
-  width: 100%;
-}
-.signin {
-  max-width: 420px;
-  box-size: border-box;
-}
-.wal {
-  padding: 29px;
-  height: 361px;
-}
-.wal .top-part {
-  height: 90px;
-}
-.wal .bottom-part {
-  height: 180px;
-}
-.wal .bottom-part .left-part {
-  width: 50%;
-}
-.wal .bottom-part .right-part {
-  width: 50%;
-}
-.wal .bottom-part .right-part .qr {
-  float: right;
-}
-.wal .bottom-part .right-part .qr img {
-  width: 164px;
-}
-.history .hist-line {
-  font-size: 16px;
-  height: 119px;
-}
-.history .hist-line .num {
-  font-size: 17px;
-}
-.history .col.details .detail-arrow {
-  margin: -42px 0 0 -3px;
-}
-.footer .copyright {
-  margin: 60px auto 0 auto;
+  .total {
+    margin: 36px 0 25px 0;
+  }
+  .total .label.head {
+    font-weight: 500;
+    line-height: 30px;
+    font-size: 15px;
+  }
+  .total .label.numbers {
+    font-size: 35px;
+    line-height: 60px;
+    letter-spacing: 2.5px;
+  }
+  .pass-phrase {
+    height: 121px;
+    padding: 13px;
+  }
+  .pass-phrase .password {
+    line-height: 28px;
+    font-size: 17px;
+    letter-spacing: 1.6px;
+    width: 100%;
+  }
+  .signin {
+    max-width: 420px;
+    box-size: border-box;
+  }
+  .wal {
+    padding: 29px;
+    height: 361px;
+  }
+  .wal .top-part {
+    height: 90px;
+  }
+  .wal .bottom-part {
+    height: 180px;
+  }
+  .wal .bottom-part .left-part {
+    width: 50%;
+  }
+  .wal .bottom-part .right-part {
+    width: 50%;
+  }
+  .wal .bottom-part .right-part .qr {
+    float: right;
+  }
+  .wal .bottom-part .right-part .qr img {
+    width: 164px;
+  }
+  .history .hist-line {
+    font-size: 16px;
+    height: 119px;
+  }
+  .history .hist-line .num {
+    font-size: 17px;
+  }
+  .history .col.details .detail-arrow {
+    margin: -42px 0 0 -3px;
+  }
+  .footer .copyright {
+    margin: 60px auto 0 auto;
+  }
 }
 @media all and (max-width: 601px) {
   .desktop,
