@@ -2,26 +2,8 @@
 var generated = '';
 $( document ).ready(function(){
     var show = true;
-    
-    // check if user with suck password exists and let him come in
-
-     $('#login textarea.password').bind('input propertychange paste keyup', function() {
-        console.log("chek textbox" + $(this));
-        var area = $(this);
-          if (area.val().length == 69) {
-            $.post( "/check_user", { key: $(this).val()}, (res) =>{
-                console.log(res.success);
-                if (res.success) {
-                    $('.signin').removeClass("disabled");
-                } else {
-                    $('.signin:not(.disabled)').addClass("disabled");
-                }
-            });
-          } else {
-                $('.signin:not(.disabled)').addClass("disabled");
-          }
-    });
-  
+    checkIfExists();
+    checkIfCopied();
     // $('textarea.password').bind('input propertychange', function() {
     //       $(this).data("code", this.value);
     //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
@@ -89,32 +71,7 @@ $( document ).ready(function(){
             'cursor': 'default'});
     }
 
-    // chenl if user copied the generated password and let him to to account
-    $('#login_new textarea.password').bind('input propertychange', function() {
-        console.log(generated);
-        console.log($(this).val());
-        if (generated == $(this).val()) {
-            $("#new.signin").removeClass("disabled")
-            $(".second .line").addClass("active");
-            $(".second svg,active").css("right", "0");
-            $('#new:not(.disabled) a').click(function(e){
-                e.preventDefault();
-                $.post( "/new_user", { key: generated }, (res) =>{
-                    console.log(res.success);
-                    if (res.success)
-                        $( location ).attr("href", "/account");
-                } );
-                
-                
-            })}
-        else {
-            $("#new.signin:not(.disabled)").addClass("disabled");
-            $(".second .line").removeClass("active");
-            $(".second svg,active").css("right", "");
-        }
 
-
-    });
 
     // // copy to clipboard
     // $(".copy a").click(function(){
@@ -124,7 +81,56 @@ $( document ).ready(function(){
     // });
 
 })
+ // chenl if user copied the generated password and let him to to account
+    function checkIfCopied() {
+        $('#login_new textarea.password').bind('input propertychange paste keyup', function() {
+            console.log(generated);
+            console.log($(this).val());
+            if (generated == $(this).val()) {
+                $("#new.signin").removeClass("disabled")
+                $(".second .line").addClass("active");
+                $(".second svg,active").css("right", "0");
+                $('#new:not(.disabled) a').click(function(e){
+                    e.preventDefault();
+                    $.post( "/new_user", { key: generated }, (res) =>{
+                        console.log(res.success);
+                        if (res.success)
+                            $( location ).attr("href", "/account");
+                    } );
+                    
+                    
+                })}
+            else {
+                $("#new.signin:not(.disabled)").addClass("disabled");
+                $(".second .line").removeClass("active");
+                $(".second svg,active").css("right", "");
+            }
 
+
+        });
+    }
+
+// check if user with such password exists and let him come in
+
+     function checkIfExists() {
+        $('#login textarea.password').bind('input propertychange paste keyup', function() {
+        console.log("chek textbox" + $(this));
+        var area = $(this);
+          if (area.val().length == 69) {
+            $.post( "/check_user", { key: $(this).val()}, (res) =>{
+                console.log(res.success);
+                if (res.success) {
+                    $('.signin').removeClass("disabled");
+                } else {
+                    $('.signin:not(.disabled)').addClass("disabled");
+                }
+            });
+          } else {
+                $('.signin:not(.disabled)').addClass("disabled");
+          }
+        });
+    }
+  
 // upload password from txt
 
 function onFileSelected(event, me) {
@@ -132,15 +138,18 @@ function onFileSelected(event, me) {
 
   var selectedFile = event.target.files[0];
   var reader = new FileReader();
-  var result = $(me.closest(".pass-phrase")).find("textarea")
+  var result = $("#login_new textarea");
   
   reader.onload = function(event) {
     console.log("write from the file");
-    result.val(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69)).keyup();
+    result.text(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
+    result.val(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
   };
 
   reader.readAsText(selectedFile);
+  
   resetFormElement($('.file input'));
+  setTimeout(function() {result.keyup()}, 100);
 }
 
 // generate new password
