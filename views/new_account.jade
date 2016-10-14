@@ -3,15 +3,16 @@ extends layout
 block content
   .row
     .progress
-      .first
+      .first.hidden
         .step1
           .number
             | 01
           .text
             | Generate & Copy Pass Phrase
-        svg.active
-          use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')  
-        .line.active
+        .desktop.tablet    
+          svg.active
+            use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')  
+          .line.active
 
       .second
         .step2
@@ -19,31 +20,46 @@ block content
             | 02
           .text
             | Enter Your Pass Phrase
-        svg.active
-          use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
-        .line
+        .desktop.tablet
+          svg.active
+            use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
+          .line
   #generator
     #formspace1.pass-phrase
-      #generate.label gen
-      input.generator(
+      .point.bottom.left
+      .point.bottom.right
+      .point.top.left
+      .point.top.right
+      .generate.label gen
+      textarea.password(
         type="text",
+        maxlength="69",
         placeholder="Enter Your Pass Phrase",
         value="one fish empty night purse siren fancy dutch always hold effort father",
         onFocus="focusLink(true)",
-        onBlur="focusLink(false)"
-      )
-      #save-to-file.label dwnl
+        onBlur="focusLink(false)",
+        onChange="toggle_pass()",
+        style="")
+         | one fish empty night purse siren fancy dutch always hold effort father
+      .save-to-file.label dwnl
 
-  #login
-    #formspace2.pass-phrase
-      #paste.label Paste
-      input.password(
-        type="password",
+  #login_new
+    #formspace_new.pass-phrase
+      .point.bottom.left
+      .point.bottom.right
+      .point.top.left
+      .point.top.right
+      .paste.label Paste
+      textarea.password(
+        type="text",
+        maxlength="69",
         placeholder="Enter Your Pass Phrase",
         onFocus="focusLink(true)",
-        onBlur="focusLink(false)"
-      )
-      #file.label Use txt
+        onBlur="focusLink(false)",
+        onChange="toggle_pass()",
+        style="")
+      .file.label Use txt
+      .show.label.hidden Show
 
   .terms
     |By creating an account, I agree to the 
@@ -60,6 +76,15 @@ block content
     |  Note, that you won't be able to restore your account without it.
     |  and all your data will be permanently lost.
 
+  #copy.signin
+    a(href="#").label.button
+      span.desktop.tablet
+        | Copy Pass Phrase to Clipboard 
+      span.mobile
+        | Copy 
   #new.signin
     a(href="/account").label.button
-      | Sign In As A New StakeHolder
+      span.desktop.tablet
+        | Sign In As A New StakeHolder
+      span.mobile
+        | Sign In 

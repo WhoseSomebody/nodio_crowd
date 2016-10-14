@@ -698,17 +698,17 @@ input:-webkit-autofill:active {
     padding: 0;
   }
 }
-@media only screen and (min-width: 321px) and (max-width: 601px) {
+@media only screen and (min-width: 321px) and (max-width: 600px) {
   .container {
     width: 301px;
   }
 }
-@media only screen and (min-width: 601px) and (max-width: 901px) {
+@media only screen and (min-width: 600px) and (max-width: 900px) {
   .container {
     width: 540px;
   }
 }
-@media only screen and (min-width: 901px) {
+@media only screen and (min-width: 900px) {
   .container {
     width: 900px;
   }
@@ -1075,6 +1075,7 @@ input:-webkit-autofill:active {
   transition: fill 0.2s linear;
 }
 .footer {
+  z-index: 100;
   padding-bottom: 45px;
   margin-top: 45px;
 }
@@ -1104,7 +1105,7 @@ input:-webkit-autofill:active {
   position: relative;
   cursor: pointer;
   max-width: 840px;
-  min-width: 299px;
+  min-width: 300px;
   border: 1px solid rgba(255,255,255,0.22);
   margin: 0 auto;
 }
@@ -1115,6 +1116,14 @@ input:-webkit-autofill:active {
 }
 .pass-phrase .label {
   z-index: 100;
+  font-weight: 600;
+  color: rgba(28,206,156,0.82);
+  -webkit-transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+.pass-phrase .label:hover {
+  color: #17e5b2;
 }
 .pass-phrase .paste {
   position: absolute;
@@ -1126,6 +1135,16 @@ input:-webkit-autofill:active {
     bottom: 21px;
   }
 }
+.pass-phrase .generate {
+  position: absolute;
+  bottom: -7px;
+  left: 66px;
+}
+@media (min-width: 900px) {
+  .pass-phrase .generate {
+    bottom: -7px;
+  }
+}
 .pass-phrase .file {
   position: absolute;
   bottom: 27px;
@@ -1134,6 +1153,16 @@ input:-webkit-autofill:active {
 @media (min-width: 900px) {
   .pass-phrase .file {
     bottom: 21px;
+  }
+}
+.pass-phrase .save-to-file {
+  position: absolute;
+  bottom: -6px;
+  right: 27px;
+}
+@media (min-width: 900px) {
+  .pass-phrase .save-to-file {
+    bottom: -6px;
   }
 }
 .pass-phrase .show {
@@ -1158,7 +1187,8 @@ input:-webkit-autofill:active {
 .pass-phrase.focused {
   border: 1px solid #ddd;
 }
-.pass-phrase .password {
+.pass-phrase .password,
+.pass-phrase .generator {
   height: 100%;
   width: 85%;
   background: transparent;
@@ -1173,49 +1203,54 @@ input:-webkit-autofill:active {
   resize: none;
 }
 @media (min-width: 900px) {
-  .pass-phrase .password {
+  .pass-phrase .password,
+  .pass-phrase .generator {
     line-height: 50px;
   }
 }
-.pass-phrase .password:focus::-webkit-input-placeholder {
+.pass-phrase .password:focus::-webkit-input-placeholder,
+.pass-phrase .generator:focus::-webkit-input-placeholder {
   color: transparent;
 }
-.pass-phrase .password:focus::-moz-placeholder {
+.pass-phrase .password:focus::-moz-placeholder,
+.pass-phrase .generator:focus::-moz-placeholder {
   color: transparent;
 }
-.pass-phrase .password:focus:-moz-placeholder {
+.pass-phrase .password:focus:-moz-placeholder,
+.pass-phrase .generator:focus:-moz-placeholder {
   color: transparent;
 }
-.pass-phrase .password:focus:-ms-input-placeholder {
+.pass-phrase .password:focus:-ms-input-placeholder,
+.pass-phrase .generator:focus:-ms-input-placeholder {
   color: transparent;
 }
-.pass-phrase .password::-webkit-input-placeholder {
+.pass-phrase .password::-webkit-input-placeholder,
+.pass-phrase .generator::-webkit-input-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase .password::-moz-placeholder {
+.pass-phrase .password::-moz-placeholder,
+.pass-phrase .generator::-moz-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase .password::-moz-placeholder {
+.pass-phrase .password::-moz-placeholder,
+.pass-phrase .generator::-moz-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase .password::-ms-input-placeholder {
+.pass-phrase .password::-ms-input-placeholder,
+.pass-phrase .generator::-ms-input-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
-}
-.pass-phrase .label {
-  color: #17d2b2;
-  cursor: pointer;
 }
 .signin {
   position: relative;
@@ -1285,7 +1320,6 @@ input:-webkit-autofill:active {
   cursor: default;
 }
 .progress {
-  width: 720px;
   margin: 58px auto 0 auto;
 }
 .progress > * {
@@ -1329,12 +1363,13 @@ svg.active {
 #generator {
   margin-top: 59px;
 }
-#save-to-file {
+.save-to-file {
   position: absolute;
   background-color: rgba(28,206,156,0.82);
   -webkit-mask-image: url("/images/ic_download.svg");
   mask-image: url("/images/ic_download.svg");
-  height: 100%;
+  width: 53px;
+  height: 72px;
   display: inline-block;
   -webkit-mask-size: cover;
   mask-size: cover;
@@ -1342,17 +1377,18 @@ svg.active {
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }
-#save-to-file:not(.disabled):hover {
+.save-to-file:not(.disabled):hover {
   background-color: #17e5b2;
 }
-#generate {
+.generate {
   position: absolute;
   width: 48px;
   margin-left: -60px;
   background-color: rgba(28,206,156,0.82);
   -webkit-mask-image: url("/images/ic_generate.svg");
   mask-image: url("/images/ic_generate.svg");
-  height: 100%;
+  width: 53px;
+  height: 72px;
   display: inline-block;
   -webkit-mask-size: cover;
   mask-size: cover;
@@ -1360,7 +1396,7 @@ svg.active {
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }
-#generate:not(.disabled):hover {
+.generate:not(.disabled):hover {
   background-color: #17e5b2;
 }
 .terms {
@@ -1374,18 +1410,20 @@ svg.active {
 .attention {
   margin: 30px auto;
   width: 450px;
-  color: #f24;
+  color: #ff004d;
   font-size: 14px;
 }
 .attention .bolded {
   font-weight: 600;
   font-size: 15px;
 }
-#new.signin {
-  margin: 107px auto;
-  width: 600px;
+@media (min-width: 900px) {
+  #new.signin {
+    margin: 107px auto;
+    width: 600px;
+  }
 }
-@media all and (min-width: 901px) {
+@media all and (min-width: 900px) {
   .tablet,
   .mobile {
     display: none;
@@ -1394,7 +1432,7 @@ svg.active {
     display: block;
   }
 }
-@media all and (max-width: 901px) {
+@media all and (max-width: 900px) {
   .desktop,
   .mobile {
     display: none;
@@ -1481,11 +1519,21 @@ svg.active {
   .history .col.details .detail-arrow {
     margin: -42px 0 0 -3px;
   }
+  .terms {
+    font-size: 11px;
+    padding: 15px;
+    letter-spacing: 1px;
+  }
+  .attention {
+    width: 350px;
+    font-size: 10px;
+    line-height: 21px;
+  }
   .footer .copyright {
     margin: 60px auto 0 auto;
   }
 }
-@media all and (max-width: 601px) {
+@media all and (max-width: 600px) {
   .desktop,
   .tablet {
     display: none;
@@ -1515,7 +1563,7 @@ svg.active {
     height: 181px;
     position: relative;
     box-sizing: border-box;
-    padding: 17px 27px;
+    padding: 17px 24px;
   }
   .pass-phrase .password {
     width: 100%;
@@ -1547,6 +1595,29 @@ svg.active {
   .signup {
     margin: 29px 30px 29px 29px;
     position: relative;
+  }
+  .hidden {
+    display: none !important;
+  }
+  .progress {
+    margin: 0;
+  }
+  .progress > * {
+    width: initial;
+    float: left;
+  }
+  .terms {
+    font-size: 9px;
+    padding: 8px 0;
+    letter-spacing: 0.7px;
+  }
+  .attention {
+    width: 300px;
+    font-size: 9px;
+    line-height: 15px;
+    text-align: left;
+    letter-spacing: 1px;
+    margin: 14px auto;
   }
   .bars {
     width: 300px;

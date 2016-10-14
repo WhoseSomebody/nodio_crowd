@@ -273,6 +273,7 @@ meyer-reset()
   fill rgba(23, 229, 178, .2)
   transition fill .2s linear
 .footer
+  z-index 100
   padding-bottom 45px
   margin-top 45px
   .copyright
@@ -299,25 +300,43 @@ meyer-reset()
   position relative
   cursor pointer
   max-width 840px
-  min-width 299px
+  min-width 300px
   @media (min-width: 900px)
     height 60px !important
   border 1px solid rgba(255, 255, 255, 0.22)
   margin 0 auto 
   .label
     z-index 100
+    font-weight 600
+    color rgba(28,206,156,0.82)
+    -webkit-transition color .2s linear
+    transition color .2s linear
+    &:hover
+      color #17e5b2 
   .paste
     position: absolute;
     bottom: 27px;
     left: 27px;
     @media (min-width: 900px)
       bottom: 21px;
+  .generate
+    position: absolute;
+    bottom: -7px;
+    left: 66px;
+    @media (min-width: 900px)
+      bottom: -7px;
   .file
     position: absolute;
     bottom: 27px;
     right: 27px;
     @media (min-width: 900px)
       bottom: 21px;
+  .save-to-file
+    position: absolute;
+    bottom: -6px;
+    right: 27px;
+    @media (min-width: 900px)
+      bottom: -6px;
   .show
     position: absolute;
     bottom: 27px;
@@ -377,9 +396,6 @@ meyer-reset()
       color rgb(255,255,255)
       font-weight 300   
       letter-spacing 2px   
-  .label
-    color #17d2b2
-    cursor pointer
 .signin
   position relative
   margin 58px auto
@@ -437,7 +453,7 @@ meyer-reset()
 
 
 .progress
-  width 720px
+  // width 720px
   margin 58px auto 0 auto
   & > *
     display inline-block
@@ -476,12 +492,12 @@ svg
 #generator
   margin-top 59px
 
-#save-to-file
+.save-to-file
   position absolute
   background-color rgba(28,206,156,0.82)
   -webkit-mask-image: url(/images/ic_download.svg)
   mask-image url(/images/ic_download.svg)
-  height 100%
+  size 53px 72px
   display inline-block
   -webkit-mask-size: cover;
   mask-size: cover;
@@ -490,14 +506,14 @@ svg
   &:not(.disabled):hover
     background-color #17e5b2
     
-#generate
+.generate
   position absolute
   width 48px
   margin-left -60px
   background-color rgba(28,206,156,0.82)
   -webkit-mask-image: url(/images/ic_generate.svg)
   mask-image url(/images/ic_generate.svg)
-  height 100%
+  size 53px 72px
   display inline-block
   -webkit-mask-size: cover;
   mask-size: cover;
@@ -516,15 +532,16 @@ svg
 .attention
   margin 30px auto
   width 450px
-  color #f24
+  color #ff004d
   font-size 14px
   .bolded
     font-weight 600
     font-size 15px
     
 #new.signin
-  margin 107px auto
-  width 600px
+  @media (min-width: 900px)
+    margin 107px auto
+    width 600px
   
 +media-query(all, min-width $bigWidth)
   .tablet,
