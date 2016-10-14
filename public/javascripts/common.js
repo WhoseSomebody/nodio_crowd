@@ -138,7 +138,7 @@ function onFileSelected(event, me) {
 
   var selectedFile = event.target.files[0];
   var reader = new FileReader();
-  var result = $("#login_new textarea");
+  var result = $(me.closest(".pass-phrase")).find("textarea")
   
   reader.onload = function(event) {
     console.log("write from the file");
@@ -147,7 +147,6 @@ function onFileSelected(event, me) {
   };
 
   reader.readAsText(selectedFile);
-  
   resetFormElement($('.file input'));
   setTimeout(function() {result.keyup()}, 100);
 }
