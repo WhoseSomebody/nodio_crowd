@@ -3,44 +3,43 @@ extends layout
 block content
   .row
     .progress
-      .first.hidden
+      .first
         .step1
-          .number
+          .number.invisible1
             | 01
-          .text
+          .text.invisible1
             | Generate & Copy Pass Phrase
         .desktop.tablet    
-          svg.active
+          svg.active.invisible1
             use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')  
           .line.active
 
-      .second
+      .second.hidden
         .step2
-          .number
+          .number.invisible2
             | 02
-          .text
+          .text.invisible2
             | Enter Your Pass Phrase
         .desktop.tablet
-          svg.active
+          svg.active.invisible2
             use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
           .line
-  #generator
+  #generator.group1
     #formspace1.pass-phrase
       .point.bottom.left
       .point.bottom.right
       .point.top.left
       .point.top.right
-      .generate.label gen
+      .generate.label(title="Generate New Phrase") gen
       textarea.password(
         type="text",
         maxlength="69",
-        placeholder="Enter Your Pass Phrase",
+        placeholder="Generate Your Pass Phrase",
         value="one fish empty night purse siren fancy dutch always hold effort father"
         style="")
-         | one fish empty night purse siren fancy dutch always hold effort father
-      .save-to-file.label dwnl
+      .save-to-file.label(title="Save As *.txt")  dwnl
 
-  #login_new
+  #login_new.group2
     #formspace_new.pass-phrase
       .point.bottom.left
       .point.bottom.right
@@ -48,7 +47,7 @@ block content
       .point.top.right
       .paste.label Paste
       textarea.password(
-        type="text",
+        type="password",
         maxlength="69",
         placeholder="Enter Your Pass Phrase",
         style="")
@@ -74,15 +73,37 @@ block content
     |  Note, that you won't be able to restore your account without it.
     |  and all your data will be permanently lost.
 
-  #copy.signin
+  #copy.signin.disabled.group1
     a(href="#").label.button
       span.desktop.tablet
         | Copy Pass Phrase to Clipboard 
       span.mobile
         | Copy 
-  #new.signin
+  #new.signin.disabled.group2
     a(href="/account").label.button
       span.desktop.tablet
         | Sign In As A New StakeHolder
       span.mobile
         | Sign In 
+
+  style.
+    .invisible2, .invisible1, .group2, .group1{
+      -webkit-transition: visibility 1s, opacity 1.5s linear;
+      -moz-transition: visibility 1s, opacity 1.5s linear;
+      -ms-transition: visibility 1s, opacity 1.5s linear;
+      -o-transition: visibility 1s, opacity 1.5s linear;
+      transition: visibility 1s, opacity 1.5s linear;
+    }
+    .group2 {
+      display: none !important
+    }
+    .invisible2{
+    opacity: 0;
+    cursor: default;
+    }
+    #login_new{
+      margin-top:59px
+    }
+    #new.signin {
+      margin: 58px auto;
+    }

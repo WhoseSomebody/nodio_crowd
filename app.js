@@ -8,7 +8,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var routes = require('./routes/index');
 // var users = require('./routes/users');
 var wallet = require('./routes/wallet');
@@ -42,6 +42,8 @@ app.use('/account', wallet);
 // app.use('/users', users);
 app.use('/new', new_account);
 app.use('/welcome', welcome);
+
+mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
