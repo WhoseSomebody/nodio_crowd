@@ -32,7 +32,7 @@ meyer-reset()
   background-color #fff 
   -webkit-mask-image: url(/images/ic_logo.svg)
   mask-image url(/images/ic_logo.svg)
-  &:hover
+  &::not(.disabled):hover
    background-color rgba(28,206,156,0.82)
    
 #arrow-left   
@@ -172,7 +172,7 @@ meyer-reset()
         border 1px solid rgba(23,229,178,.2)
         -webkit-transition border-color .2s linear
         transition border-color .2s linear
-        &:hover
+        &::not(.disabled):hover
           border-color #17e5b2
         .label
           &.button
@@ -271,12 +271,12 @@ meyer-reset()
   fill rgba(23, 229, 178, .2)
   transition fill .2s linear
 .footer
-  margin 40px 0
-  padding-bottom 15px
+  padding-bottom 45px
+  margin-top 45px
   .copyright
-    @media (min-width: 901px)
+    @media (min-width: 900px)
       float left
-      margin-left 30px
+      margin 0 0 0 30px !important
     color #777
     font-size 11px
     a 
@@ -293,17 +293,45 @@ meyer-reset()
 // #login
 //   // padding 200px
 .pass-phrase
+  box-sizing: border-box;
   position relative
   cursor pointer
-  width 840px
-  height 60px
+  max-width 840px
+  min-width 299px
+  @media (min-width: 900px)
+    height 60px !important
   border 1px solid rgba(255, 255, 255, 0.22)
   margin 0 auto 
+  .label
+    z-index 100
+  .paste
+    position: absolute;
+    bottom: 27px;
+    left: 27px;
+    @media (min-width: 900px)
+      bottom: 21px;
+  .file
+    position: absolute;
+    bottom: 27px;
+    right: 27px;
+    @media (min-width: 900px)
+      bottom: 21px;
+  .show
+    position: absolute;
+    bottom: 27px;
+    right: 27px;
+    @media (min-width: 900px)
+      bottom: 21px;
+  .hidden
+      display none   
+  .point 
+    background-color white
   & > *
     display inline-block
   &.focused
     border 1px solid #ddd
-  input
+  .password
+    clear both
     height 100%
     width 85%
     background transparent
@@ -313,8 +341,9 @@ meyer-reset()
     border none
     outline none
     font-size 18px
-    font-weight 100
+    font-weight 300
     letter-spacing 1.5px
+    resize none
     &:focus
       &::-webkit-input-placeholder
         color transparent
@@ -348,6 +377,7 @@ meyer-reset()
     color #17d2b2
     cursor pointer
 .signin
+  position relative
   margin 58px auto
   border 1px solid rgba(28,206,156,0.22)
   display -webkit-box
@@ -359,18 +389,19 @@ meyer-reset()
   border 1px solid rgba(23,229,178,.2)
   -webkit-transition border-color .2s linear
   transition border-color .2s linear
-  &:hover
+  &:not(.disabled):hover
     border-color #17e5b2
   .label
     &.button
       padding 21px 0
       font-size 17px
-      font-weight 500
+      font-weight 600
       letter-spacing 3.7px
       color #19fdc5
       width 100%
       
 .signup
+  position relative
   margin 119px auto 20px auto
   border 1px solid rgba(28,206,156,0.22)
   display -webkit-box
@@ -382,13 +413,13 @@ meyer-reset()
   border 1px solid rgba(23,229,178,.2)
   -webkit-transition border-color .2s linear
   transition border-color .2s linear
-  &:hover
+  &:not(.disabled):hover
     border-color #17e5b2
   .label
     &.button
       padding 21px 0
       font-size 17px
-      font-weight 500
+      font-weight 600
       letter-spacing 3.7px
       color #19fdc5
       width 100%
@@ -450,7 +481,7 @@ svg
   mask-size: cover;
   -webkit-transition background-color .2s linear
   transition background-color .2s linear
-  &:hover
+  &:not(.disabled):hover
     background-color #17e5b2
     
 #generate
@@ -466,7 +497,7 @@ svg
   mask-size: cover;
   -webkit-transition background-color .2s linear
   transition background-color .2s linear
-  &:hover
+  &:not(.disabled):hover
    background-color #17e5b2 
    
 .terms
@@ -542,7 +573,7 @@ svg
 //   border 1px solid rgba(23,229,178,.2)
 //   -webkit-transition border-color .2s linear
 //   transition border-color .2s linear
-//   &:hover
+//   &:not(.disabled):hover
 //     border-color #17e5b2
 //   .label
 //     &.button

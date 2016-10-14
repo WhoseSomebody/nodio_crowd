@@ -765,7 +765,7 @@ input:-webkit-autofill:active {
   -webkit-mask-image: url("/images/ic_logo.svg");
   mask-image: url("/images/ic_logo.svg");
 }
-#logo:hover {
+#logo::not(.disabled):hover {
   background-color: rgba(28,206,156,0.82);
 }
 #arrow-left {
@@ -953,7 +953,7 @@ input:-webkit-autofill:active {
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
 }
-.wal .bottom-part .left-part .copy:hover {
+.wal .bottom-part .left-part .copy::not(.disabled):hover {
   border-color: #17e5b2;
 }
 .wal .bottom-part .left-part .copy .label.button {
@@ -1075,17 +1075,17 @@ input:-webkit-autofill:active {
   transition: fill 0.2s linear;
 }
 .footer {
-  margin: 40px 0;
-  padding-bottom: 15px;
+  padding-bottom: 45px;
+  margin-top: 45px;
 }
 .footer .copyright {
   color: #777;
   font-size: 11px;
 }
-@media (min-width: 901px) {
+@media (min-width: 900px) {
   .footer .copyright {
     float: left;
-    margin-left: 30px;
+    margin: 0 0 0 30px !important;
   }
 }
 .footer .copyright a {
@@ -1100,12 +1100,57 @@ input:-webkit-autofill:active {
   line-height: 75px;
 }
 .pass-phrase {
+  box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  width: 840px;
-  height: 60px;
+  max-width: 840px;
+  min-width: 299px;
   border: 1px solid rgba(255,255,255,0.22);
   margin: 0 auto;
+}
+@media (min-width: 900px) {
+  .pass-phrase {
+    height: 60px !important;
+  }
+}
+.pass-phrase .label {
+  z-index: 100;
+}
+.pass-phrase .paste {
+  position: absolute;
+  bottom: 27px;
+  left: 27px;
+}
+@media (min-width: 900px) {
+  .pass-phrase .paste {
+    bottom: 21px;
+  }
+}
+.pass-phrase .file {
+  position: absolute;
+  bottom: 27px;
+  right: 27px;
+}
+@media (min-width: 900px) {
+  .pass-phrase .file {
+    bottom: 21px;
+  }
+}
+.pass-phrase .show {
+  position: absolute;
+  bottom: 27px;
+  right: 27px;
+}
+@media (min-width: 900px) {
+  .pass-phrase .show {
+    bottom: 21px;
+  }
+}
+.pass-phrase .hidden {
+  display: none;
+}
+.pass-phrase .point {
+  background-color: #fff;
 }
 .pass-phrase > * {
   display: inline-block;
@@ -1113,7 +1158,8 @@ input:-webkit-autofill:active {
 .pass-phrase.focused {
   border: 1px solid #ddd;
 }
-.pass-phrase input {
+.pass-phrase .password {
+  clear: both;
   height: 100%;
   width: 85%;
   background: transparent;
@@ -1123,40 +1169,41 @@ input:-webkit-autofill:active {
   border: none;
   outline: none;
   font-size: 18px;
-  font-weight: 100;
+  font-weight: 300;
   letter-spacing: 1.5px;
+  resize: none;
 }
-.pass-phrase input:focus::-webkit-input-placeholder {
+.pass-phrase .password:focus::-webkit-input-placeholder {
   color: transparent;
 }
-.pass-phrase input:focus::-moz-placeholder {
+.pass-phrase .password:focus::-moz-placeholder {
   color: transparent;
 }
-.pass-phrase input:focus:-moz-placeholder {
+.pass-phrase .password:focus:-moz-placeholder {
   color: transparent;
 }
-.pass-phrase input:focus:-ms-input-placeholder {
+.pass-phrase .password:focus:-ms-input-placeholder {
   color: transparent;
 }
-.pass-phrase input::-webkit-input-placeholder {
+.pass-phrase .password::-webkit-input-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase input::-moz-placeholder {
+.pass-phrase .password::-moz-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase input::-moz-placeholder {
+.pass-phrase .password::-moz-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
   letter-spacing: 2px;
 }
-.pass-phrase input::-ms-input-placeholder {
+.pass-phrase .password::-ms-input-placeholder {
   font-size: 17px;
   color: #fff;
   font-weight: 300;
@@ -1167,6 +1214,7 @@ input:-webkit-autofill:active {
   cursor: pointer;
 }
 .signin {
+  position: relative;
   margin: 58px auto;
   border: 1px solid rgba(28,206,156,0.22);
   display: -webkit-box;
@@ -1183,18 +1231,19 @@ input:-webkit-autofill:active {
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
 }
-.signin:hover {
+.signin:not(.disabled):hover {
   border-color: #17e5b2;
 }
 .signin .label.button {
   padding: 21px 0;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 3.7px;
   color: #19fdc5;
   width: 100%;
 }
 .signup {
+  position: relative;
   margin: 119px auto 20px auto;
   border: 1px solid rgba(28,206,156,0.22);
   display: -webkit-box;
@@ -1211,13 +1260,13 @@ input:-webkit-autofill:active {
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
 }
-.signup:hover {
+.signup:not(.disabled):hover {
   border-color: #17e5b2;
 }
 .signup .label.button {
   padding: 21px 0;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 3.7px;
   color: #19fdc5;
   width: 100%;
@@ -1289,7 +1338,7 @@ svg.active {
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }
-#save-to-file:hover {
+#save-to-file:not(.disabled):hover {
   background-color: #17e5b2;
 }
 #generate {
@@ -1307,7 +1356,7 @@ svg.active {
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }
-#generate:hover {
+#generate:not(.disabled):hover {
   background-color: #17e5b2;
 }
 .terms {
@@ -1369,41 +1418,68 @@ svg.active {
     line-height: 19px;
     padding: 27px 0 28px 0;
   }
-  .wal {
-    padding: 29px;
-    height: 361px;
-  }
-  .wal .top-part {
-    height: 90px;
-  }
-  .wal .bottom-part {
-    height: 180px;
-  }
-  .wal .bottom-part .left-part {
-    width: 50%;
-  }
-  .wal .bottom-part .right-part {
-    width: 50%;
-  }
-  .wal .bottom-part .right-part .qr {
-    float: right;
-  }
-  .wal .bottom-part .right-part .qr img {
-    width: 164px;
-  }
-  .history .hist-line {
-    font-size: 16px;
-    height: 119px;
-  }
-  .history .hist-line .num {
-    font-size: 17px;
-  }
-  .history .col.details .detail-arrow {
-    margin: -42px 0 0 -3px;
-  }
-  .footer .copyright {
-    margin: 60px auto 0 auto;
-  }
+}
+.total {
+  margin: 36px 0 25px 0;
+}
+.total .label.head {
+  font-weight: 500;
+  line-height: 30px;
+  font-size: 15px;
+}
+.total .label.numbers {
+  font-size: 35px;
+  line-height: 60px;
+  letter-spacing: 2.5px;
+}
+.pass-phrase {
+  height: 121px;
+  padding: 13px;
+}
+.pass-phrase .password {
+  line-height: 28px;
+  font-size: 17px;
+  letter-spacing: 1.6px;
+  width: 100%;
+}
+.signin {
+  max-width: 420px;
+  box-size: border-box;
+}
+.wal {
+  padding: 29px;
+  height: 361px;
+}
+.wal .top-part {
+  height: 90px;
+}
+.wal .bottom-part {
+  height: 180px;
+}
+.wal .bottom-part .left-part {
+  width: 50%;
+}
+.wal .bottom-part .right-part {
+  width: 50%;
+}
+.wal .bottom-part .right-part .qr {
+  float: right;
+}
+.wal .bottom-part .right-part .qr img {
+  width: 164px;
+}
+.history .hist-line {
+  font-size: 16px;
+  height: 119px;
+}
+.history .hist-line .num {
+  font-size: 17px;
+}
+.history .col.details .detail-arrow {
+  margin: -42px 0 0 -3px;
+}
+.footer .copyright {
+  margin: 60px auto 0 auto;
 }
 @media all and (max-width: 601px) {
   .desktop,
@@ -1417,6 +1493,56 @@ svg.active {
     width: 323px;
     height: 58px;
     margin: 32px auto 0 -20px;
+  }
+  .total {
+    margin: 11px 0 22px 0;
+  }
+  .total .label.head {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .total .label.numbers {
+    font-size: 26px;
+    line-height: 20px;
+    letter-spacing: 1px;
+  }
+  .pass-phrase {
+    height: 181px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 17px 27px;
+  }
+  .pass-phrase .password {
+    width: 100%;
+    text-align: left;
+    letter-spacing: 3.1px;
+    font-size: 19px;
+    line-height: 31px;
+    overflow: hidden;
+  }
+  .pass-phrase .paste {
+    position: absolute;
+    bottom: 27px;
+    left: 27px;
+  }
+  .pass-phrase .file {
+    position: absolute;
+    bottom: 27px;
+    right: 27px;
+  }
+  .pass-phrase .show {
+    position: absolute;
+    bottom: 27px;
+    right: 27px;
+  }
+  .pass-phrase .hidden {
+    display: none;
+  }
+  .signin,
+  .signup {
+    margin: 29px 30px 29px 29px;
+    position: relative;
   }
   .bars {
     width: 300px;

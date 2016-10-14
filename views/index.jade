@@ -3,26 +3,40 @@ extends layout
 block content
   .total
     .label.head
-      | Total invested
+      | Total raised
     .label.numbers
       | 1 000 232 342 234 BTC
 
   #login
     #formspace.pass-phrase
-      #paste.label Paste
-      input.password(
+      .point.bottom.left
+      .point.bottom.right
+      .point.top.left
+      .point.top.right
+      .paste.label Paste
+      textarea.password(
         type="text",
+        maxlength="69",
         placeholder="Enter Your Pass Phrase",
         onFocus="focusLink(true)",
         onBlur="focusLink(false)",
-        onChange="toggle_pass()"
-      )
-      #file.label Use txt
+        onChange="toggle_pass()",
+        style="")
+      .file.label Use txt
+      .show.label.hidden Show
 
   .signin.disabled
+    .point.bottom.left
+    .point.bottom.right
+    .point.top.left
+    .point.top.right
     a(href="#").label.button
       | Sign In
 
   .signup
+    .point.bottom.left
+    .point.bottom.right
+    .point.top.left
+    .point.top.right
     a(href="new").label.button
       | New account
