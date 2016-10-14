@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-let userSchema = new Schema({
+var userSchema = new Schema({
     id: {type: String, unique: true},
     password: {type: String, unique: true}
 });
@@ -11,5 +11,5 @@ userSchema.methods.generateId = function(phrase) {
 	return this.id;
 };
 
-let User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 module.exports = User;
