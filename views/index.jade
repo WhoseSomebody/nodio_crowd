@@ -18,12 +18,13 @@ block content
         type="text",
         maxlength="69",
         placeholder="Enter Your Pass Phrase",
-        onFocus="focusLink(true)",
-        onBlur="focusLink(false)",
-        onChange="toggle_pass()",
         style="")
-      .file.label Use txt
-      .show.label.hidden Show
+      label.file.label Use txt
+        input(
+          type="file",
+          onchange="onFileSelected(event, this)"
+          )
+      #show.show.label.hidden Show
 
   .signin.disabled
     .point.bottom.left

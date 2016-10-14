@@ -35,10 +35,7 @@ block content
         type="text",
         maxlength="69",
         placeholder="Enter Your Pass Phrase",
-        value="one fish empty night purse siren fancy dutch always hold effort father",
-        onFocus="focusLink(true)",
-        onBlur="focusLink(false)",
-        onChange="toggle_pass()",
+        value="one fish empty night purse siren fancy dutch always hold effort father"
         style="")
          | one fish empty night purse siren fancy dutch always hold effort father
       .save-to-file.label dwnl
@@ -54,12 +51,13 @@ block content
         type="text",
         maxlength="69",
         placeholder="Enter Your Pass Phrase",
-        onFocus="focusLink(true)",
-        onBlur="focusLink(false)",
-        onChange="toggle_pass()",
         style="")
-      .file.label Use txt
-      .show.label.hidden Show
+      label.file.label Use txt
+        input(
+          type="file",
+          onchange="onFileSelected(event, this)"
+          )
+      #show.show.label.hidden Show
 
   .terms
     |By creating an account, I agree to the 
