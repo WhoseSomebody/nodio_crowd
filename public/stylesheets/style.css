@@ -1117,6 +1117,13 @@ body {
   color: inherit;
   text-decoration: none;
 }
+.pass-phrase {
+  -webkit-transition: background 4s linear;
+  -moz-transition: background 4s linear;
+  -o-transition: background 4s linear;
+  -webkit-transition: background 4s linear;
+  transition: background 4s linear;
+}
 .total {
   margin: 53px 0 32px 0;
 }
