@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/new_user', (req, res) => {
-    let user = new User({
+    var user = new User({
         id : '',
 		password : req.body.key
     });
