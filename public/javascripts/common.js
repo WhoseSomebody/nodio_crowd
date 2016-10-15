@@ -1,9 +1,20 @@
 
 var generated = '';
+$("#generator textarea").ready(function() {
+    if ($("#generator textarea").length > 0)
+        generateRandom();
+    })
 $( document ).ready(function(){
     var show = true;
     checkIfExists();
     checkIfCopied();
+    $('textarea').focus(
+    function(){
+        $(this).parent('div').css('border-color','#fff');
+    }).blur(
+    function(){
+        $(this).parent('div').css('border-color','#fff');
+    });
     // $('textarea.password').bind('input propertychange', function() {
     //       $(this).data("code", this.value);
     //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
