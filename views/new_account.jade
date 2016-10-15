@@ -33,10 +33,11 @@ block content
       .generate.label(title="Generate New Phrase") gen
       textarea.password(
         type="text",
-        maxlength="69",
         placeholder="Generate Your Pass Phrase",
         value="one fish empty night purse siren fancy dutch always hold effort father"
-        style="")
+        style="",
+        rows="2",
+        cols="6")
       .save-to-file.label(title="Save As *.txt")  dwnl
 
   #login_new.group2
@@ -73,7 +74,7 @@ block content
     |  Note, that you won't be able to restore your account without it.
     |  and all your data will be permanently lost.
 
-  #copy.signin.disabled.group1
+  #copy.signin.group1
     a(href="#").label.button
       span.desktop.tablet
         | Copy Pass Phrase to Clipboard 

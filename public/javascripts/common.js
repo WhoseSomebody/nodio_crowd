@@ -1,9 +1,19 @@
 
 var generated = '';
+var count = 1;
+$("#generator textarea").ready(function() {
+    if ($("#generator textarea").length > 0)
+        generateRandom();
+    })
 $( document ).ready(function(){
     var show = true;
     checkIfExists();
     checkIfCopied();
+
+    $('a.label.link').click(function (e) {
+        $.get( "/logout");
+    });
+    // 
     // $('textarea.password').bind('input propertychange', function() {
     //       $(this).data("code", this.value);
     //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
@@ -92,12 +102,14 @@ $( document ).ready(function(){
                 $(".second svg,active").css("right", "0");
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
-                    $.post( "/new_user", { key: generated }, (res) =>{
-                        console.log(res.success);
-                        if (res.success)
-                            $( location ).attr("href", "/account");
-                    } );
-                    
+                    if (count == 1) {
+                        $.post( "/signup", { key: generated }, (res) =>{
+                            console.log(res.success);
+                            if (res.success)
+                                $( location ).attr("href", "/account");
+                        } );
+                        count = 0;
+                    }
                     
                 })}
             else {
@@ -117,7 +129,7 @@ $( document ).ready(function(){
         console.log("chek textbox" + $(this));
         var area = $(this);
           if (area.val().length == 69) {
-            $.post( "/check_user", { key: $(this).val()}, (res) =>{
+            $.post( "/login", { key: $(this).val()}, (res) =>{
                 console.log(res.success);
                 if (res.success) {
                     $('.signin').removeClass("disabled");
@@ -174,3 +186,4 @@ function resetFormElement(e) {
   e.wrap('<form>').closest('form').get(0).reset();
   e.unwrap();
 }
+
