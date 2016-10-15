@@ -159,8 +159,9 @@ meyer-reset()
   .bottom-part
     padding-top 27px  
     .left-part
+      margin-top 1px
       display inline-block
-      width 79%
+      width 570px
       float left
       .copy
         position relative
@@ -176,20 +177,19 @@ meyer-reset()
         -webkit-transition border-color .2s linear
         transition border-color .2s linear
         &::not(.disabled):hover
-          border-color #17e5b2
+          border-color #17e6b2
         .label
           &.button
             padding 21px 0
             font-size 17px
-            font-weight 500
+            font-weight 600
             letter-spacing 3.7px
-            color #19fdc5
+            color #17e6b2
             width 100%
 
 
     .right-part
       display inline-block
-      width 21%
       margin-top 2px
       .qr
         position relative
@@ -216,8 +216,8 @@ meyer-reset()
       display inline-block 
     margin 0 auto
     @media (min-width: 901px)
-      width 80%
-      height 120px
+      width 721px
+      height 119px
 
       
         
@@ -229,10 +229,14 @@ meyer-reset()
       transform: translateY(-50%);
       &.date
         width 21%
+        text-align left
+        left 12px
         .date-font
           color $white-50 
       &.confirm
         width 36%
+        text-align left
+        left 70px
         .confirm-num
           color $white-50
           span 
@@ -252,7 +256,7 @@ meyer-reset()
           -webkit-mask-image: url(/images/ic_arrow_right.svg)
           mask-image url(/images/ic_logo.svg)
           @media (min-width: 900px)
-            margin: -46px 0 0 4px;
+            margin: -47px 0 0 5px;
           display inline-block
           -webkit-mask-size: cover;
           mask-size: cover;
@@ -325,10 +329,9 @@ meyer-reset()
       color #17e5b2 
   .paste
     position: absolute;
-    bottom: 27px;
-    left: 27px;
-    @media (min-width: 900px)
-      bottom: 21px;
+    bottom: 23px;
+    left: 23px;
+
   .generate
     position: absolute;
     bottom: -1px;
@@ -337,10 +340,8 @@ meyer-reset()
       bottom: -1px;
   .file
     position: absolute;
-    bottom: 27px;
-    right: 27px;
-    @media (min-width: 900px)
-      bottom: 21px;
+    bottom: 23px;
+    right: 23px;
   .save-to-file
     position: absolute;
     bottom: -1px;

@@ -954,8 +954,9 @@ body {
   padding-top: 27px;
 }
 .wal .bottom-part .left-part {
+  margin-top: 1px;
   display: inline-block;
-  width: 79%;
+  width: 570px;
   float: left;
 }
 .wal .bottom-part .left-part .copy {
@@ -977,19 +978,18 @@ body {
   transition: border-color 0.2s linear;
 }
 .wal .bottom-part .left-part .copy::not(.disabled):hover {
-  border-color: #17e5b2;
+  border-color: #17e6b2;
 }
 .wal .bottom-part .left-part .copy .label.button {
   padding: 21px 0;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 3.7px;
-  color: #19fdc5;
+  color: #17e6b2;
   width: 100%;
 }
 .wal .bottom-part .right-part {
   display: inline-block;
-  width: 21%;
   margin-top: 2px;
 }
 .wal .bottom-part .right-part .qr {
@@ -1024,8 +1024,8 @@ body {
 }
 @media (min-width: 901px) {
   .history .hist-line {
-    width: 80%;
-    height: 120px;
+    width: 721px;
+    height: 119px;
   }
 }
 .history .hist-line > * {
@@ -1040,12 +1040,16 @@ body {
 }
 .history .hist-line .col.date {
   width: 21%;
+  text-align: left;
+  left: 12px;
 }
 .history .hist-line .col.date .date-font {
   color: rgba(255,255,255,0.5);
 }
 .history .hist-line .col.confirm {
   width: 36%;
+  text-align: left;
+  left: 70px;
 }
 .history .hist-line .col.confirm .confirm-num {
   color: rgba(255,255,255,0.5);
@@ -1075,7 +1079,7 @@ body {
 }
 @media (min-width: 900px) {
   .history .hist-line .col.details .detail-arrow {
-    margin: -46px 0 0 4px;
+    margin: -47px 0 0 5px;
   }
 }
 .history .hist-line .line {
@@ -1163,13 +1167,8 @@ body {
 }
 .pass-phrase .paste {
   position: absolute;
-  bottom: 27px;
-  left: 27px;
-}
-@media (min-width: 900px) {
-  .pass-phrase .paste {
-    bottom: 21px;
-  }
+  bottom: 23px;
+  left: 23px;
 }
 .pass-phrase .generate {
   position: absolute;
@@ -1183,13 +1182,8 @@ body {
 }
 .pass-phrase .file {
   position: absolute;
-  bottom: 27px;
-  right: 27px;
-}
-@media (min-width: 900px) {
-  .pass-phrase .file {
-    bottom: 21px;
-  }
+  bottom: 23px;
+  right: 23px;
 }
 .pass-phrase .save-to-file {
   position: absolute;
@@ -1526,7 +1520,8 @@ svg.active {
     line-height: 18px;
   }
   .label.info {
-    line-height: 19px;
+    line-height: 18px;
+    font-size: 14px;
   }
   .label.code {
     font-size: 19px;
