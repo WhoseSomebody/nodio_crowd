@@ -1622,7 +1622,7 @@ svg.active {
     color: rgba(255,255,255,0.3);
   }
 }
-@media all and (max-width: 601) {
+@media all and (max-width: 601px) {
   .desktop,
   .tablet {
     display: none;
