@@ -1,7 +1,7 @@
-+media-query(all, min-width ($tabletWidth + 1), max-width $bigWidth)
++media-query(all, min-width 601px, max-width 900px)
   .container
     width 541px
-+media-query(all, max-width $bigWidth)
++media-query(all, max-width 900px)
   .desktop,
   .mobile
     display none
@@ -14,7 +14,7 @@
       font-size 12px
     &.numbers
       font-size 23px
-      line-height 31px
+      line-height 36px
     &.link
       font-size 12px
       line-height 14px
@@ -45,12 +45,12 @@
       letter-spacing: 1.6px
       width 100%
   .progress
-    margin 30px auto 0 auto
     width 541px
-      .first 
-        width 301px
-      .second
-        width 240px  
+    margin 30px auto 0 auto
+    .first 
+      width 301px
+    .second
+      width 240px  
   .signin
     max-width 419px
     // box-size border-box 

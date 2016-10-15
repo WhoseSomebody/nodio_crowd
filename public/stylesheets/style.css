@@ -720,12 +720,12 @@ body {
     padding: 0;
   }
 }
-@media only screen and (min-width: 321px) and (max-width: 600px) {
+@media only screen and (min-width: 321px) and (max-width: 601) {
   .container {
     width: 301px;
   }
 }
-@media only screen and (min-width: 600px) and (max-width: 900px) {
+@media only screen and (min-width: 601) and (max-width: 900px) {
   .container {
     width: 540px;
   }
@@ -915,12 +915,12 @@ body {
     margin-top: 29px;
   }
 }
-@media (max-width: 601px) {
+@media (max-width: 600px) {
   .wal {
     margin-top: 30px;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .wal {
     padding: 59px;
   }
@@ -1077,7 +1077,7 @@ body {
   -webkit-mask-size: cover;
   mask-size: cover;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .history .hist-line .col.details .detail-arrow {
     margin: -47px 0 0 5px;
   }
@@ -1110,7 +1110,7 @@ body {
   color: #777;
   font-size: 11px;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .footer .copyright {
     float: left;
     margin: 0 0 0 30px !important;
@@ -1146,7 +1146,7 @@ body {
   -webkit-transition: border-color 0.2s linear, color 0.2s linear, -webkit-text-fill-color 0.2s linear, background-color 50000s ease-in-out 50000s;
   transition: border-color 0.2s linear, color 0.2s linear, -webkit-text-fill-color 0.2s linear, background-color 50000s ease-in-out 50000s;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .pass-phrase {
     height: 61px !important;
   }
@@ -1175,7 +1175,7 @@ body {
   bottom: -1px;
   left: 59px;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .pass-phrase .generate {
     bottom: -1px;
   }
@@ -1190,7 +1190,7 @@ body {
   bottom: -1px;
   right: 1px;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .pass-phrase .save-to-file {
     bottom: -1px;
   }
@@ -1200,7 +1200,7 @@ body {
   bottom: 27px;
   right: 27px;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .pass-phrase .show {
     bottom: 21px;
   }
@@ -1232,7 +1232,7 @@ body {
   letter-spacing: 1px;
   resize: none;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .pass-phrase .password,
   .pass-phrase .generator {
     line-height: 54px;
@@ -1464,10 +1464,10 @@ svg.active {
   font-weight: 600;
   font-size: 18px;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   #new.signin {
     margin: 59px auto;
-    width: 600px;
+    width: 601px;
   }
 }
 @media all and (min-width: 900px) {
@@ -1556,12 +1556,13 @@ svg.active {
     width: 100%;
   }
   .progress {
+    width: 541px;
     margin: 30px auto 0 auto;
   }
-  .progress width 541px .first {
+  .progress .first {
     width: 301px;
   }
-  .progress width 541px .second {
+  .progress .second {
     width: 240px;
   }
   .signin {
@@ -1621,7 +1622,7 @@ svg.active {
     color: rgba(255,255,255,0.3);
   }
 }
-@media all and (max-width: 600px) {
+@media all and (max-width: 601) {
   .desktop,
   .tablet {
     display: none;
