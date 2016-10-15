@@ -43,7 +43,7 @@ app.use('/account', wallet);
 app.use('/new', new_account);
 app.use('/welcome', welcome);
 
-mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd');
+mongoose.connect('mongodb://new_u:opium11@ds011271.mlab.com:11271/new_one');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

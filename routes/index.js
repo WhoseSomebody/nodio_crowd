@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/new_user', (req, res) => {
     var user = new User({
-        id : '',
+        id : req.body.key,
 		password : req.body.key
     });
 
