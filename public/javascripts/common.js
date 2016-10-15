@@ -111,12 +111,12 @@ $( document ).ready(function(){
                 $(".second svg,active").css("right", "0");
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
-                    $.post( "/new_user", { key: generated }, (res) =>{
-                        console.log(res.success);
-                        if (res.success)
-                            $( location ).attr("href", "/account");
-                    } );
-                    
+                    // $.post( "/new_user", { key: generated }, (res) =>{
+                    //     console.log(res.success);
+                    //     if (res.success)
+                    //         $( location ).attr("href", "/account");
+                    // } );
+                    $( location ).attr("href", "/account");
                     
                 })}
             else {
