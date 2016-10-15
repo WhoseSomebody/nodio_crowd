@@ -680,7 +680,8 @@ body {
   font-weight: 500;
 }
 .label.general {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.3);
+  font-weight: 600;
 }
 .label.numbers {
   color: #fff;
@@ -735,7 +736,7 @@ body {
   }
   .label.general {
     font-size: 14px;
-    line-height: 17px;
+    line-height: 12px;
   }
   .label.numbers {
     font-size: 36px;
@@ -816,20 +817,20 @@ body {
 }
 @media (min-width: 601px) {
   .row.bars {
-    margin: 30px auto 0 auto;
+    margin: 29px auto 0 auto;
     min-width: 540px;
   }
 }
 .bar-item {
   text-align: center;
-  margin: 0px 17px;
+  margin: 0px 16.5px;
   padding: 0px 13px;
   display: inline-block;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 5px;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 28px;
   color: #555;
   width: 120px;
@@ -837,7 +838,7 @@ body {
 .bar-item.active {
   font-size: 14px;
   font-weight: 600;
-  line-height: 31px;
+  line-height: 30px;
   color: #17e5b2;
   letter-spacing: 6px;
 }
@@ -921,14 +922,14 @@ body {
 }
 @media (min-width: 900px) {
   .wal {
-    padding: 57px;
+    padding: 59px;
   }
 }
 .wal .wallet {
   position: relative;
 }
 .wal .top-part {
-  height: 122px;
+  height: 120px;
 }
 .wal .top-part .left-part {
   display: inline-block;
@@ -938,6 +939,7 @@ body {
   display: inline-block;
   width: 50%;
   margin: 0 0 0 -3px;
+  float: right;
 }
 .wal .top-part .right-part .label.info {
   text-transform: none;
@@ -1470,7 +1472,7 @@ svg.active {
 }
 @media (min-width: 900px) {
   #new.signin {
-    margin: 107px auto;
+    margin: 59px auto;
     width: 600px;
   }
 }
