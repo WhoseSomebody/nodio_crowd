@@ -1499,6 +1499,11 @@ svg.active {
   text-align: right;
   top: 0;
 }
+@media all and (min-width: 601px) and (max-width: 900px) {
+  .container {
+    width: 541px;
+  }
+}
 @media all and (max-width: 900px) {
   .desktop,
   .mobile {
@@ -1508,28 +1513,27 @@ svg.active {
     display: block;
   }
   .label.general {
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 12px;
   }
   .label.numbers {
     font-size: 23px;
     line-height: 31px;
   }
   .label.link {
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 12px;
+    line-height: 14px;
   }
   .label.info {
-    line-height: 18px;
-    font-size: 14px;
+    line-height: 12px;
+    font-size: 12px;
   }
   .label.code {
-    font-size: 19px;
-    line-height: 19px;
-    padding: 27px 0 28px 0;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 26px 0 25px 0;
   }
   .total {
-    margin: 36px 0 25px 0;
+    margin: 36px 0 23px 0;
   }
   .total .label.head {
     font-weight: 500;
@@ -1551,9 +1555,28 @@ svg.active {
     letter-spacing: 1.6px;
     width: 100%;
   }
+  .progress {
+    margin: 30px auto 0 auto;
+  }
+  .progress width 541px .first {
+    width: 301px;
+  }
+  .progress width 541px .second {
+    width: 240px;
+  }
   .signin {
-    max-width: 420px;
-    box-size: border-box;
+    max-width: 419px;
+  }
+  .signup {
+    margin-top: 89px;
+  }
+  .bar-item {
+    color: rgba(23,230,178,0.3);
+    width: 121px;
+  }
+  .line {
+    position: relative;
+    width: 121px;
   }
   .wal {
     padding: 29px;
@@ -1566,10 +1589,8 @@ svg.active {
     height: 180px;
   }
   .wal .bottom-part .left-part {
-    width: 50%;
-  }
-  .wal .bottom-part .right-part {
-    width: 50%;
+    width: 271px;
+    margin-right: 29px;
   }
   .wal .bottom-part .right-part .qr {
     float: right;
@@ -1587,18 +1608,17 @@ svg.active {
   .history .col.details .detail-arrow {
     margin: -42px 0 0 -3px;
   }
-  .terms {
-    font-size: 11px;
-    padding: 15px;
-    letter-spacing: 1px;
+  .history .col.confirm {
+    left: 54px;
   }
-  .attention {
-    width: 350px;
-    font-size: 10px;
-    line-height: 21px;
+  .footer {
+    letter-spacing: 1px;
+    text-align: center;
   }
   .footer .copyright {
     margin: 60px auto 0 auto;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
   }
 }
 @media all and (max-width: 600px) {
@@ -1613,6 +1633,9 @@ svg.active {
     width: 323px;
     height: 58px;
     margin: 32px auto 0 auto;
+  }
+  #logo {
+    margin-left: -59px;
   }
   .total {
     margin: 11px 0 22px 0;

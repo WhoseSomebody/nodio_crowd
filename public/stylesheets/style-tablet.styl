@@ -1,3 +1,6 @@
++media-query(all, min-width ($tabletWidth + 1), max-width $bigWidth)
+  .container
+    width 541px
 +media-query(all, max-width $bigWidth)
   .desktop,
   .mobile
@@ -5,25 +8,25 @@
   .tablet
     display block
   
+    
   .label
     &.general
-      font-size 14px
-      line-height 19px
+      font-size 12px
     &.numbers
       font-size 23px
       line-height 31px
     &.link
-      font-size 14px
-      line-height 18px
+      font-size 12px
+      line-height 14px
     &.info
-      line-height 18px
-      font-size 14px
+      line-height 12px
+      font-size 12px
     &.code
-      font-size 19px
-      line-height 19px
-      padding 27px 0 28px 0
+      font-size 24px
+      line-height 24px
+      padding 26px 0 25px 0
   .total
-      margin: 36px 0 25px 0;
+      margin: 36px 0 23px 0;
       .label
         &.head
           font-weight: 500;
@@ -41,15 +44,26 @@
       font-size: 17px;
       letter-spacing: 1.6px
       width 100%
-      
+  .progress
+    margin 30px auto 0 auto
+    width 541px
+      .first 
+        width 301px
+      .second
+        width 240px  
   .signin
-    max-width 420px
-    box-size border-box 
-    
+    max-width 419px
+    // box-size border-box 
+  .signup
+    margin-top 89px
 
+  .bar-item
+    color rgba(23,230,178,0.3)
+    width 121px
 
-
-
+  .line
+    position relative
+    width 121px
 
   .wal
     padding 29px
@@ -59,9 +73,9 @@
     .bottom-part
       height 180px
       .left-part
-        width 50%
+        width 271px
+        margin-right 29px
       .right-part
-        width 50%
         .qr
           float right
           img
@@ -77,19 +91,15 @@
       &.details
         .detail-arrow
           margin -42px 0 0 -3px
-  
-
-  .terms  
-    font-size: 11px;
-    padding: 15px;
-    letter-spacing: 1px;
-  .attention
-    width: 350px;
-    font-size: 10px;
-    line-height: 21px;
+      &.confirm
+        left 54px
 
 
   .footer
+    letter-spacing 1px
+    text-align center
     .copyright
       margin 60px auto 0 auto
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
     

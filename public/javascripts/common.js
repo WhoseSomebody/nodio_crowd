@@ -78,6 +78,14 @@ $( document ).ready(function(){
         window.getSelection().removeAllRanges();
         nextStep();
     });
+    $("walcop").click(function(e){
+        e.preventDefault();
+        var Field = $('#code');
+        Field.select();
+        document.execCommand('copy'); 
+        window.getSelection().removeAllRanges();
+        nextStep();
+    });
 
     // allows to copy after generation of the password
 
