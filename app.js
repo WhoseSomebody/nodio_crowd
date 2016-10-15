@@ -54,11 +54,6 @@ app.use('/account', wallet);
 app.use('/new_account', new_account);
 app.use('/welcome', welcome);
 
-<<<<<<< HEAD
-=======
-mongoose.connect('mongodb://new_u:opium11@ds011271.mlab.com:11271/new_one');
-
->>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
