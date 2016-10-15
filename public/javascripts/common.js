@@ -1,6 +1,9 @@
 
 var generated = '';
+<<<<<<< HEAD
 var count = 1;
+=======
+>>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
 $("#generator textarea").ready(function() {
     if ($("#generator textarea").length > 0)
         generateRandom();
@@ -9,11 +12,29 @@ $( document ).ready(function(){
     var show = true;
     checkIfExists();
     checkIfCopied();
+<<<<<<< HEAD
 
     $('a.label.link').click(function (e) {
         $.get( "/logout");
     });
     // 
+=======
+    $('textarea').focus(
+    function(){
+        $(this).parent('div').css('border-color','#fff');
+    }).blur(
+    function(){
+        $(this).parent('div').css('border-color','#fff');
+    });
+    $('textarea').focusout(
+    function(){
+        $(this).parent('div').css('border-color','rgba(255,255,255,0.2)');
+    }).blur(
+    function(){
+        $(this).parent('div').css('border-color','rgba(255,255,255,0.2');
+    });
+    
+>>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
     // $('textarea.password').bind('input propertychange', function() {
     //       $(this).data("code", this.value);
     //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
@@ -69,6 +90,14 @@ $( document ).ready(function(){
         window.getSelection().removeAllRanges();
         nextStep();
     });
+    $("walcop").click(function(e){
+        e.preventDefault();
+        var Field = $('#code');
+        Field.select();
+        document.execCommand('copy'); 
+        window.getSelection().removeAllRanges();
+        nextStep();
+    });
 
     // allows to copy after generation of the password
 
@@ -102,6 +131,7 @@ $( document ).ready(function(){
                 $(".second svg,active").css("right", "0");
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
+<<<<<<< HEAD
                     if (count == 1) {
                         $.post( "/signup", { key: generated }, (res) =>{
                             console.log(res.success);
@@ -110,6 +140,14 @@ $( document ).ready(function(){
                         } );
                         count = 0;
                     }
+=======
+                    // $.post( "/new_user", { key: generated }, (res) =>{
+                    //     console.log(res.success);
+                    //     if (res.success)
+                    //         $( location ).attr("href", "/account");
+                    // } );
+                    $( location ).attr("href", "/account");
+>>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
                     
                 })}
             else {

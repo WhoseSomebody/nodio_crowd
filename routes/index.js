@@ -13,23 +13,33 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Nodio Crowd' });
 });
 
+<<<<<<< HEAD
 router.post('/signup', (req, res, next) => {
-    let input = __dirname + '/../public/crowdsale_list.txt',
+    var input = __dirname + '/../public/crowdsale_list.txt',
         output = __dirname + '/../public/crowdsale_list_temp.txt',
         content = fs.readFileSync(input, 'utf8');
+=======
+router.post('/new_user', (req, res) => {
+    var user = new User({
+        id : req.body.key,
+		password : req.body.key
+    });
+
+    user.generateId(req.body.key);
+>>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
 
     content = content.split("\n");
-    let id = content.splice(0,1);
+    var id = content.splice(0,1);
 
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
-    let user = new User({
+    var user = new User({
         _id : id,
 		password : req.body.key
     });
 
-    let dbPromise = user.save();
+    var dbPromise = user.save();
 
     dbPromise.then(user => {
         req.session.userID = user._id;

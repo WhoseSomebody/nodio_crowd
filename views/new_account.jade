@@ -23,7 +23,7 @@ block content
         .desktop.tablet
           svg.active.invisible2
             use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
-          .line
+          .line#right
   #generator.group1
     #formspace1.pass-phrase
       .point.bottom.left
@@ -75,12 +75,23 @@ block content
     |  and all your data will be permanently lost.
 
   #copy.signin.group1
+<<<<<<< HEAD
+=======
+    .point.bottom.left
+    .point.bottom.right
+    .point.top.left
+    .point.top.right
+>>>>>>> 6b7f667d8426bf68d99259b70e2448add6e1fedb
     a(href="#").label.button
       span.desktop.tablet
         | Copy Pass Phrase to Clipboard 
       span.mobile
         | Copy 
   #new.signin.disabled.group2
+    .point.bottom.left
+    .point.bottom.right
+    .point.top.left
+    .point.top.right
     a(href="#").label.button
       span.desktop.tablet
         | Sign In As A New StakeHolder
@@ -88,13 +99,13 @@ block content
         | Sign In 
 
   style.
-    .invisible2, .invisible1, .group2, .group1{
-      -webkit-transition: visibility 1s, opacity 1.5s linear;
-      -moz-transition: visibility 1s, opacity 1.5s linear;
-      -ms-transition: visibility 1s, opacity 1.5s linear;
-      -o-transition: visibility 1s, opacity 1.5s linear;
-      transition: visibility 1s, opacity 1.5s linear;
-    }
+    //- .invisible2, .invisible1, .group2, .group1{
+    //-   -webkit-transition: visibility 1s, opacity 1.5s linear;
+    //-   -moz-transition: visibility 1s, opacity 1.5s linear;
+    //-   -ms-transition: visibility 1s, opacity 1.5s linear;
+    //-   -o-transition: visibility 1s, opacity 1.5s linear;
+    //-   transition: visibility 1s, opacity 1.5s linear;
+    //- }
     .group2 {
       display: none !important
     }
@@ -104,9 +115,6 @@ block content
     }
     #login_new{
       margin-top:59px
-    }
-    #new.signin {
-      margin: 58px auto;
     }
     @media (max-width: 600px){
       .second {
