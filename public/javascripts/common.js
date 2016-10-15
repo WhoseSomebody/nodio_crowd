@@ -15,6 +15,14 @@ $( document ).ready(function(){
     function(){
         $(this).parent('div').css('border-color','#fff');
     });
+    $('textarea').focusout(
+    function(){
+        $(this).parent('div').css('border-color','rgba(255,255,255,0.2)');
+    }).blur(
+    function(){
+        $(this).parent('div').css('border-color','rgba(255,255,255,0.2');
+    });
+    
     // $('textarea.password').bind('input propertychange', function() {
     //       $(this).data("code", this.value);
     //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
