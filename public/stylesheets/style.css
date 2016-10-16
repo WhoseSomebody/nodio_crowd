@@ -724,8 +724,8 @@ body {
 }
 @media only screen and (min-width: 901px) {
   .label.code {
-    font-size: 22px;
-    line-height: 69px;
+    font-size: 22px !important;
+    line-height: 69px !important;
   }
 }
 .label.head {
