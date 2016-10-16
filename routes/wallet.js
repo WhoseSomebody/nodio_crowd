@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET wallet page. */
 router.get('/', function(req, res, next) {
-  res.render('wallet', { title: 'Wallet | Nodio Crowd' });
+	if(req.session.userID)
+  		res.render('wallet', { title: 'Wallet | Nodio Crowd' });
+  	else 
+  		res.redirect('/');
 });
 
 module.exports = router;
