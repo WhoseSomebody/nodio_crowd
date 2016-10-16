@@ -30,7 +30,7 @@ $( document ).ready(function(){
         e.preventDefault();
         var password = $('#login .password').val();
 
-        $.post( "/login", { key: password }, (res) =>{
+        $.post( "/login", { key: password }, function(res) {
             console.log(res.session);
             if (res.success)
                 window.setTimeout( function(){
@@ -96,8 +96,8 @@ $('textarea').focus(
         document.execCommand('copy');
         // Remove the textarea
         document.body.removeChild(t);
-        window.getSelection().removeAllRanges();
-        nextStep();
+        window.getSelection().removeAllRanges()
+ ;       nextStep();
     });
 
     // allows to copy after generation of the password
@@ -134,7 +134,7 @@ $('textarea').focus(
                     e.preventDefault();
 
                     if (count[0] == 1) {
-                        $.post( "/signup", { key: generated }, (res) =>{
+                        $.post( "/signup", { key: generated }, function(res){
                             // console.log(res.success);
                             if (res.success)
                             {
@@ -176,7 +176,7 @@ $('textarea').focus(
         var area = $(this);
           if (area.val().length == 69) {
             console.log( $(this).val());
-            $.post( "/login", { key: $(this).val()}, (res) =>{
+            $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
                     $('.signin').removeClass("disabled");
 
