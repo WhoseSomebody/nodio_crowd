@@ -9,6 +9,23 @@ $("#generator textarea").ready(function() {
     })
 $( document ).ready(function(){
     var show = true;
+
+
+    function checkWidth() {
+        if ($(window).width() > 900) {
+            console.log("off");
+            $('textarea').attr("wrap","Off");
+        } else {
+            console.log("on");
+            $('textarea').attr("wrap","on");
+        }
+    }
+    // Execute on load
+    checkWidth();
+    // Bind event listener
+    $(window).resize(checkWidth);
+
+
     checkIfExists();
     checkIfCopied();
     $('textarea').keyup(function(){ 
@@ -24,6 +41,7 @@ $( document ).ready(function(){
             $(this).trigger("enterKey");
         }
     });
+
 
     $('#logout').click(function (e) {
         $.get( "/logout");
@@ -132,7 +150,7 @@ $('textarea').focus(
             if (generated == $(this).val()) {
                 $("#new.signin").removeClass("disabled")
                 $(".second .line").addClass("active");
-                $(".second svg,active").css("right", "0");
+                $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) {.second svg,active{ right:85px }}");
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
 
@@ -165,7 +183,8 @@ $('textarea').focus(
             else {
                 $("#new.signin:not(.disabled)").addClass("disabled");
                 $(".second .line").removeClass("active");
-                $(".second svg,active").css("right", "");
+                $('style.progress-point').text("");
+
             }
 
 
