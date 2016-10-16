@@ -11,6 +11,9 @@ $( document ).ready(function(){
     var show = true;
     checkIfExists();
     checkIfCopied();
+    $('textarea').keyup(function(){ 
+        $(this).val( $(this).val().replace( /\r?\n/gi, '' )); 
+    });
 
     $('textarea').bind("enterKey",function(e){
        $('#new:not(.disabled) a').click();

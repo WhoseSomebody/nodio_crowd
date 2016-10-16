@@ -838,6 +838,15 @@ body {
     min-width: 540px;
   }
 }
+textarea {
+  overflow: hidden;
+}
+@media (min-width: 901px) {
+  textarea {
+    max-width: 665px;
+    margin-left: -21px;
+  }
+}
 .bar-item {
   text-align: center;
   margin: 0px 16.5px;
@@ -927,7 +936,7 @@ body {
   width: 100%;
   border: 1px solid rgba(255,255,255,0.15);
 }
-@media (max-width: 901px) {
+@media (max-width: 900px) {
   .wal {
     margin-top: 29px;
   }
@@ -1668,6 +1677,9 @@ svg.active {
   .container {
     width: 301px;
   }
+  #logo {
+    margin-left: -59px;
+  }
   .total {
     margin: 11px 0 22px 0;
   }
@@ -1761,6 +1773,9 @@ svg.active {
   .bars .bar-item.active {
     color: #fff;
   }
+  .bars .bar-item.active .line {
+    margin: -1px 0px -1px -10px;
+  }
   .wal {
     height: initial;
   }
@@ -1802,6 +1817,9 @@ svg.active {
   .wal .bottom-part .right-part .qr {
     float: none;
     margin: 0px 30px;
+  }
+  .wal .bottom-part .left-part {
+    width: 241px;
   }
   .wal .bottom-part .left-part .label.code {
     font-size: 18px;

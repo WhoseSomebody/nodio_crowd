@@ -62,7 +62,11 @@ meyer-reset()
       margin 29px auto 0 auto
       min-width 540px
   
-
+textarea 
+  overflow hidden
+  @media (min-width: 901px)
+    max-width: 665px;
+    margin-left: -21px;
 
 
 .bar-item
@@ -130,7 +134,7 @@ meyer-reset()
   text-align left
   width 100%
   border 1px solid $white-15
-  @media (max-width: 901px)
+  @media (max-width: 900px)
     margin-top 29px
   @media (max-width: 600px)
     margin-top 30px 
