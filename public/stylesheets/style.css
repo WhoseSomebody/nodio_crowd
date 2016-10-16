@@ -1545,6 +1545,27 @@ svg.active {
   text-align: right;
   top: 0;
 }
+#forw,
+#backw {
+  cursor: pointer;
+  -webkit-transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+#forw:hover,
+#backw:hover {
+  color: rgba(23,229,178,0.7);
+}
+.group1,
+.group2,
+.invisible1,
+.invisible2,
+.back_inv,
+.back {
+  -webkit-transition: visibility 2s, opacity 2s linear;
+  transition: visibility 2s, opacity 2s linear;
+  -webkit-transition: visibility 2s linear, opacity 2s linear;
+}
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {
     width: 541px;
@@ -1618,7 +1639,7 @@ svg.active {
     margin-top: 89px;
   }
   #copy {
-    margin-top: 1px;
+    margin-bottom: 30px;
   }
   .line {
     position: relative;

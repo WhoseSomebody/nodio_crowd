@@ -5,7 +5,7 @@ block content
     .progress
       .first
         .step1
-          .number.invisible1
+          .number#backw
             | 01
           .text.invisible1
             | Generate & Copy Pass Phrase
@@ -16,12 +16,12 @@ block content
 
       .second
         .step2
-          .number.invisible2
+          .number#forw
             | 02
-          .text.invisible2
+          .text.invisible2.back_inv
             | Enter Your Pass Phrase
         .desktop.tablet
-          svg.active.invisible2
+          svg.active.invisibsle2.back_inv
             use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
           .line#right
   #generator.group1
@@ -41,7 +41,7 @@ block content
         readonly="readonly")
       .save-to-file.label(title="Save As *.txt")  dwnl
 
-  #login_new.group2
+  #login_new.group2.back
     #formspace_new.pass-phrase
       .point.bottom.left
       .point.bottom.right
@@ -86,7 +86,7 @@ block content
         | Copy Pass Phrase to Clipboard 
       span.mobile
         | Copy 
-  #new.signin.disabled.group2
+  #new.signin.disabled.group2.back
     .point.bottom.left
     .point.bottom.right
     .point.top.left

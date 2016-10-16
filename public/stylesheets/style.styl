@@ -599,7 +599,15 @@ svg
     text-align right
     top 0
 
-
+#forw, #backw 
+  cursor pointer
+  -webkit-transition color .2s linear
+  transition color .2s linear
+  &:hover
+    color rgba(23, 229, 178, 0.7)
+.group1, .group2, .invisible1, .invisible2, .back_inv, .back
+  transition visibility 2s, opacity 2s linear
+  -webkit-transition visibility 2s linear, opacity 2s linear
 
 @import "style-tablet.styl"
 @import "style-mobile.styl"

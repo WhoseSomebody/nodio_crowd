@@ -124,20 +124,26 @@ $('textarea').focus(
     function nextStep() {
         $('.group2').removeClass('group2');
         $('.invisible2').removeClass('invisible2');
-        $('.group1').css('display', 'none');
-        $('.invisible1').css({
-            'opacity': '0',
-            'cursor': 'default'});
+        $('.group1').css({"visibility":"hidden","opacity":"0",'display':'none'});
+        $('.invisible1').css('opacity','0');
+    }
+
+    function prevStep() {
+        $('.back').addClass('group2');
+        $('.back_inv').addClass('invisible2');
+        $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
+        $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
+        $('.invisible1').css({'opacity':'1','cursor':'pointer'});
     }
 
 
-
-    // // copy to clipboard
-    // $(".copy a").click(function(){
-    //     var Field = $('#code');
-    //     Field.select();
-    //     document.execCommand('copy'); 
-    // });
+    $("#forw, #backw").click(function() {
+        if ($(this).attr('id') == "forw"){
+            nextStep();
+        } else {
+            prevStep();
+        }
+    });
 
 
 })
