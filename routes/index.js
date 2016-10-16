@@ -8,32 +8,32 @@ const express = require('express'),
     
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    // console.log(req);
-    //res.session.user_id = null;
+
     res.render('index', { title: 'Nodio Crowd' });
 });
 
 router.post('/signup', (req, res, next) => {
-    let input = __dirname + '/../public/crowdsale_list.txt',
+    var input = __dirname + '/../public/crowdsale_list.txt',
         output = __dirname + '/../public/crowdsale_list_temp.txt',
         content = fs.readFileSync(input, 'utf8');
 
     content = content.split("\n");
-    let id = content.splice(0,1);
+    var id = content.splice(0,1);
 
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
-    let user = new User({
+    var user = new User({
         _id : id,
         password : req.body.key
     });
 
-    let dbPromise = user.save();
-
+    var dbPromise = user.save();
+    console.log(user);
     dbPromise.then(user => {
-        req.session.userID = user[0]._id;
-        req.session.cookie.maxAge = 10000;
+        req.session.userID = user._id;
+        req.session.cookie.maxAge = 1000000;
+        console.log(req.session);
 
         res.json({success: true, user: user});
     })
@@ -42,6 +42,7 @@ router.post('/signup', (req, res, next) => {
 router.get('/logout', (req, res) => {
     req.session.userID = null;
     req.session.cookie.maxAge = 0;
+    console.log(session);
     res.redirect('/');
 });
 

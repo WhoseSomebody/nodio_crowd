@@ -13,7 +13,7 @@ $( document ).ready(function(){
     checkIfCopied();
 
 
-    $('a.label.link').click(function (e) {
+    $('#logout').click(function (e) {
         $.get( "/logout");
     });
     // 
@@ -91,9 +91,21 @@ $( document ).ready(function(){
     });
     $("walcop").click(function(e){
         e.preventDefault();
-        var Field = $('#code');
-        Field.select();
-        document.execCommand('copy'); 
+        // creating new textarea element and giveing it id 't'
+        var t = document.createElement('textarea')
+        t.id = 't'
+        // Optional step to make less noise in the page, if any!
+        t.style.height = 0
+        // You have to append it to your page somewhere, I chose <body>
+        document.body.appendChild(t)
+        // Copy whatever is in your div to our new textarea
+        t.value = document.getElementById('#code').innerText
+        // Now copy whatever inside the textarea to clipboard
+        var selector = document.querySelector('#t')
+        selector.select()
+        document.execCommand('copy')
+        // Remove the textarea
+        document.body.removeChild(t)
         window.getSelection().removeAllRanges();
         nextStep();
     });
@@ -119,7 +131,7 @@ $( document ).ready(function(){
     // });
 
 })
- // chenl if user copied the generated password and let him to to account
+ // chenl if user copied the generated password and var him to to account
     function checkIfCopied() {
         $('#login_new textarea.password').bind('input propertychange paste keyup', function() {
             console.log(generated);
@@ -159,7 +171,7 @@ $( document ).ready(function(){
         });
     }
 
-// check if user with such password exists and let him come in
+// check if user with such password exists and var him come in
 
      function checkIfExists() {
         $('#login textarea.password').bind('input propertychange paste keyup', function() {
@@ -203,8 +215,8 @@ function onFileSelected(event, me) {
 // generate new password
 function generateRandom() {
     var file = "/words.txt"
-    $.get(file, function(wholeTextFile) {
-    var words = wholeTextFile.split(/\n/);
+    $.get(file, function(whovarextFile) {
+    var words = whovarextFile.split(/\n/);
     var random = [];
     
     for(var i=0; i<10; i++) {
