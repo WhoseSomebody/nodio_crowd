@@ -158,7 +158,6 @@ body {
   background-image: url("../images/background.svg");
   background-size: 60px 60px;
   padding-right: 1px;
-  overflow: hidden;
   background-position: 50% 0px;
   background-repeat: repeat;
 }
@@ -696,8 +695,8 @@ body {
 }
 @media only screen and (min-width: 901px) {
   .label.numbers {
-    font-size: 36px;
-    line-height: 65px;
+    font-size: 36px !important;
+    line-height: 65px !important;
   }
 }
 .label.link {
@@ -871,13 +870,14 @@ textarea {
   font-weight: 600;
   line-height: 28px;
   color: #555;
-  width: 120px;
+  width: 121px;
+  color: rgba(255,255,255,0.3);
 }
 .bar-item.active {
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
-  color: #17e5b2;
+  color: #fff;
   letter-spacing: 6px;
 }
 .bar-item.active .line {
@@ -1618,10 +1618,6 @@ svg.active {
   }
   .signup {
     margin-top: 89px;
-  }
-  .bar-item {
-    color: rgba(255,255,155,0.3);
-    width: 121px;
   }
   .line {
     position: relative;
