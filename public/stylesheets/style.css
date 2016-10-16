@@ -152,10 +152,15 @@ body {
   color: #fff;
   background-color: #000;
   overflow-x: hidden;
-}
-body {
   -webkit-backface-visibility: hidden;
   letter-spacing: 2px;
+  display: table;
+  background-image: url("../images/background.svg");
+  background-size: 60px 60px;
+  padding-right: 1px;
+  overflow: hidden;
+  background-position: 50% 0px;
+  background-repeat: repeat;
 }
 svg {
   width: 100%;
@@ -587,10 +592,6 @@ input:-webkit-autofill:active {
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url("../images/background.svg");
-  background-position: 50% 0;
-  background-size: 60px 60px;
-  background-repeat: repeat;
   padding-right: 1px;
 }
 #glow {

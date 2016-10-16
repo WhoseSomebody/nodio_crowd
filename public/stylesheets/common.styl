@@ -13,13 +13,17 @@ body
   color $common-body-text-color
   background-color $common-body-background-color
   overflow-x hidden
-body
-  // text-rendering optimizeLegibility
-  // -webkit-font-smoothing antialiased
-  // -moz-osx-font-smoothing grayscale
-  // text-size-adjust none
   -webkit-backface-visibility hidden
   letter-spacing $common-body-letter-spacing
+  
+  display table
+  background-image url(../images/background.svg)
+  background-size 60px 60px
+  padding-right 1px
+  overflow hidden
+  background-position 50% 0px
+  background-repeat repeat
+
 svg
   size 100%
   display block
