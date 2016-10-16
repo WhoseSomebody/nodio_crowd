@@ -154,7 +154,6 @@ body {
   overflow-x: hidden;
   -webkit-backface-visibility: hidden;
   letter-spacing: 2px;
-  display: table;
   background-image: url("../images/background.svg");
   background-size: 60px 60px;
   padding-right: 1px;
@@ -1160,8 +1159,7 @@ textarea {
 }
 @media (min-width: 901px) {
   .footer .copyright {
-    float: left;
-    margin: 0 0 -15px 30px !important;
+    padding: 30px 15px;
   }
 }
 .footer .copyright a {
@@ -1176,7 +1174,7 @@ textarea {
   transition: background 4s linear;
 }
 .total {
-  margin: 53px 0 34px 0;
+  margin: 56px 0 41px 0;
 }
 .total .numbers {
   color: #17d2b2;
@@ -1619,6 +1617,9 @@ svg.active {
   .signup {
     margin-top: 89px;
   }
+  #copy {
+    margin-top: 1px;
+  }
   .line {
     position: relative;
     width: 121px;
@@ -1636,7 +1637,7 @@ svg.active {
   }
   .wal .bottom-part .left-part {
     width: 271px;
-    margin-right: 29px;
+    margin-right: 30px;
   }
   .wal .bottom-part .right-part {
     width: 180px;
@@ -1709,12 +1710,18 @@ svg.active {
     letter-spacing: 1.5px;
     width: 100%;
   }
-  .pass-phrase .show {
+  #arrow-left,
+  #arrow-right {
+    margin-top: 1px !important;
+  }
+  #arrow-left .show,
+  #arrow-right .show {
     position: absolute;
     bottom: 27px;
     right: 27px;
   }
-  .pass-phrase .hidden {
+  #arrow-left .hidden,
+  #arrow-right .hidden {
     display: none;
   }
   .signin,
@@ -1821,6 +1828,7 @@ svg.active {
   .wal .bottom-part .right-part .qr {
     float: none;
     margin: 0px 30px;
+    padding-bottom: 1px;
   }
   .wal .bottom-part .left-part {
     width: 241px;
