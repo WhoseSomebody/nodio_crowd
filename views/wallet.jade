@@ -68,42 +68,42 @@ block content
             .point.bottom.right
             .point.top.left
             .point.top.right
-            img(src="../images/MM_QRcode.png")
-  .history
-    .hist-line
-      .point.bottom.left
-      .point.bottom.right
-      .col.date
-        .date-font
-          | 6 Sep 2016
-      .col.confirm
-        .confirm-num
-          span.num
-            | 0
-          | Confirmatons
-      .col.amount
-        .label.num
-          | + 1 000 000 BTC
-      .col.details
-        .detail-arrow
-          a(href="#")
-    .hist-line
-      .point.bottom.left
-      .point.bottom.right
-      .col.date
-        .date-font
-          | 25 Aug 2016
-      .col.confirm
-        .confirm-num
-          span.num
-            | 6+
-          | Confirmatons
-      .col.amount
-        .label.num
-          | + 1.789 BTC
-      .col.details
-        .detail-arrow
-          a(href="#")
-      //- .next-link
-      //-   svg.full
-      //-     use(xlink:href="#next")
+            img(src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:#{userWallet}")
+  //- .history
+  //-   .hist-line
+  //-     .point.bottom.left
+  //-     .point.bottom.right
+  //-     .col.date
+  //-       .date-font
+  //-         | 6 Sep 2016
+  //-     .col.confirm
+  //-       .confirm-num
+  //-         span.num
+  //-           | 0
+  //-         | Confirmatons
+  //-     .col.amount
+  //-       .label.num
+  //-         | + 1 000 000 BTC
+  //-     .col.details
+  //-       .detail-arrow
+  //-         a(href="#")
+  //-   .hist-line
+  //-     .point.bottom.left
+  //-     .point.bottom.right
+  //-     .col.date
+  //-       .date-font
+  //-         | 25 Aug 2016
+  //-     .col.confirm
+  //-       .confirm-num
+  //-         span.num
+  //-           | 6+
+  //-         | Confirmatons
+  //-     .col.amount
+  //-       .label.num
+  //-         | + 1.789 BTC
+  //-     .col.details
+  //-       .detail-arrow
+  //-         a(href="#")
+  //-     //- .next-link
+  //-     //-   svg.full
+  //-     //-     use(xlink:href="#next")

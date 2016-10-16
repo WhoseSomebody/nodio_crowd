@@ -19,7 +19,7 @@
   opacity 0
   transition opacity 1s linear
   &.show
-    opacity 0.7
+    opacity 1
   .glow-container
     absolute 50% false false 50%
     transform translate(-50%, -50%)
@@ -84,9 +84,13 @@ body {
       font-size 36px
       line-height 65px
   &.link
-    color rgb(25, 253, 197)
+    color rgba(23,230,178,0.6)
     font-weight 700
     letter-spacing 3.5px
+    -webkit-transition color .2s linear
+    transition color .2s linear
+    &:hover
+      color #17e5b2
   &.info
     color rgb(25, 253, 197)
   &.code

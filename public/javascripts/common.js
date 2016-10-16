@@ -13,21 +13,19 @@ $( document ).ready(function(){
 
     function checkWidth() {
         if ($(window).width() > 900) {
-            console.log("off");
             $('textarea').attr("wrap","Off");
         } else {
-            console.log("on");
             $('textarea').attr("wrap","on");
         }
     }
-    // Execute on load
-    checkWidth();
-    // Bind event listener
-    $(window).resize(checkWidth);
-
-
     checkIfExists();
     checkIfCopied();
+    
+
+
+    checkWidth();
+    $(window).resize(checkWidth);
+
     $('textarea').keyup(function(){ 
         $(this).val( $(this).val().replace( /\r?\n/gi, '' )); 
     });
@@ -141,6 +139,7 @@ $('textarea').focus(
     //     document.execCommand('copy'); 
     // });
 
+
 })
  // chenl if user copied the generated password and var him to to account
     function checkIfCopied() {
@@ -176,7 +175,7 @@ $('textarea').focus(
                     // } );
                     window.setTimeout( function(){
                         $( location ).attr("href", "/account");
-                    }, 200);
+                    }, 400);
 
                     
                 })}

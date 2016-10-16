@@ -57,9 +57,10 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/jquery-3.1.1.min.js")
     script(type='text/javascript', src='/javascripts/common.js')
-  body
+
+  body(style="display:table;")
     include ../public/images/svg-sprite.svg
-    #background
+    #background(style="display:table;")
       #glow.show
         .glow-container
           svg
@@ -69,7 +70,7 @@ html
           a(href="/")#logo
             //- img(src="/images/logo_crowd.png")
         block content
-      .footer
-        .copyright
-          a(href="/") Nodio 
-          |  © 2016. All Rights Reserved.
+    footer.footer(style="display:table-footer-group;")
+      .copyright
+        a(href="/") Nodio 
+        |  © 2016. All Rights Reserved.

@@ -608,9 +608,9 @@ input:-webkit-autofill:active {
   transition: opacity 1s linear;
 }
 #glow.show {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-  filter: alpha(opacity=70);
-  opacity: 0.7;
+  -ms-filter: none;
+  filter: none;
+  opacity: 1;
 }
 #glow .glow-container {
   position: absolute;
@@ -700,9 +700,15 @@ body {
   }
 }
 .label.link {
-  color: #19fdc5;
+  color: rgba(23,230,178,0.6);
   font-weight: 700;
   letter-spacing: 3.5px;
+  -webkit-transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+.label.link:hover {
+  color: #17e5b2;
 }
 .label.info {
   color: #19fdc5;
@@ -774,6 +780,11 @@ body {
 }
 .container {
   text-align: center;
+}
+@media only screen and (min-width: 901px) {
+  .container {
+    width: 841px;
+  }
 }
 .logo {
   width: 361px;
@@ -1141,19 +1152,15 @@ textarea {
   -webkit-transition: fill 0.2s linear;
   transition: fill 0.2s linear;
 }
-.footer {
-  z-index: 100;
-  padding-bottom: 45px;
-  margin-top: 45px;
-}
 .footer .copyright {
+  padding-bottom: 20px;
   color: #777;
   font-size: 11px;
 }
 @media (min-width: 901px) {
   .footer .copyright {
     float: left;
-    margin: 0 0 0 30px !important;
+    margin: 0 0 -15px 30px !important;
   }
 }
 .footer .copyright a {
@@ -1197,7 +1204,7 @@ textarea {
 .pass-phrase .label {
   z-index: 100;
   font-weight: 600;
-  color: rgba(28,206,156,0.82);
+  color: rgba(23,230,178,0.6);
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
   transition: color 0.2s linear;
@@ -1348,7 +1355,7 @@ textarea {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 3.7px;
-  color: #19fdc5;
+  color: #17e6b2;
   width: 100%;
 }
 .signup {
@@ -1377,7 +1384,7 @@ textarea {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 3.7px;
-  color: #19fdc5;
+  color: #17e6b2;
   width: 100%;
 }
 .disabled {
