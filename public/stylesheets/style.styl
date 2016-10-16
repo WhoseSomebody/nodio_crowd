@@ -158,10 +158,13 @@ meyer-reset()
           background-color rgba(28,206,156,0.22)
   .bottom-part
     padding-top 27px  
+    @media (min-width: 901px)
+      width 720px
     .left-part
       margin-top 1px
       display inline-block
-      width 570px
+      @media (min-width: 901px)
+        width 570px
       float left
       .copy
         position relative
@@ -176,7 +179,7 @@ meyer-reset()
         border 1px solid rgba(23,229,178,.2)
         -webkit-transition border-color .2s linear
         transition border-color .2s linear
-        &::not(.disabled):hover
+        &:hover
           border-color #17e6b2
         .label
           &.button
@@ -191,6 +194,8 @@ meyer-reset()
     .right-part
       display inline-block
       margin-top 2px
+      @media (min-width: 901px)
+        width 150px
       .qr
         position relative
         border 1px solid rgba(28,206,156,0.22)

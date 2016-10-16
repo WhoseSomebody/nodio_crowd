@@ -1,13 +1,13 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var operationSchema = new Schema({
 	_id: {type: String, unique: true},
     wallet: {type: String, unique: true},
     password: {type: String, unique: true},
-    ballance: {type: Number},
-    investments: {type: Number}
-}, { _id: false });
+    ballance: {type: String}
+});
+
 userSchema.methods.generateId = function() {
 	var now = new Date();
 	this._id  = now.getUTCFullYear().toString().slice(-2);

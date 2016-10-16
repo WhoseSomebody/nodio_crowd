@@ -1,7 +1,7 @@
 
 var generated = '';
 
-var count = 1;
+var count = [1,1];
 
 $("#generator textarea").ready(function() {
     if ($("#generator textarea").length > 0)
@@ -12,13 +12,34 @@ $( document ).ready(function(){
     checkIfExists();
     checkIfCopied();
 
+    $('textarea').bind("enterKey",function(e){
+       $('#new:not(.disabled) a').click();
+    });
+    $('textarea').keyup(function(e){
+        if(e.keyCode == 13)
+        {
+            $(this).trigger("enterKey");
+        }
+    });
 
     $('#logout').click(function (e) {
         $.get( "/logout");
     });
     // 
+    $('#signin:not(.disabled) a, #new:not(.disabled) a').click(function(e){
+        e.preventDefault();
+        var password = $('#login .password').val();
 
-    $('textarea').focus(
+        $.post( "/login", { key: password }, (res) =>{
+            console.log(res.session);
+            if (res.success)
+                window.setTimeout( function(){
+                    $( location ).attr("href", "/account");
+                }, 200);
+    } );
+    
+    });
+$('textarea').focus(
     function(){
         $(this).parent('div').css('border-color','#fff');
     }).blur(
@@ -33,28 +54,6 @@ $( document ).ready(function(){
         $(this).parent('div').css('border-color','rgba(255,255,255,0.2');
     });
     
-
-    // $('textarea.password').bind('input propertychange', function() {
-    //       $(this).data("code", this.value);
-    //       var s = $(this).data("code").replace(/[^ ]/g, '♦');
-    //       if (show) {
-    //         $(this).val(this.value);
-    //       } 
-    //       else {
-    //         $(this).val(s);
-    //       }
-
-    //       if(this.value.length){
-    //         if ($('.show').hasClass('hidden'))
-    //             $('.show').removeClass('hidden');
-    //             $('.paste, .file').addClass('hidden');
-
-    //       } else {
-    //             $('.show').addClass('hidden');
-    //             $('.paste, .file').removeClass('hidden');
-    //       }
-    // });
-
     // save generated into the txt file
 
     $('.save-to-file').click(function() {
@@ -65,15 +64,6 @@ $( document ).ready(function(){
         var filename = "key.txt";
         $("<a download='" + filename + "' href='" + uriContent + "'></a>")[0].click();
     });
-
-    // $('.show').click(function(){
-    //     show = !show
-    //     if (show) {
-    //         $(this).text("Hide");
-    //     } else {
-    //         $(this).text("Show");
-    //     }
-    // });
 
     // write generated into the textbox
     $('.generate').click(function(){
@@ -89,23 +79,23 @@ $( document ).ready(function(){
         window.getSelection().removeAllRanges();
         nextStep();
     });
-    $("walcop").click(function(e){
+    $("#walcop").click(function(e){
         e.preventDefault();
         // creating new textarea element and giveing it id 't'
-        var t = document.createElement('textarea')
-        t.id = 't'
+        var t = document.createElement('textarea');
+        t.id = 't';
         // Optional step to make less noise in the page, if any!
-        t.style.height = 0
+        t.style.height = 0;
         // You have to append it to your page somewhere, I chose <body>
-        document.body.appendChild(t)
+        document.body.appendChild(t);
         // Copy whatever is in your div to our new textarea
-        t.value = document.getElementById('#code').innerText
+        t.value = $('#code').text();
         // Now copy whatever inside the textarea to clipboard
-        var selector = document.querySelector('#t')
-        selector.select()
-        document.execCommand('copy')
+        var selector = document.querySelector('#t');
+        selector.select();
+        document.execCommand('copy');
         // Remove the textarea
-        document.body.removeChild(t)
+        document.body.removeChild(t);
         window.getSelection().removeAllRanges();
         nextStep();
     });
@@ -143,13 +133,19 @@ $( document ).ready(function(){
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
 
-                    if (count == 1) {
+                    if (count[0] == 1) {
                         $.post( "/signup", { key: generated }, (res) =>{
-                            console.log(res.success);
+                            // console.log(res.success);
                             if (res.success)
-                                $( location ).attr("href", "/account");
+                            {
+                               // $.post( "/login", { key: generated}, (res) =>{
+                               //     if (res.success) {
+                               //        $( location ).attr("href", "/account");
+                               //     } 
+                               // });
+                            }
                         } );
-                        count = 0;
+                        count[0] = 0;
                     }
 
                     // $.post( "/new_user", { key: generated }, (res) =>{
@@ -157,7 +153,9 @@ $( document ).ready(function(){
                     //     if (res.success)
                     //         $( location ).attr("href", "/account");
                     // } );
-                    $( location ).attr("href", "/account");
+                    window.setTimeout( function(){
+                        $( location ).attr("href", "/account");
+                    }, 200);
 
                     
                 })}
@@ -175,17 +173,19 @@ $( document ).ready(function(){
 
      function checkIfExists() {
         $('#login textarea.password').bind('input propertychange paste keyup', function() {
-        console.log("chek textbox" + $(this));
         var area = $(this);
           if (area.val().length == 69) {
+            console.log( $(this).val());
             $.post( "/login", { key: $(this).val()}, (res) =>{
-                console.log(res.success);
                 if (res.success) {
                     $('.signin').removeClass("disabled");
+
+                    $( location ).attr("href", "/account");
                 } else {
                     $('.signin:not(.disabled)').addClass("disabled");
                 }
             });
+            count[1] = 0;
           } else {
                 $('.signin:not(.disabled)').addClass("disabled");
           }
