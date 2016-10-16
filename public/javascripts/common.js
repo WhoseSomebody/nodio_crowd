@@ -20,7 +20,7 @@ $( document ).ready(function(){
     }
     checkIfExists();
     checkIfCopied();
-    
+
 
 
     checkWidth();
@@ -54,7 +54,7 @@ $( document ).ready(function(){
             if (res.success)
                 window.setTimeout( function(){
                     $( location ).attr("href", "/account");
-                }, 200);
+                }, 400);
     } );
     
     });
