@@ -632,6 +632,11 @@ input:-webkit-autofill:active {
   -webkit-transition: width 0.3s linear, padding-left 0.3s linear, padding-right 0.3s linear;
   transition: width 0.3s linear, padding-left 0.3s linear, padding-right 0.3s linear;
 }
+@media only screen and (min-width: 900px) {
+  .container {
+    width: 841px;
+  }
+}
 .container .navigation {
   position: absolute;
   top: 0;
@@ -688,6 +693,12 @@ body {
   font-weight: 400;
   letter-spacing: 3px;
 }
+@media only screen and (min-width: 901px) {
+  .label.numbers {
+    font-size: 36px;
+    line-height: 65px;
+  }
+}
 .label.link {
   color: #19fdc5;
   font-weight: 700;
@@ -699,10 +710,16 @@ body {
 .label.code {
   color: #fff;
   font-weight: 400;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: none;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+@media only screen and (min-width: 901px) {
+  .label.code {
+    font-size: 22px;
+    line-height: 69px;
+  }
 }
 .label.head {
   color: #fff;
@@ -1542,7 +1559,7 @@ svg.active {
     font-size: 12px;
   }
   .label.code {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 24px;
     padding: 26px 0 25px 0;
   }
@@ -1586,7 +1603,7 @@ svg.active {
     margin-top: 89px;
   }
   .bar-item {
-    color: rgba(23,230,178,0.3);
+    color: rgba(255,255,155,0.3);
     width: 121px;
   }
   .line {
@@ -1640,7 +1657,7 @@ svg.active {
     color: rgba(255,255,255,0.3);
   }
 }
-@media all and (max-width: 601px) {
+@media all and (max-width: 600px) {
   .desktop,
   .tablet {
     display: none;
@@ -1648,13 +1665,8 @@ svg.active {
   .mobile {
     display: block;
   }
-  .logo {
-    width: 323px;
-    height: 58px;
-    margin: 32px auto 0 auto;
-  }
-  #logo {
-    margin-left: -59px;
+  .container {
+    width: 301px;
   }
   .total {
     margin: 11px 0 22px 0;
@@ -1676,22 +1688,10 @@ svg.active {
     padding: 17px 22px;
   }
   .pass-phrase .password {
+    line-height: 30px;
+    font-size: 18px;
+    letter-spacing: 1.5px;
     width: 100%;
-    text-align: left;
-    letter-spacing: 3.1px;
-    font-size: 19px;
-    line-height: 31px;
-    overflow: hidden;
-  }
-  .pass-phrase .paste {
-    position: absolute;
-    bottom: 27px;
-    left: 27px;
-  }
-  .pass-phrase .file {
-    position: absolute;
-    bottom: 27px;
-    right: 27px;
   }
   .pass-phrase .show {
     position: absolute;
@@ -1703,14 +1703,23 @@ svg.active {
   }
   .signin,
   .signup {
-    margin: 29px 30px 29px 29px;
     position: relative;
+  }
+  .signin {
+    max-width: 239px;
+    margin: 29px 30px;
+    position: relative;
+  }
+  .signup {
+    margin-top: 59px;
   }
   .hidden {
     display: none !important;
   }
   .progress {
-    margin: 0;
+    margin: 18px auto;
+    width: 301px;
+    height: 12px;
   }
   .progress > * {
     width: initial;
@@ -1718,20 +1727,24 @@ svg.active {
   }
   .terms {
     font-size: 9px;
-    padding: 8px 0;
+    padding: 11px 0px;
     letter-spacing: 0.7px;
+    text-align: center;
   }
   .attention {
     width: 300px;
-    font-size: 9px;
-    line-height: 15px;
-    text-align: left;
-    letter-spacing: 1px;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.7px;
     margin: 14px auto;
+  }
+  .attention .bolded {
+    font-weight: 600;
+    font-size: 18px;
   }
   .bars {
     width: 300px;
-    min-width: 300px;
     margin: 30px 0 0 0;
   }
   .bars .bar-item {
@@ -1750,11 +1763,10 @@ svg.active {
   }
   .wal {
     height: initial;
-    margin-top: 28px;
-    padding: 28px 30px 23px 28px;
   }
   .wal .top-part {
     height: initial;
+    height: 180px;
   }
   .wal .top-part .left-part,
   .wal .top-part .right-part {
@@ -1764,7 +1776,7 @@ svg.active {
     margin: 0;
   }
   .wal .top-part .left-part {
-    padding-bottom: 29px;
+    padding-bottom: 23px;
   }
   .wal .top-part .left-part .numbers {
     line-height: 38px;
@@ -1777,6 +1789,7 @@ svg.active {
   }
   .wal .bottom-part {
     height: initial;
+    padding-top: 29px;
   }
   .wal .bottom-part .left-part,
   .wal .bottom-part .right-part {
@@ -1788,12 +1801,16 @@ svg.active {
   .wal .bottom-part .left-part .qr,
   .wal .bottom-part .right-part .qr {
     float: none;
-    margin: 23px 30px 6px 30px;
+    margin: 0px 30px;
   }
   .wal .bottom-part .left-part .label.code {
-    font-size: 20px;
+    font-size: 18px;
     padding: 12px 0;
-    line-height: 19px;
+    line-height: 22px;
+    letter-spacing: 1px;
+  }
+  .wal .bottom-part .left-part .copy {
+    margin: 10px 0 29px 0;
   }
   .history .hist-line .col.confirm {
     display: none;
@@ -1819,5 +1836,10 @@ svg.active {
   .footer {
     margin: -22px 0 28px 0;
     padding-bottom: 15px;
+  }
+  .footer .copyright {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin: 21px auto 0 auto;
   }
 }

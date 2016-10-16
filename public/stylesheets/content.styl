@@ -27,6 +27,8 @@
     size 100vmax
     
 .container
+  @media only screen and (min-width: 900px)
+    width 841px
   relative false
   width auto
   // min-width 360px
@@ -78,6 +80,9 @@ body {
     color rgb(255, 255, 255)
     font-weight 400
     letter-spacing 3px
+    @media only screen and (min-width: 901px)
+      font-size 36px
+      line-height 65px
   &.link
     color rgb(25, 253, 197)
     font-weight 700
@@ -87,10 +92,13 @@ body {
   &.code
     color #fff
     font-weight 400
-    letter-spacing 3px
+    letter-spacing 2px
     text-transform none
     white-space: pre-wrap;
     word-wrap: break-word;
+    @media only screen and (min-width: 901px)
+      font-size 22px
+      line-height 69px
   &.head
     color $white
     font-weight 600

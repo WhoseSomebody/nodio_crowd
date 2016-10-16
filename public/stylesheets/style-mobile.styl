@@ -1,16 +1,17 @@
-+media-query(all, max-width 601px)
++media-query(all, max-width 600px)
   .desktop,
   .tablet
     display none
   .mobile 
     display block
-       
-  .logo
-    width 323px
-    height 58px
-    margin 32px auto 0 auto
-  #logo
-    margin-left -59px
+  .container
+    width 301px
+  // .logo
+  //   width 323px
+  //   height 58px
+  //   margin 32px auto 0 auto
+  // #logo
+  //   margin-left -59px
   .total
     margin 11px 0 22px 0
     .label
@@ -29,20 +30,19 @@
     box-sizing: border-box;
     padding: 17px 22px;
     .password
+      line-height: 30px;
+      font-size: 18px;
+      letter-spacing: 1.5px;
       width: 100%;
-      text-align: left;
-      letter-spacing: 3.1px;
-      font-size: 19px;
-      line-height: 31px;
-      overflow: hidden
-    .paste
-      position: absolute;
-      bottom: 27px;
-      left: 27px;
-    .file
-      position: absolute;
-      bottom: 27px;
-      right: 27px;
+
+    // .paste
+    //   position: absolute;
+    //   bottom: 27px;
+    //   left: 27px;
+    // .file
+    //   position: absolute;
+    //   bottom: 27px;
+    //   right: 27px;
     .show
       position: absolute;
       bottom: 27px;
@@ -51,30 +51,42 @@
         display none 
   .signin,
   .signup
-    margin: 29px 30px 29px 29px
     position relative
+  .signin
+    max-width 239px
+    margin 29px 30px
+    position relative
+  .signup
+    margin-top 59px
   .hidden
     display none !important  
   .progress
-    margin 0
+    margin: 18px auto;
+    width: 301px;
+    height: 12px;
     & > *
       width initial
       float left
   .terms 
-    font-size: 9px;
-    padding: 8px 0;
-    letter-spacing: 0.7px;
+    font-size 9px
+    padding 11px 0px
+    letter-spacing: 0.7px
+    text-align center
   .attention
-    width: 300px;
-    font-size: 9px;
-    line-height: 15px;
-    text-align: left;
-    letter-spacing: 1px;
-    margin: 14px auto;
+    width 300px
+    font-size 10px
+    line-height 18px
+    text-align center
+    letter-spacing 0.7px
+    margin 14px auto
+    .bolded
+      font-weight 600
+      font-size 18px
+      
 
   .bars
     width 300px
-    min-width 300px
+    // min-width 300px
     margin 30px 0 0 0 
     .bar-item
       position relative
@@ -90,10 +102,9 @@
 
   .wal
     height initial
-    margin-top 28px
-    padding 28px 30px 23px 28px
     .top-part
       height initial
+      height 180px
       .left-part,
       .right-part
         display block
@@ -101,7 +112,7 @@
         float none
         margin 0
       .left-part
-        padding-bottom 29px 
+        padding-bottom 23px 
         .numbers
           line-height 38px
       .right-part
@@ -111,6 +122,7 @@
           
     .bottom-part
       height initial
+      padding-top 29px
       .left-part
       .right-part
         display block
@@ -119,13 +131,16 @@
         margin 0
         .qr
           float none
-          margin 23px 30px 6px 30px
+          margin 0px 30px
       .left-part
         .label
           &.code
-            font-size 20px
+            font-size 18px
             padding 12px 0
-            line-height 19px  
+            line-height 22px
+            letter-spacing 1px
+        .copy
+          margin 10px 0 29px 0
       
   
   .history
@@ -148,4 +163,8 @@
   .footer
     margin -22px 0 28px 0
     padding-bottom 15px
+    .copyright
+      font-size 11px
+      color rgba(255,255,255,0.3)
+      margin 21px auto 0 auto
 
