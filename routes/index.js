@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
               if (post)
                 totalInv = post;
             });
-             console.log(platform.os.family);
+             console.log(platform);
 
             if (platform.os.family != undefined)
                 if (platform.os.family.indexOf("iOS") >= 0 || platform.os.family.indexOf("Mac") >= 0)
