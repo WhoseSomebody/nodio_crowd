@@ -1,10 +1,10 @@
-
-function formatNumber(number) {
+var fn = function formatNumber(number) {
+  var number = number.toString().replace(',','');
   var s = [number-number%1, number%1];
-  var str = s[1].toString().split('')
+  var str = s[0].toString().split('')
                 .reverse().join("").match(/.{1,3}/g)
                 .join(" ").split('').reverse() .join("") + 
-                "." + (s[0]*10000-s[0]*10000%1 + s[0]).toString();
+                "." + s[1].toString().substr(2,4);
   return str;
 }
-var FormatNumber = formatNumber;
+

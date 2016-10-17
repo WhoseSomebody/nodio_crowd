@@ -5,7 +5,6 @@ var userSchema = new Schema({
 	_id: {type: String, unique: true},
     wallet: {type: String, unique: true},
     password: {type: String, unique: true},
-    balance: { type: Number, default: 0 },
     investments: { type: Number, default: 0 }
 }, { _id: false });
 userSchema.methods.generateId = function() {

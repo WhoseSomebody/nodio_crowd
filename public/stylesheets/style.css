@@ -1790,13 +1790,14 @@ svg.active {
     display: none !important;
   }
   .progress {
-    margin: 18px auto;
     width: 301px;
     height: 12px;
   }
   .progress > * {
     width: initial;
     float: left;
+    position: absolute;
+    margin: 19px 0 0px -107px !important;
   }
   .terms {
     font-size: 9px;
@@ -1921,5 +1922,21 @@ svg.active {
     font-size: 11px;
     color: rgba(255,255,255,0.3);
     margin: 21px auto 0 auto;
+  }
+  #forw,
+  #backw {
+    z-index: 1000;
+    position: absolute;
+    margin: 14px 0 0 -38px;
+  }
+  #forw {
+    left: 252px;
+  }
+  .step1 .text,
+  .step2 .text {
+    margin-left: 0;
+  }
+  .step2 .text {
+    margin-left: 26px;
   }
 }

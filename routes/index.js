@@ -6,21 +6,25 @@ const express = require('express'),
     fs = require('fs'),
     readline = require('readline'),
     stream = require('stream'),
-    XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
+    helpers = require('utils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-        if(req.session.userID)
-            res.redirect('/account');
-        else {
-           totalInv = 0;
-            Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
-              if (post)
-                totalInv = post;
-            });
+  var ready = 0;
+  if(req.session.userID)
+      res.redirect('/account');
+  else {
+     totalInv = 0;
+      Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
+          totalInv = post.totalInvested;
+          ready = helpers.format_numb(totalInv)
+          console.log(ready);
+          res.render('index', {total: ready});
+      });
 
-            res.render('index', {total: totalInv, title: 'Nodio Crowd' });
-        }
+      
+  }
 });
 
 router.post('/signup', (req, res, next) => {
@@ -87,11 +91,11 @@ router.post('/login', function(req, res, next) {
       console.log(user);
       console.log(user.length);
       if (user.length > 0)  { 
-        console.log(user[0]._id);
+        // console.log(user[0]._id);
         req.session.userID = user[0]._id;
         req.session.userWallet = user[0].wallet;
         req.session.cookie.maxAge = 1000000;
-        console.log(req.session);
+        // console.log(req.session);
         res.json({success: true});
       } else {
         res.json({success: false});
@@ -101,80 +105,179 @@ router.post('/login', function(req, res, next) {
 
 
 router.get('/refresh_wallets', function(req, res, next){
-  User.find({}, function(err, users) 
-  {
-    if (err) throw err;
-    var updUsers = users,
-    summaryInvested = 0,
-    link = 'http://btc.blockr.io/api/v1/address/info/',
-    xmlHttp = new XMLHttpRequest(),
-    jsonResponses = [];
-    console.log(updUsers);
-    updUsers.forEach(function(user, i) 
-    {
-      link += user.wallet != undefined ? user.wallet + "," : "";
-      if (i % 30 == 0 || i == updUsers.length % 20) 
-      {
-        xmlHttp.open("GET", link.slice(0, -1), false);
-        xmlHttp.send(null);
-        var response = JSON.parse(xmlHttp.responseText);
-        summaryInvested += response.totalreceived;
-        console.log(response);
-        if (response.data != undefined)
-        {
-          if (response.data.length > 1)
-          {
-            response.data.forEach(function(wallet, j) 
-            {
-             
-              for (var t = 0; t < updUsers.length; t++) 
-              {
-                if (updUsers[t].wallet == wallet.address) 
-                {
-                  updUsers[t].balance = wallet.totalreceived;
-                  User.update({wallet: updUsers[t].wallet}, 
-                    {
-                      investments: wallet.totalreceived,
-                      balance: wallet.balance
-                    },
-                    function(err, affected, resp) 
-                    {
-                      summaryInvested += wallet.totalreceived;
-                      console.log(wallet);
-                    });
-                }
-                link = 'http://btc.blockr.io/api/v1/address/info/';
-                }
-              })
-            }  
-          }
-      }
+  console.log(Date.now());
+  summaryInvested = 0,
+  link = 'http://btc.blockr.io/api/v1/address/info/',
+  xmlHttp = new XMLHttpRequest(),
+  jsonResponses = [];
+  
+
+  User.find({}, function(err, users) {
+    var userMap = {};
+    var wallets = [];
+    users.forEach(function(user) {
+      userMap[user.wallet] = user.investments;
+      wallets.push(user.wallet);
     });
-    if (Total.find({totalInvested: summaryInvested})) 
-    {
-      Total.findOneAndUpdate(
-      {
-        totalInvested: summaryInvested,
-        lastUpdate: Date.now
-      },function(err, affected, resp) 
+    console.log(userMap);
+    console.log(wallets);
+
+    links = makeLinks(50, wallets);
+
+    console.log(links);
+
+    for (var i=0; i<links.length; i++){
+      xmlHttp.open("GET", links[i], false);
+      xmlHttp.send(null);
+      var response = JSON.parse(xmlHttp.responseText);
+      var accounts = response.data;
+
+      console.log(accounts);
+
+      for (var j=1; j<accounts.length; j++){
+        if (userMap[ac.wallet] != ac.investments)
         {
-          // console.log(resp);
+          updateUser(ac.wallet, ac.investments);
+        }
+        summaryInvested += ac.investments;
+
+        console.log(summaryInvested);
+      }
+
+    }
+
+    // updateTotal(summaryInvested);
+    createTotal(summaryInvested);
+
+
+    function createTotal(new_score){
+      var newScore = new Total({
+        totalInvested : new_score,
+        lastUpdate : Date.now});
+      newScore.save(function(err, newScore){
+        if (err) return console.error(err);
+      })
+    }
+
+    function updateTotal(new_score){
+      Total.findOneAndUpdate({}, {
+        totalInvested: new_score,
+        lastUpdate: Date.now()
+      }, 
+        { sort: { 'lastUpdate' : -1 } }, 
+        function(err, post) {
+          console.log( post );
         });
-    } else 
-    {
-      var newTotal = new Total(
-      {
-        totalInvested: summaryInvested,
-        lastUpdate: Date.now
-      });
-      Total.create(newTotal,function(error) 
-      {
-        assert.ifError(error);
-        var allTot = Total.find({});
-        console.log(allTot);
-      });
-    }  
-      res.json("Something is done.");
-    })});
+    }
+
+
+    function updateUser(p_wallet, new_investments){
+      User.update(
+        {wallet: p_wallet}, 
+        {investments: new_investments}, 
+        function(err, affected, resp) 
+        {
+           console.log(resp);
+        });
+    }
+
+
+    function makeLinks(chunk, arr){
+      var i,j,temparray,links = [];
+
+      for (i=0,j=arr.length; i<j; i+=chunk) {
+          temparray = arr.slice(i,i+chunk);
+          links.push(link + temparray.join(","));
+      }
+      return links;
+    }
+
+  });
+
+  console.log(Date.now());
+
+  res.send("REFRESH IS MADE.");  
+});
+
+
+router.post("/create-total-score", function(req, res, next){
+  var newScore = new Total({
+    totalInvested : req.body.totalInvested,
+    lastUpdate : Date.now});
+  newScore.save(function(err, newScore){
+    if (err) return console.error(err);
+  })
+})
+  // User.find({}, function(err, users) 
+  // {
+  //   if (err) throw err;
+  //   updUsers = users,
+
+    // for (var i=0; i < updUsers.length; i++)
+    // {
+
+    //   link += updUsers[i].wallet != undefined ? (updUsers[i].wallet + ",") : "";
+    //   if (i % 50 === 0 || i === updUsers.length % 50) 
+    //   {
+    //     console.log(link);
+    //     xmlHttp.open("GET", link, false);
+    //     xmlHttp.send(null);
+    //     var response = JSON.parse(xmlHttp.responseText);
+
+    //     console.log(response);
+    //     if (response.data != undefined)
+    //     {
+    //       // if (response.data.length > 1)
+    //       // {
+    //         // console.log("response.data");
+    //         // console.log(response.data);
+    //         // response.data.forEach(function(wallet, j) 
+    //         var wallet = response.data;
+    //         for (var j = 0; j < response.data.length; j++ )
+    //         {
+    //           for (var t = 0; t < updUsers.length; t++) 
+    //           {
+    //             if (updUsers[t].wallet == wallet[j].address) 
+    //             {
+    //               summaryInvested += wallet[j].totalreceived;
+    //               // updUsers[t].balance = wallet[j].balance;
+    //               users[i].estments = wallet[j].totalreceived,
+    //               users[i].balance = wallet[j].balance
+
+    //               console.log(summaryInvested);
+    //               console.log("======= " + i + " =======");
+    //               link = 'http://btc.blockr.io/api/v1/address/info/';
+    //             }
+    //           }
+    //         }  
+    //       }
+    //   }
+    // }
+    // console.log("?????");
+    // if (Total.findOneAndUpdate({totalInvested: summaryInvested})) 
+    // {
+    //   Total.findOneAndUpdate(
+    //     {totalInvested: summaryInvested},
+    //   {
+    //     totalInvested: summaryInvested,
+    //     lastUpdate: Date.now
+    //   },function(err, affected, resp) 
+    //     {
+    //       // console.log(resp);
+    //     });
+    // } else 
+    // {
+    //   var newTotal = new Total(
+    //   {
+    //     totalInvested: summaryInvested,
+    //     lastUpdate: Date.now
+    //   });
+    //   newTotal.save(function(error) 
+    //   {
+    //     assert.ifError(error);
+
+    //   });
+    // }  
+      
 
 module.exports = router;

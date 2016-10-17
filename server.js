@@ -11,74 +11,107 @@ mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_c
 
 
 agenda.define('update all wallets', function(job, done) {
-  User.find({},"_id wallet investments balance", function(err, users) {
-    if (err) throw err;
-    var updUsers = users,
-        summaryInvested = 0,
-        link = 'http://btc.blockr.io/api/v1/address/info/',
-        xmlHttp = new XMLHttpRequest(),
-        jsonResponses = [];
-    console.log("step1");
+  console.log(Date.now());
+  summaryInvested = 0,
+  link = 'http://btc.blockr.io/api/v1/address/info/',
+  xmlHttp = new XMLHttpRequest(),
+  jsonResponses = [];
+  
 
-    updUsers.forEach(function( user, i ){
-      link += user.wallet != undefined ? user.wallet + "," : "";
-      if (i%30 == 0 || i == updUsers.length%20) {
-        xmlHttp.open( "GET", link.slice(0,-1) , false );
-        xmlHttp.send( null );
-        var response = JSON.parse(xmlHttp.responseText);
-        summaryInvested += response.totalreceived;
-        console.log("step2");
-
-        if (response.data != undefined)
-          if (response.data.length > 1)
-            response.data.forEach(function(wallet, j ){
-              console.log("step3");
-
-              for(var t = 0; t < updUsers.length; t++)
-              {
-                if(updUsers[t].wallet == wallet.address)
-                {
-                  updUsers[t].balance = wallet.totalreceived;
-
-                  User.update({wallet: updUsers[t].wallet}, {
-                      investments: wallet.totalreceived, 
-                      balance: wallet.balance
-                  }, 
-                  function(err, affected, resp) 
-                  {
-                    // console.log(resp);
-                    summaryInvested += wallet.totalreceived;
-                  });
-                }
-                link = 'http://btc.blockr.io/api/v1/address/info/';
-              }       
-          })
-        }
-      }
-    );
-
-  if (Total.find({totalInvested: summaryInvested})) {
-    Total.findOneAndUpdate({
-        totalInvested: summaryInvested,
-        lastUpdate: Date.now
-    },
-    function(err, affected, resp) 
-      {
-        // console.log(resp);
-      });
-  } else {
-    var newTotal = new Total({totalInvested: summaryInvested, lastUpdate: Date.now});
-    Total.create(newTotal, function(error) {
-      assert.ifError(error);
-      var allTot = Total.find({});
-      console.log(allTot);
+  User.find({}, function(err, users) {
+    var userMap = {};
+    var wallets = [];
+    users.forEach(function(user) {
+      userMap[user.wallet] = user.investments;
+      wallets.push(user.wallet);
     });
-  }
+    console.log(userMap);
+    console.log(wallets);
+
+    links = makeLinks(50, wallets);
+
+    console.log(links);
+
+    for (var i=0; i<links.length; i++){
+      xmlHttp.open("GET", links[i], false);
+      xmlHttp.send(null);
+      var response = JSON.parse(xmlHttp.responseText);
+      var accounts = response.data;
+
+      console.log(accounts);
+
+      for (var j=1; j<accounts.length; j++){
+        console.log(userMap[accounts[j].wallet] != accounts[j].totalreceived);
+        if (userMap[accounts[j].address] != accounts[j].totalreceived)
+        {
+          updateUser(accounts[j].address, accounts[j].totalreceived);
+        }
+        summaryInvested += accounts[j].totalreceived != undefined ? accounts[j].totalreceived : 0;
+        
+        console.log(summaryInvested);
+      }
+
+    }
+
+    updateTotal(summaryInvested);
+    // createTotal(summaryInvested);
+
+
+    function createTotal(new_score){
+      var newScore = new Total({
+        totalInvested : new_score,
+        lastUpdate : Date.now()});
+      newScore.save(function(err, newScore){
+        if (err) return console.error(err);
+      })
+    }
+
+    function updateTotal(new_score){
+      Total.findOneAndUpdate({}, {
+        totalInvested: new_score,
+        lastUpdate: Date.now()
+      }, 
+        { sort: { 'lastUpdate' : -1 } }, 
+        function(err, post) {
+          console.log( post );
+        });
+    }
+
+
+    function updateUser(p_wallet, new_investments){
+      User.findOneAndUpdate(
+      {wallet: p_wallet}, 
+      {investments: new_investments}, 
+        function(err, affected, resp) 
+        {
+          if (err) return console.error(err);
+           console.log("*********************************");
+           console.log(this);
+        });
+    }
+
+
+    function makeLinks(chunk, arr){
+      var i,j,temparray,links = [];
+
+      for (i=0,j=arr.length; i<j; i+=chunk) {
+          temparray = arr.slice(i,i+chunk);
+          links.push(link + temparray.join(","));
+      }
+      return links;
+    }
+
+  });
+
+  console.log(Date.now());
+
+  res.send("REFRESH IS MADE.");
   done();
 });
-});
+
+
 agenda.on('ready', function() {
-  agenda.every('3 minute','update all wallets');
+  agenda.every('1 minute','update all wallets');
   // agenda.every('2 minutes', 'update all wallets');
 
   agenda.start();

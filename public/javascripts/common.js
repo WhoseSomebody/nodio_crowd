@@ -159,6 +159,7 @@ $('textarea').focus(
     if (os.indexOf("iOS") >= 0 || os.indexOf("Mac") >= 0){
       $("#copy .button .tablet").text("Next Step")
       $("#copy .button .mobile").text("Next")
+      $("#walcop").css("display","none");
     }
         
 
@@ -179,15 +180,7 @@ $('textarea').focus(
 
                     if (count[0] == 1) {
                         $.post( "/signup", { key: generated }, function(res){
-                            // console.log(res.success);
-                            if (res.success)
-                            {
-                               // $.post( "/login", { key: generated}, (res) =>{
-                               //     if (res.success) {
-                               //        $( location ).attr("href", "/account");
-                               //     } 
-                               // });
-                            }
+
                         } );
                         count[0] = 0;
                     }
