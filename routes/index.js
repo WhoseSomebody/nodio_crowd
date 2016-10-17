@@ -53,7 +53,12 @@ router.get('/logout', (req, res) => {
     req.session.userWallet = null;
     req.session.cookie.maxAge = 0;
     console.log(session);
-    setTimeout(function() {res.redirect('/');}, 300);
+    // setTimeout(function() {res.redirect('/');}, 2000);
+    if (req.session.userID == null && req.session.userWallet == null && req.session.cookie.maxAge == 0) {
+        res.send({no_session:true})
+    } else {
+        res.send({no_session:false})
+    }
 });
 
 router.get('/sesid', (req, res) => {

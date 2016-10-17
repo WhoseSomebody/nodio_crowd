@@ -1708,6 +1708,9 @@ svg.active {
   .history .col.confirm {
     left: 54px;
   }
+  .attention {
+    margin: 38px auto;
+  }
   .footer {
     letter-spacing: 1px;
     text-align: center;
@@ -1807,7 +1810,7 @@ svg.active {
     line-height: 18px;
     text-align: center;
     letter-spacing: 0.7px;
-    margin: 14px auto;
+    margin: 21px auto 22px auto;
   }
   .attention .bolded {
     font-weight: 600;

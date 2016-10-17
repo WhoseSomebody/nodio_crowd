@@ -42,7 +42,15 @@ $( document ).ready(function(){
 
 
     $('#logout').click(function (e) {
-        $.get( "/logout");
+        $.get( "/logout", function(res){
+            console.log(res.no_session);
+            if (res.no_session)
+                $( location ).attr("href", "/");
+            else {
+                $('#logout').click();
+            }
+
+        });
     });
     // 
     $('#signin:not(.disabled) a, #new:not(.disabled) a').click(function(e){
