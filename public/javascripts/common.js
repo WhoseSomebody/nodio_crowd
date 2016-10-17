@@ -153,6 +153,15 @@ $('textarea').focus(
         }
     });
 
+    var client = new ClientJS();
+    var os = client.getOS();
+     console.log(client);
+    if (os.indexOf("iOS") >= 0 || os.indexOf("Mac") >= 0){
+      $("#copy .button .tablet").text("Next Step")
+      $("#copy .button .mobile").text("Next")
+    }
+        
+
 
 })
  // chenl if user copied the generated password and var him to to account

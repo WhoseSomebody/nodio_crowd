@@ -6,7 +6,6 @@ const express = require('express'),
     fs = require('fs'),
     readline = require('readline'),
     stream = require('stream'),
-    ClientJS = require('clientjs');
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 /* GET home page. */
@@ -19,12 +18,7 @@ router.get('/', function(req, res, next) {
               if (post)
                 totalInv = post;
             });
-            var client = new ClientJS();
-            var os = client.getOS();
-             console.log(client);
-            if (os.indexOf("iOS") >= 0 || oc.indexOf("Mac") >= 0)
-             {req.session.os = "X_X"} else {req.session.os = "ok"}
-            console.log(req.session.os)
+
             res.render('index', {total: totalInv, title: 'Nodio Crowd' });
         }
 });

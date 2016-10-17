@@ -15,6 +15,7 @@ var wallet = require('./routes/wallet');
 var new_account = require('./routes/new_account');
 var welcome = require('./routes/welcome'),
     session = require('express-session');
+    
 
 var app = express();
 

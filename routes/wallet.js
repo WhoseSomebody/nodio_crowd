@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var FormatNumber = require('../helpers/format_number')
+var FormatNumber = require('../helpers/format_number');
 /* GET wallet page. */
 router.get('/', function(req, res, next) {
 	if(req.session.userID) {

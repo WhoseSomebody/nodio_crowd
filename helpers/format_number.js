@@ -7,4 +7,4 @@ function formatNumber(number) {
                 "." + (s[0]*10000-s[0]*10000%1 + s[0]).toString();
   return str;
 }
-var FormatNumber = formatNumber
+var FormatNumber = formatNumber;
