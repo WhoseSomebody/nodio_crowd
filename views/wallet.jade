@@ -40,7 +40,8 @@ block content
           .label.general
             | Your investment
           .label.numbers#invest-amount
-            | 1 000 001.789 BTC
+            //- | 1 000 001.789 BTC
+            | #{userInvestments || 0} BTC
           #nods-amount
             .label.info
               | ∽ 1 000 001 Nods
@@ -70,7 +71,7 @@ block content
             .point.top.right
             img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWallet}&size=326x326&margin=18")
   .row#history
-    a(href="https://blockchain.info")#stat_link
+    a(href="https://blockchain.info/address/#{userWallet}", target="_blank")#stat_link
       | History of my transactions
       br
       | https://blockchain.info

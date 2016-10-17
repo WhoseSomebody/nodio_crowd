@@ -4,7 +4,6 @@ var stylus = require('express-stylus')
   , svgFallback = require('express-svg-fallback')
   , koutoSwiss = require( "kouto-swiss" );
 var path = require('path');
-var schedule = require('node-schedule');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -18,6 +17,7 @@ var welcome = require('./routes/welcome'),
     session = require('express-session');
 
 var app = express();
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd')
 // view engine setup

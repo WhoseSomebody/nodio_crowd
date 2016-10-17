@@ -19,7 +19,7 @@ block content
           .number#forw
             | 02
           .text.invisible2.back_inv
-            | Enter Your Pass Phrase
+            | Paste Your Pass Phrase
         .desktop.tablet
           svg.active.invisible2.back_inv
             use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#pagination-active')
@@ -51,7 +51,7 @@ block content
       textarea.password(
         type="password",
         maxlength="69",
-        placeholder="Enter Your Pass Phrase",
+        placeholder="Paste Your Pass Phrase",
         style="")
       label.file.label Use txt
         input(
@@ -83,9 +83,11 @@ block content
     .point.top.right
     a(href="#").label.button
       span.desktop.tablet
-        | Copy Pass Phrase to Clipboard 
+        //- | Copy Pass Phrase to Clipboard 
+        | #{buttonTextB}
       span.mobile
-        | Copy 
+        //- | Copy 
+        | #{buttonTextS}
   #new.signin.disabled.group2.back
     .point.bottom.left
     .point.bottom.right

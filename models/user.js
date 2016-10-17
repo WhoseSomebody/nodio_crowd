@@ -1,12 +1,12 @@
-const mongoose = require('mongoose'),
+	const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 	_id: {type: String, unique: true},
     wallet: {type: String, unique: true},
     password: {type: String, unique: true},
-    ballance: {type: Number},
-    investments: {type: Number}
+    balance: { type: Number, default: 0 },
+    investments: { type: Number, default: 0 }
 }, { _id: false });
 userSchema.methods.generateId = function() {
 	var now = new Date();
