@@ -138,7 +138,7 @@ $('textarea').focus(
 
     function prevStep() {
         $('.back').addClass('group2');
-        $('.back_inv').addClass('invisible2');
+        $('.back_inv, #forw').addClass('invisible2');
         $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
         $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
         $('.invisible1').css({'opacity':'1','cursor':'pointer'});
@@ -159,9 +159,12 @@ $('textarea').focus(
     if (os.indexOf("iOS") >= 0 || os.indexOf("Mac") >= 0){
       $("#copy .button .tablet").text("Next Step")
       $("#copy .button .mobile").text("Next")
-      $("#walcop").css("display","none");
+      $("#walcop, .copy, .file").css("display","none");
     }
         
+    $(".paste").click(function(){
+      $("#login_new .password").val($("#generator .password").val()).keyup();
+    })
 
 
 })
