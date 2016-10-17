@@ -606,8 +606,23 @@ svg
   &:hover
     color rgba(23, 229, 178, 0.7)
 .group1, .group2, .invisible1, .invisible2, .back_inv, .back
-  transition visibility 2s, opacity 2s linear
-  -webkit-transition visibility 2s linear, opacity 2s linear
-
+  transition visibility 2s, opacity 2s linear, border-color .2s linear
+  -webkit-transition visibility 2s linear, opacity 2s linear, border-color .2s linear
+  
+#back-to-main, .terms a, #stat_link
+  font-size 12px
+  color rgba(23,230,178,0.6)
+  -webkit-transition color .2s linear
+  transition color .2s linear
+  &:hover
+    color #17e5b2
+#stat_link
+  margin-top 40px
+#history
+  margin-top 30px
+#signin
+  -webkit-transition: visibility 2s, opacity 2s linear
+  transition: visibility 2s, opacity 2s linear
+  -webkit-transition: visibility 2s linear, opacity 2s linear
 @import "style-tablet.styl"
 @import "style-mobile.styl"

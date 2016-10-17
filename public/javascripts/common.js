@@ -155,7 +155,8 @@ $('textarea').focus(
             if (generated == $(this).val()) {
                 $("#new.signin").removeClass("disabled")
                 $(".second .line").addClass("active");
-                $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) {.second svg,active{ right:85px }}");
+                $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) \
+                    {.second svg,active{ right:56px }}");
                 $('#new:not(.disabled) a').click(function(e){
                     e.preventDefault();
 
