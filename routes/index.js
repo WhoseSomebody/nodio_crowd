@@ -90,4 +90,13 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+router.get('/update-wallets', function(red, res, next) {
+    User.find({}, function(err, users) {
+      if (err) throw err;
+
+      // object of all the users
+      console.log(users);
+    });
+});
+
 module.exports = router;

@@ -4,6 +4,7 @@ var stylus = require('express-stylus')
   , svgFallback = require('express-svg-fallback')
   , koutoSwiss = require( "kouto-swiss" );
 var path = require('path');
+var schedule = require('node-schedule');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
