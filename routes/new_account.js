@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router(),
-	platform = require('platform');
+	ClientJS = require('clientjs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.session.userID)
   		res.redirect('/account');
   	else{ 
-  		 console.log(platform);
-
-  		if (platform.os.family != undefined)
-  		    if (platform.os.family.indexOf("iOS") >= 0 || platform.os.family.indexOf("Mac") >= 0)
-  		     {req.session.os = "X_X"} else {req.session.os = "ok"}
+  		var client = new ClientJS();
+  		var os = client.getOS();
+  		 console.log(client);
+	    if (os.indexOf("iOS") >= 0 || oc.indexOf("Mac") >= 0)
+	     {req.session.os = "X_X"} else {req.session.os = "ok"}
   		console.log(req.session.os);
 
   		if (req.session.os == "X_X")
