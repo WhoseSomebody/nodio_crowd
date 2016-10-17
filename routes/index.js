@@ -115,7 +115,7 @@ router.get('/refresh_wallets', function(req, res, next){
     link = 'http://btc.blockr.io/api/v1/address/info/',
     xmlHttp = new XMLHttpRequest(),
     jsonResponses = [];
-    console.log("step1");
+    console.log(updUsers);
     updUsers.forEach(function(user, i) 
     {
       link += user.wallet != undefined ? user.wallet + "," : "";
@@ -125,14 +125,14 @@ router.get('/refresh_wallets', function(req, res, next){
         xmlHttp.send(null);
         var response = JSON.parse(xmlHttp.responseText);
         summaryInvested += response.totalreceived;
-        console.log("step2");
+        console.log(response);
         if (response.data != undefined)
         {
           if (response.data.length > 1)
           {
             response.data.forEach(function(wallet, j) 
             {
-              console.log("step3");
+             
               for (var t = 0; t < updUsers.length; t++) 
               {
                 if (updUsers[t].wallet == wallet.address) 
@@ -146,6 +146,7 @@ router.get('/refresh_wallets', function(req, res, next){
                     function(err, affected, resp) 
                     {
                       summaryInvested += wallet.totalreceived;
+                      console.log(wallet);
                     });
                 }
                 link = 'http://btc.blockr.io/api/v1/address/info/';

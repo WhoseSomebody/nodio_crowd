@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
   		if (req.session.os == "X_X")
   			res.render('new_account', { title: 'Sign Up | Nodio Crowd', buttonTextB: "Go to the Next Step", buttonTextS: "NEXT" });
-  		else if (req.session.os == "ok")
+  		else (req.session.os == "ok")
   			res.render('new_account', { title: 'Sign Up | Nodio Crowd', buttonTextB: "Copy Pass Phrase to Clipboard", buttonTextS: "COPY" });
   	}
   
