@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
       res.render('wallet', { title: 'My Wallet | Nodio Crowd', 
                     userID: user._id, 
                     userWallet: user.wallet,
-                    userInvestments: user.investments != undefined ? helpers.format_numb(user.investments) : 0,
-                    userBalance: user.balance != undefined ? helpers.format_numb(user.balance) : 0 
+                    userInvestments: (user.investments == undefined || user.investments == 0)? 0 : helpers.format_numb(user.investments),
+                    userBalance: (user.balance == undefined || user.balance == 0) ? 0 : helpers.format_numb(user.balance) 
                     });
 
   	});}

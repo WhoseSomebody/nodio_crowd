@@ -1166,7 +1166,10 @@ textarea {
 }
 @media (min-width: 901px) {
   .footer .copyright {
-    padding: 30px 15px;
+    padding: 30px 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.2);
   }
 }
 .footer .copyright a {
@@ -1599,7 +1602,7 @@ svg.active {
   letter-spacing: 1px;
 }
 #stat_link {
-  margin-top: 40px;
+  font-weight: 600;
 }
 #history {
   margin-top: 30px;
@@ -1637,7 +1640,7 @@ svg.active {
 .pblue .point {
   background-color: #1cce9c;
 }
-.pwite .point {
+.pwhite .point {
   background-color: #fff;
 }
 .pointer {
@@ -1875,6 +1878,7 @@ svg.active {
   .attention .bolded {
     font-weight: 600;
     font-size: 18px;
+    color: #ff004d;
   }
   .bars {
     width: 300px;
@@ -1938,7 +1942,6 @@ svg.active {
   .wal .bottom-part .right-part .qr {
     float: none;
     margin: 0px 30px;
-    padding-bottom: 1px;
   }
   .wal .bottom-part .left-part {
     width: 241px;

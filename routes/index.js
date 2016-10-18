@@ -17,8 +17,8 @@ router.get('/', function(req, res, next) {
   else {
      totalInv = 0;
       Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
-          totalInv = post.totalInvested;
-          ready = helpers.format_numb(totalInv)
+          totalInv = 0 || post.totalInvested;
+          ready = totalInv == 0 ?  0 : helpers.format_numb(totalInv)
           console.log(ready);
           res.render('index', {title: "Nodio ♢ Crowd",total: ready});
       });

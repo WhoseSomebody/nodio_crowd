@@ -57,8 +57,8 @@ agenda.define('update all wallets', function(job, done) {
 
     }
 
-    updateTotal(summaryInvested);
-    // createTotal(summaryInvested);
+    // updateTotal(summaryInvested);
+    createTotal(summaryInvested);
 
 
     function createTotal(new_score){
