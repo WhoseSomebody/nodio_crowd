@@ -156,10 +156,10 @@ $('textarea').focus(
     var client = new ClientJS();
     var os = client.getOS();
      console.log(client);
-    if (os.indexOf("iOS") >= 0 || os.indexOf("Mac") >= 0){
+    if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step")
       $("#copy .button .mobile").text("Next")
-      $("#walcop, .copy, .file").css("display","none");
+      // $("#walcop, .copy, .file").css("display","none");
     }
         
     $(".paste").click(function(){
