@@ -1,3 +1,3 @@
 web: npm start
 
-bd_updator: forever start server.js
+bd_updator: node server.js

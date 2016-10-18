@@ -986,8 +986,13 @@ textarea {
   font-size: 13px;
 }
 .wal .top-part .right-part #nods-amount .line {
-  width: 153px;
+  width: 151px;
+  height: 0.8px;
   background-color: rgba(28,206,156,0.22);
+  margin-top: 0.5px;
+  -webkit-transition: visibility 0.32s linear;
+  transition: visibility 0.32s linear;
+  -webkit-transition: visibility 0.32s linear;
 }
 .wal .bottom-part {
   padding-top: 27px;
@@ -1184,6 +1189,11 @@ textarea {
 }
 .hidden {
   visibility: hidden;
+}
+.disappear {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
 }
 .pass-phrase {
   box-sizing: border-box;
@@ -1565,15 +1575,15 @@ svg.active {
 .invisible1,
 .invisible2,
 .back_inv,
-.back,
-#nods-tip {
+.back {
   -webkit-transition: visibility 2s, opacity 2s linear, border-color 0.2s linear;
   transition: visibility 2s, opacity 2s linear, border-color 0.2s linear;
   -webkit-transition: visibility 2s linear, opacity 2s linear, border-color 0.2s linear;
 }
 #back-to-main,
 .terms a,
-#stat_link {
+#stat_link,
+#nods-amount .label {
   color: rgba(23,230,178,0.6);
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
@@ -1581,7 +1591,8 @@ svg.active {
 }
 #back-to-main:hover,
 .terms a:hover,
-#stat_link:hover {
+#stat_link:hover,
+#nods-amount .label:hover {
   color: #17e5b2;
 }
 #back-to-main {
@@ -1604,6 +1615,9 @@ svg.active {
   height: 118px;
   position: relative;
   border: 1px solid rgba(28,206,156,0.22);
+  -ms-filter: none;
+  filter: none;
+  opacity: 1;
 }
 #nods-tip .inner-tip {
   height: 106px;
@@ -1612,9 +1626,37 @@ svg.active {
   background-color: #fff;
   color: #000;
 }
-.strange:after {
-  width: 0;
-  height: 0;
+.blue:before,
+.blue:after {
+  background-color: #1cce9c;
+}
+.line.white:before,
+.line.white:after {
+  background-color: #fff;
+}
+.pblue .point {
+  background-color: #1cce9c;
+}
+.pwite .point {
+  background-color: #fff;
+}
+.pointer {
+  cursor: pointer;
+}
+.noselect {
+  -webkit-touch-callout: none /* iOS Safari */;
+  -webkit-user-select: none /* Chrome/Safari/Opera */;
+  -khtml-user-select: none /* Konqueror */;
+  -moz-user-select: none /* Firefox */;
+  -ms-user-select: none /* Internet Explorer/Edge */;
+  -webkit-user-select: none /* Non-prefixed version, currently
+                                  not supported by any browser */;
+  -moz-user-select: none /* Non-prefixed version, currently
+                                  not supported by any browser */;
+  -ms-user-select: none /* Non-prefixed version, currently
+                                  not supported by any browser */;
+  user-select: none /* Non-prefixed version, currently
+                                  not supported by any browser */;
 }
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {

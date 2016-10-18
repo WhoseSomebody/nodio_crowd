@@ -166,6 +166,13 @@ $('textarea').focus(
       $("#login_new .password").val($("#generator .password").val()).keyup();
     })
 
+    $('#nods-amount, #nods-tip').click( function() {
+        $('#nods-amount .line, #nods-tip').toggleClass("disappear");
+        // setTimeout(function() {
+            $('#nods-amount .line, #nods-tip').toggleClass("hidden");
+        // }, 300)
+    });
+
 
 })
  // chenl if user copied the generated password and var him to to account
@@ -195,7 +202,7 @@ $('textarea').focus(
                     // } );
                     window.setTimeout( function(){
                         $( location ).attr("href", "/account");
-                    }, 400);
+                    }, 1000);
 
                     
                 })}

@@ -6,7 +6,7 @@ block content
       a 
         .desktop.tablet
           | Reports
-          .line
+          .line.white
         .mobile
           .arrow.left
             a(href="#")#arrow-left
@@ -14,19 +14,19 @@ block content
                 use(xlink:href="#arrow_right")
     .bar-item.active
       a General
-      .line.desktop.tablet.mobile
+      .line.desktop.tablet.mobile.blue
     .bar-item
       a 
         .desktop.tablet
           | Updates
-          .line
+          .line.white
         .mobile
           .arrow.right
             a(href="#")#arrow-right
               svg
                 use(xlink:href="#arrow_right")
     //- p Welcome to #{title}
-  .row.wal
+  .row.wal.pwhite
     .point.bottom.left
     .point.bottom.right
     .point.top.left
@@ -46,11 +46,11 @@ block content
           .label.numbers#invest-amount
             //- | 1 000 001.789 BTC
             | #{userInvestments} BTC
-          #nods-amount
+          #nods-amount.pointer
             .label.info
               | ∽ 1 000 001 Nods
-            .line.strange
-          #nods-tip
+            .line
+          #nods-tip.pointer.hidden.disappear
             .point.bottom.left
             .point.bottom.right
             .point.top.left
@@ -61,7 +61,7 @@ block content
                 | from total 
                 b 1 000 002 BTC
               p Final part will be known at
-                b May 19, 2016 00:00
+                b  May 19, 2016 00:00
       .line(style="width: 100%;")
       .bottom-part
         .left-part
