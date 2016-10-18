@@ -10,6 +10,8 @@ block content
         .mobile
           .arrow.left
             a(href="#")#arrow-left
+              svg
+                use(xlink:href="#arrow_right")
     .bar-item.active
       a General
       .line.desktop.tablet.mobile
@@ -21,6 +23,8 @@ block content
         .mobile
           .arrow.right
             a(href="#")#arrow-right
+              svg
+                use(xlink:href="#arrow_right")
     //- p Welcome to #{title}
   .row.wal
     .point.bottom.left
@@ -45,7 +49,19 @@ block content
           #nods-amount
             .label.info
               | ∽ 1 000 001 Nods
-            .line
+            .line.strange
+          #nods-tip
+            .point.bottom.left
+            .point.bottom.right
+            .point.top.left
+            .point.top.right
+            div.inner-tip
+              p For now it's
+                | 99.999999999%
+                | from total 
+                b 1 000 002 BTC
+              p Final part will be known at
+                b May 19, 2016 00:00
       .line(style="width: 100%;")
       .bottom-part
         .left-part
@@ -72,7 +88,7 @@ block content
             img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWallet}&size=326x326&margin=18")
   .row#history
     a(href="https://blockchain.info/address/#{userWallet}", target="_blank")#stat_link
-      | History of my transactions
+      | History of your transactions
       br
       | https://blockchain.info
   //- .history

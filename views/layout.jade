@@ -22,7 +22,7 @@ html
     //- )
     meta(
       name="description"
-      content="Nodio"
+      content="Nodio crowdfunding resource."
     )
     meta(
       http-equiv="x-dns-prefetch-control"
@@ -63,6 +63,10 @@ html
 
   body(style="display:table;")
     include ../public/images/svg-sprite.svg
+    include ../public/images/ic_logo.svg
+    include ../public/images/ic_download.svg
+    include ../public/images/ic_generate.svg
+    include ../public/images/ic_arrow_right.svg
     #background(style="display:table;")
       #glow.show
         .glow-container
@@ -71,6 +75,8 @@ html
       .container
         .logo
           a(href="/")#logo
+            svg
+              use(xlink:href="#ic_logo")
             //- img(src="/images/logo_crowd.png")
         block content
     footer.footer(style="display:table-footer-group;")

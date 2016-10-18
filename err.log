@@ -1,0 +1,132 @@
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+TypeError: Cannot read property 'length' of null
+    at /home/gard/Documents/NodeioCrow/nodio-crow/server.js:43:31
+    at Query.<anonymous> (/home/gard/Documents/NodeioCrow/nodio-crow/node_modules/mongoose/lib/model.js:3343:16)
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:259:21
+    at /home/gard/Documents/NodeioCrow/nodio-crow/node_modules/kareem/index.js:127:16
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)

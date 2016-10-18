@@ -1,3 +1,7 @@
+// CHANGE 'nol' here to change the number of address 
+// in request to 'http://btc.blockr.io/api/v1/address/info/'
+var nol = 20;
+
 var mongoose = require("mongoose");
 Agenda = require('agenda');
 User = require('./models/user');
@@ -28,7 +32,7 @@ agenda.define('update all wallets', function(job, done) {
     console.log(userMap);
     console.log(wallets);
 
-    links = makeLinks(50, wallets);
+    links = makeLinks(nol, wallets);
 
     console.log(links);
 
@@ -38,7 +42,7 @@ agenda.define('update all wallets', function(job, done) {
       var response = JSON.parse(xmlHttp.responseText);
       var accounts = response.data;
 
-      console.log(accounts);
+      console.log(response);
 
       for (var j=1; j<accounts.length; j++){
         console.log(userMap[accounts[j].wallet] != accounts[j].totalreceived);

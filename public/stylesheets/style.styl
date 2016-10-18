@@ -31,16 +31,18 @@ meyer-reset()
   -webkit-transition background-color .2s linear
   transition background-color .2s linear
 #logo
-  background-color #fff 
-  -webkit-mask-image: url(/images/ic_logo.svg)
-  mask-image url(/images/ic_logo.svg)
-  &::not(.disabled):hover
-   background-color rgba(28,206,156,0.82)
-   
+  // background-color #fff 
+  // -webkit-mask-image: url(/images/ic_logo.svg)
+  // mask-image url(/images/ic_logo.svg)
+  // &::not(.disabled):hover
+  //  background-color rgba(28,206,156,0.82)
+  svg
+    fill #fff
+     
 #arrow-left   
-  background-color rgb(28, 206, 156)
-  -webkit-mask-image: url(/images/ic_arrow_right.svg)
-  mask-image url(/images/ic_logo.svg)
+  // background-color rgb(28, 206, 156)
+  // -webkit-mask-image: url(/images/ic_arrow_right.svg)
+  // mask-image url(/images/ic_logo.svg)
   -moz-transform scaleX(-1)
   -o-transform scaleX(-1)
   -webkit-transform scaleX(-1)
@@ -48,13 +50,17 @@ meyer-reset()
   filter FlipH
   -ms-filter "FlipH"
   margin-left: -39px;
+  svg
+    fill rgb(28, 206, 156)
 
 #arrow-right 
-  background-color rgb(28, 206, 156)
-  -webkit-mask-image: url(/images/ic_arrow_right.svg)
-  mask-image url(/images/ic_logo.svg)
+  // background-color rgb(28, 206, 156)
+  // -webkit-mask-image: url(/images/ic_arrow_right.svg)
+  // mask-image url(/images/ic_logo.svg)
   margin-right: -44px;
-  
+  svg
+    fill rgb(28, 206, 156)
+
 .row
   display block
   width 100%
@@ -312,7 +318,9 @@ textarea
   .numbers
     color #17d2b2
     line-height 75px
-    
+
+.hidden
+  visibility hidden   
 .pass-phrase
   box-sizing: border-box;
   position relative
@@ -361,9 +369,7 @@ textarea
     bottom: 27px;
     right: 27px;
     @media (min-width: 901px)
-      bottom: 21px;
-  .hidden
-      display none   
+      bottom: 21px;  
   .point 
     background-color white
   & > *
@@ -523,9 +529,9 @@ svg
 
 .save-to-file
   position absolute
-  background-color rgba(28,206,156,0.82)
-  -webkit-mask-image: url(/images/ic_download.svg)
-  mask-image url(/images/ic_download.svg)
+  // background-color rgba(28,206,156,0.82)
+  // -webkit-mask-image: url(/images/ic_download.svg)
+  // mask-image url(/images/ic_download.svg)
   size 61px 61px
   display inline-block
   -webkit-mask-size: cover;
@@ -533,15 +539,19 @@ svg
   -webkit-transition background-color .2s linear
   transition background-color .2s linear
   &:not(.disabled):hover
-    background-color #17e5b2
+    // background-color #17e5b2
+    svg
+      fill #17e5b2
+  svg
+    fill rgba(28,206,156,0.82)
     
 .generate
   position absolute
   width 48px
   margin-left -60px
-  background-color rgba(28,206,156,0.82)
-  -webkit-mask-image: url(/images/ic_generate.svg)
-  mask-image url(/images/ic_generate.svg)
+  // background-color rgba(28,206,156,0.82)
+  // -webkit-mask-image: url(/images/ic_generate.svg)
+  // mask-image url(/images/ic_generate.svg)
   size 61px 61px
   display inline-block
   -webkit-mask-size: cover;
@@ -549,7 +559,12 @@ svg
   -webkit-transition background-color .2s linear
   transition background-color .2s linear
   &:not(.disabled):hover
-   background-color #17e5b2 
+    svg
+      fill #17e5b2
+   // background-color #17e5b2 
+  svg
+    fill rgba(28,206,156,0.82)
+  
    
 .terms
   font-size 9px
@@ -607,7 +622,7 @@ svg
   transition color .2s linear
   &:hover
     color rgba(23, 229, 178, 0.7)
-.group1, .group2, .invisible1, .invisible2, .back_inv, .back
+.group1, .group2, .invisible1, .invisible2, .back_inv, .back, #nods-tip
   transition visibility 2s, opacity 2s linear, border-color .2s linear
   -webkit-transition visibility 2s linear, opacity 2s linear, border-color .2s linear
   
@@ -628,5 +643,21 @@ svg
   -webkit-transition: visibility 2s, opacity 2s linear
   transition: visibility 2s, opacity 2s linear
   -webkit-transition: visibility 2s linear, opacity 2s linear
+
+#nods-tip
+  width 208px
+  height 118px  
+  position relative 
+  border 1px solid rgba(28,206,156,0.22)
+  .inner-tip
+    height 106px
+    text-align center
+    margin 7px 7px 5px 8px
+    background-color #fff
+    color black
+.strange:after
+  size 0 0
+
+
 @import "style-tablet.styl"
 @import "style-mobile.styl"

@@ -62,7 +62,7 @@ $( document ).ready(function(){
             if (res.success)
                 window.setTimeout( function(){
                     $( location ).attr("href", "/account");
-                }, 400);
+                }, 1000);
     } );
     
     });

@@ -30,7 +30,10 @@ block content
       .point.bottom.right
       .point.top.left
       .point.top.right
-      .generate.label(title="Generate New Phrase") gen
+      .generate.label(title="Generate New Phrase")
+        svg
+          use(xlink:href="#gnrt")
+
       textarea.password(
         type="text",
         placeholder="Generate Your Pass Phrase",
@@ -39,7 +42,9 @@ block content
         rows="2",
         cols="6",
         readonly="readonly")
-      .save-to-file.label(title="Save As *.txt")  dwnl
+      .save-to-file.label(title="Save As *.txt")
+        svg
+          use(xlink:href="#dwnld")
 
   #login_new.group2.back
     #formspace_new.pass-phrase
