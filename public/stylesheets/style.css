@@ -1506,8 +1506,8 @@ svg.active {
 }
 .terms {
   font-size: 9px;
-  padding: 12px;
-  letter-spacing: 1px;
+  padding: 12px 0;
+  letter-spacing: 0.7px;
   color: rgba(255,255,255,0.3);
 }
 .terms a {
@@ -1623,11 +1623,20 @@ svg.active {
   opacity: 1;
 }
 #nods-tip .inner-tip {
-  height: 106px;
+  height: 89px;
   text-align: center;
   margin: 7px 7px 5px 8px;
   background-color: #fff;
   color: #000;
+  padding: 5px;
+}
+#nods-tip .inner-tip p {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+}
+#nods-tip .inner-tip p b {
+  font-weight: 600;
 }
 .blue:before,
 .blue:after {
