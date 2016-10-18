@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
           totalInv = post.totalInvested;
           ready = helpers.format_numb(totalInv)
           console.log(ready);
-          res.render('index', {total: ready});
+          res.render('index', {title: "Nodio ♢ Crowd",total: ready});
       });
 
       

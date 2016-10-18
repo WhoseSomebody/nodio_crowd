@@ -184,6 +184,9 @@ input:-webkit-autofill:active {
   transition: background-color 50000s ease-in-out 50000s;
   color: inherit !important;
 }
+a {
+  text-decoration: none;
+}
 .bold {
   font-weight: 700;
 }
@@ -1281,7 +1284,7 @@ textarea {
 @media (min-width: 901px) {
   .pass-phrase .password,
   .pass-phrase .generator {
-    line-height: 54px;
+    line-height: 52px;
   }
 }
 .pass-phrase .password:focus::-webkit-input-placeholder,
@@ -1490,16 +1493,18 @@ svg.active {
   background-color: #17e5b2;
 }
 .terms {
-  font-size: 12px;
-  padding: 11px;
+  font-size: 9px;
+  padding: 12px;
   letter-spacing: 1px;
+  color: rgba(255,255,255,0.3);
 }
 .terms a {
+  font-size: 9px;
   color: #16cdae;
   cursor: pointer;
 }
 .attention {
-  margin: 47px auto;
+  margin: 48px auto;
   width: 360px;
   color: #ff004d;
   font-size: 11px;
@@ -1569,7 +1574,6 @@ svg.active {
 #back-to-main,
 .terms a,
 #stat_link {
-  font-size: 12px;
   color: rgba(23,230,178,0.6);
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
@@ -1798,12 +1802,6 @@ svg.active {
     float: left;
     position: absolute;
     margin: 19px 0 0px -107px !important;
-  }
-  .terms {
-    font-size: 9px;
-    padding: 11px 0px;
-    letter-spacing: 0.7px;
-    text-align: center;
   }
   .attention {
     width: 300px;
