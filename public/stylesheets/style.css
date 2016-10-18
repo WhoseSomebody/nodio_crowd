@@ -1584,6 +1584,9 @@ svg.active {
 #stat_link:hover {
   color: #17e5b2;
 }
+#back-to-main {
+  letter-spacing: 1px;
+}
 #stat_link {
   margin-top: 40px;
 }
