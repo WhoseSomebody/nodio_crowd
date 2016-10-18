@@ -17,6 +17,7 @@
     "express-session": "^1.14.1",
     "express-stylus": "^0.1.0",
     "express-svg-fallback": "^0.1.4",
+    "forever": "^0.15.2",
     "jade": "~1.11.0",
     "kouto-swiss": "^0.13.1",
     "mongoose": "^4.6.3",
