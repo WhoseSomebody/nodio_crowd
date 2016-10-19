@@ -11,6 +11,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
 var agenda = new Agenda({db: {address: mongoConnectionString}});
 mongoose.Promise = global.Promise;
+console.log("connecting to db ...");
 mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd');
 
 
@@ -27,7 +28,7 @@ agenda.define('update all wallets', function(job, done) {
     var wallets = [];
     users.forEach(function(user) {
       userMap[user.wallet] = user.investments;
-      wallets.push(user.wallet);
+      wallets.push(user.wallet.replace(/(\\r|\\)/g, ""));
     });
     console.log(userMap);
     console.log(wallets);
@@ -37,7 +38,7 @@ agenda.define('update all wallets', function(job, done) {
     console.log(links);
 
     for (var i=0; i<links.length; i++){
-      xmlHttp.open("GET", links[i], false);
+      xmlHttp.open("GET", links[i].replace(/(\\r|\\)/g, ""), false);
       xmlHttp.send(null);
       var response = JSON.parse(xmlHttp.responseText);
       var accounts = response.data;
@@ -50,15 +51,15 @@ agenda.define('update all wallets', function(job, done) {
         {
           updateUser(accounts[j].address, accounts[j].totalreceived);
         }
-        summaryInvested += accounts[j].totalreceived != undefined ? accounts[j].totalreceived : 0;
+        setTimeout(function() {summaryInvested += accounts[j].totalreceived;}, 100);
         
         console.log(summaryInvested);
       }
 
     }
 
-    // updateTotal(summaryInvested);
-    createTotal(summaryInvested);
+    updateTotal(summaryInvested);
+    // createTotal(summaryInvested);
 
 
     function createTotal(new_score){
@@ -71,14 +72,22 @@ agenda.define('update all wallets', function(job, done) {
     }
 
     function updateTotal(new_score){
-      Total.findOneAndUpdate({}, {
-        totalInvested: new_score,
-        lastUpdate: Date.now()
-      }, 
-        { sort: { 'lastUpdate' : -1 } }, 
-        function(err, post) {
-          console.log( post );
-        });
+      // Total.findOneAndUpdate({}, {
+      //   totalInvested: new_score,
+      //   lastUpdate: Date.now()
+      // }, 
+      //   { sort: { 'lastUpdate' : -1 } }, 
+      //   function(err, post) {
+      //     console.log( post );
+      //   });
+      try {
+        Total.findOneAndUpdate({ },
+         { $set: { "totalInvested" : new_score, "lastUpdate" :  Date.now()}},
+         { sort: { "lastUpdate" : -1 }, upsert:true, returnNewDocument : true });
+      }
+      catch (e){
+         print(e);
+      }
     }
 
 

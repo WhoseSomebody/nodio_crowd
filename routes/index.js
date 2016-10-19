@@ -39,7 +39,7 @@ router.post('/signup', (req, res, next) => {
     fs.renameSync(output,input);
 
     var user = new User({
-        wallet : wallet,
+        wallet : wallet.replace(/(\\r|\\)/g, ""),
         password : req.body.key
     });
     user.generateId(function(err, name) {
