@@ -63,13 +63,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.use(function(req,res,next) {
-  if (!/https/.test(req.protocol)){
-     res.redirect("https://" + req.headers.host + req.url);
-  } else {
-     return next();
-  } 
-});
+
 
 // error handlers
 

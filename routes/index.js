@@ -9,6 +9,10 @@ const express = require('express'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     helpers = require('utils');
 
+router.get('*',function(req,res){  
+    res.redirect('https://'+req.headers.host+req.url)
+    console.log(req.url)
+})  
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var ready = 0;
