@@ -7,12 +7,13 @@ Agenda = require('agenda');
 User = require('./models/user');
 Total = require('./models/total');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var mongoConnectionString = "mongodb://heroku_m49x5k54:jrtegd6gljlcmpr6u8jj1ql2ia@ds061206.mlab.com:61206/heroku_m49x5k54";
-// var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
+// var mongoConnectionString = "mongodb://heroku_m49x5k54:jrtegd6gljlcmpr6u8jj1ql2ia@ds061206.mlab.com:61206/heroku_m49x5k54";
+var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
 var agenda = new Agenda({db: {address: mongoConnectionString}});
 mongoose.Promise = global.Promise;
 console.log("connecting to db ...");
 mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd');
+console.log("connected.");
 
 
 agenda.define('update all wallets', function(job, done) {
@@ -22,13 +23,16 @@ agenda.define('update all wallets', function(job, done) {
   xmlHttp = new XMLHttpRequest(),
   jsonResponses = [];
   
-
+  console.log("иуащку USER");
   User.find({}, function(err, users) {
     var userMap = {};
     var wallets = [];
     users.forEach(function(user) {
+      console.log("USER");
+      console.log(user);
+
       userMap[user.wallet] = user.investments;
-      wallets.push(user.wallet.replace(/(\\r|\\)/g, ""));
+      wallets.push(user.wallet);
     });
     console.log(userMap);
     console.log(wallets);
@@ -43,18 +47,17 @@ agenda.define('update all wallets', function(job, done) {
       var response = JSON.parse(xmlHttp.responseText);
       var accounts = response.data;
 
-      console.log(response);
+      console.log(response.data);
 
       for (var j=0; j<accounts.length; j++){
-        console.log(userMap[accounts[j].wallet] != accounts[j].totalreceived);
         if (userMap[accounts[j].address] != accounts[j].totalreceived)
         {
           updateUser(accounts[j].address, accounts[j].totalreceived);
         }
-        setTimeout(function() {
-          summaryInvested += accounts[j] != undefined ? accounts[j].totalreceived : 0;
-        }, 100);
         
+        summaryInvested += accounts[j] != undefined ? accounts[j].totalreceived : 0;
+        
+        // console.log(accounts[j] != undefined ? accounts[j] : "undefined");
         console.log(summaryInvested);
       }
 
@@ -84,6 +87,7 @@ agenda.define('update all wallets', function(job, done) {
     }
 
     function updateTotal(new_score){
+      var date = Date.now();
       // Total.findOneAndUpdate({}, {
       //   totalInvested: new_score,
       //   lastUpdate: Date.now()
@@ -93,13 +97,21 @@ agenda.define('update all wallets', function(job, done) {
       //     console.log( post );
       //   });
       try {
-        Total.findOneAndUpdate({ },
-         { $set: { "totalInvested" : new_score, "lastUpdate" :  Date.now()}},
-         { sort: { "lastUpdate" : -1 }, upsert:true, returnNewDocument : true });
+      //   Total.findOneAndUpdate({ },
+      //    { $set: { "totalInvested" : new_score, "lastUpdate" :  Date.now()}},
+      //    { sort: { "lastUpdate" : -1 }, upsert:true, returnNewDocument : true });
+      // }
+        var ch = Total.findOneAndUpdate(
+          {},
+          {totalInvested: new_score, lastUpdate: date},
+          {sort : { "lastUpdate" : -1 },
+          returnNewDocument : true })
+        
+        console.log(ch);
       }
-      catch (e){
-         print(e);
-      }
+        catch (e){
+           console.log(e);
+        }
     }
 
 
@@ -136,6 +148,7 @@ agenda.define('update all wallets', function(job, done) {
 
 
 agenda.on('ready', function() {
+  console.log("I am ready.")
   agenda.every('1 minute','update all wallets');
   // agenda.every('2 minutes', 'update all wallets');
 
