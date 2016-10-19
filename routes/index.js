@@ -9,6 +9,12 @@ const express = require('express'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     helpers = require('utils');
 
+router.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://'+req.headers.host+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
 // router.get('*',function(req,res){  
 //     res.redirect('https://'+req.headers.host+req.url)
 //     console.log(req.url)
