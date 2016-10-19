@@ -53,7 +53,7 @@ $( document ).ready(function(){
         });
     });
     // 
-    $('#signin:not(.disabled) a, #new:not(.disabled) a').click(function(e){
+    $('#signin:not(.disabled) a').click(function(e){
         e.preventDefault();
         var password = $('#login .password').val();
 

@@ -11,7 +11,8 @@ const express = require('express'),
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://'+req.headers.host+req.url)
+    if (req.headers.host != "localhost:3000")
+      res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
 })
@@ -29,7 +30,7 @@ router.get('/', function(req, res, next) {
       Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
           totalInv = post == null ? 0 : post.totalInvested;
           ready = totalInv == 0 ?  0 : helpers.format_numb(totalInv)
-          console.log(ready);
+          console.log(post);
           res.render('index', {title: "Nodio ♢ Crowd",total: ready});
       });
 

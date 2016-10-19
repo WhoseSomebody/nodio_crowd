@@ -15,12 +15,14 @@ var wallet = require('./routes/wallet');
 var new_account = require('./routes/new_account');
 var welcome = require('./routes/welcome'),
     session = require('express-session');
-    
+var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonjh@ds061826-a0.mlab.com:61826,ds061826-a1.mlab.com:61826/heroku_nlwlq2hc?replicaSet=rs-ds061826";
+// var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
+
 
 var app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd')
+mongoose.connect(mongoConnectionString)
 // view engine setup
 app.use(svgFallback({
   fallbackPath: __dirname + '/public'
