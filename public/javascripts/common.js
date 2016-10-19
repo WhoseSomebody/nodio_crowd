@@ -243,21 +243,26 @@ $('textarea').focus(
 // upload password from txt
 
 function onFileSelected(event, me) {
-    console.log("write from the file _____");
+  var result = $(me.closest(".pass-phrase")).find("textarea")
 
   var selectedFile = event.target.files[0];
-  var reader = new FileReader();
-  var result = $(me.closest(".pass-phrase")).find("textarea")
-  
-  reader.onload = function(event) {
-    console.log("write from the file");
-    result.text(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
-    result.val(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
-  };
+  // console.log(selectedFile);
+  if (selectedFile.name.split('.').pop().toLowerCase() == "txt"){
+      var reader = new FileReader();
+      
+      reader.onload = function(event) {
+        console.log("write from the file");
+        result.text(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
+        result.val(event.target.result.replace(/(\r\n|\n|\r)/gm,"").substring(0, 69));
+      };
 
-  reader.readAsText(selectedFile);
-  resetFormElement($('.file input'));
-  setTimeout(function() {result.keyup()}, 100);
+      reader.readAsText(selectedFile);
+      resetFormElement($('.file input'));
+      setTimeout(function() {result.keyup()}, 100);
+    } else {
+        result.attr("placeholder","Should be a *.txt file format.");
+        console.log("Should be a *.txt file.")
+    }
 }
 
 // generate new password
