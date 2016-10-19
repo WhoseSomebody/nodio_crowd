@@ -7,8 +7,8 @@ Agenda = require('agenda');
 User = require('./models/user');
 Total = require('./models/total');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
-var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
+var mongoConnectionString = "mongodb://heroku_m49x5k54:jrtegd6gljlcmpr6u8jj1ql2ia@ds061206.mlab.com:61206/heroku_m49x5k54";
+// var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
 var agenda = new Agenda({db: {address: mongoConnectionString}});
 mongoose.Promise = global.Promise;
 console.log("connecting to db ...");
@@ -45,22 +45,34 @@ agenda.define('update all wallets', function(job, done) {
 
       console.log(response);
 
-      for (var j=1; j<accounts.length; j++){
+      for (var j=0; j<accounts.length; j++){
         console.log(userMap[accounts[j].wallet] != accounts[j].totalreceived);
         if (userMap[accounts[j].address] != accounts[j].totalreceived)
         {
           updateUser(accounts[j].address, accounts[j].totalreceived);
         }
-        setTimeout(function() {summaryInvested += accounts[j].totalreceived;}, 100);
+        setTimeout(function() {
+          summaryInvested += accounts[j] != undefined ? accounts[j].totalreceived : 0;
+        }, 100);
         
         console.log(summaryInvested);
       }
 
     }
 
-    updateTotal(summaryInvested);
+    // updateTotal(summaryInvested);
     // createTotal(summaryInvested);
-
+    Total.findOne( {}, function (err, result) {
+        if (err) { 
+          console.log(err);
+        }
+        if (!result) {
+          console.log("Empty Total yet!");
+          createTotal(summaryInvested);
+        } else {
+          updateTotal(summaryInvested);
+        }
+    });
 
     function createTotal(new_score){
       var newScore = new Total({

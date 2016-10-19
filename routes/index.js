@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   else {
      totalInv = 0;
       Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
-          totalInv = 0 || post.totalInvested;
+          totalInv = post == null ? 0 : post.totalInvested;
           ready = totalInv == 0 ?  0 : helpers.format_numb(totalInv)
           console.log(ready);
           res.render('index', {title: "Nodio ♢ Crowd",total: ready});
@@ -34,12 +34,13 @@ router.post('/signup', (req, res, next) => {
 
     content = content.split("\n");
     var wallet = content.splice(0,1);
+    console.log(wallet);
 
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
     var user = new User({
-        wallet : wallet.replace(/(\\r|\\)/g, ""),
+        wallet : wallet,
         password : req.body.key
     });
     user.generateId(function(err, name) {
@@ -146,8 +147,19 @@ router.get('/refresh_wallets', function(req, res, next){
 
     }
 
+    Total.findOne( {}, function (err, result) {
+        if (err) { 
+          console.log(err);
+        }
+        if (!result) {
+          console.log("Empty Total yet!");
+          createTotal(summaryInvested);
+        } else {
+          updateTotal(summaryInvested);
+        }
+    });
     // updateTotal(summaryInvested);
-    createTotal(summaryInvested);
+    // createTotal(summaryInvested);
 
 
     function createTotal(new_score){
