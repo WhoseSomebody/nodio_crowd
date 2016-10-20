@@ -23,6 +23,7 @@
     "mongoose": "^4.6.3",
     "morgan": "~1.7.0",
     "nib": "^1.1.2",
+    "password-hash-and-salt": "^0.1.4",
     "serve-favicon": "~2.3.0",
     "sync": "^0.2.5",
     "touch": "^1.0.0",

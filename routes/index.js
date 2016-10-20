@@ -7,11 +7,12 @@ const express = require('express'),
     readline = require('readline'),
     stream = require('stream'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
-    helpers = require('utils');
+    helpers = require('utils'),
+    password = require('password-hash-and-salt');
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    // if (req.headers.host != "localhost:3000")
+    if (req.headers.host != "localhost:3000")
       res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
@@ -42,8 +43,8 @@ router.get('/', function(req, res, next) {
 router.post('/signup', (req, res, next) => {
     var input = __dirname + '/../public/crowdsale_list.txt',
         output = __dirname + '/../public/crowdsale_list_temp.txt',
-        content = fs.readFileSync(input, 'utf8');
-
+        content = fs.readFileSync(input, 'utf8'),
+        user;
     content = content.split("\n");
     var wallet = content.splice(0,1);
     console.log(wallet);
@@ -51,27 +52,44 @@ router.post('/signup', (req, res, next) => {
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
-    var user = new User({
-        wallet : wallet,
-        password : req.body.key
-    });
-    user.generateId(function(err, name) {
-      if (err) throw err;
+    password(req.body.key).hash(function(error, hash) {
+        if(error){
+            throw new Error('Something went wrong!');
+            console.log(error);
+        }
+     
+        // Store hash (incl. algorithm, iterations, and salt) 
+        user = new User({
+            wallet : wallet,
+            password : hash
+        });
+        console.log(user);
+        
+        user.generateId(function(err, name) {
+          if (err) throw err;
 
-      console.log('Your new id is ' + name);
-    });
+          console.log('Your new id is ' + name);
+        });
+        console.log(user);
 
+        var dbPromise = user.save();
+        console.log(user);
+        dbPromise.then(user => {
+            req.session.userID = user._id;
+            req.session.userWallet = user.wallet;
+            req.session.cookie.maxAge = 1000000;
+            console.log(req.session);
 
-    var dbPromise = user.save();
-    console.log(user);
-    dbPromise.then(user => {
-        req.session.userID = user._id;
-        req.session.userWallet = user.wallet;
-        req.session.cookie.maxAge = 1000000;
-        console.log(req.session);
+            res.json({success: true});
+        })
 
-        res.json({success: true});
     })
+
+    // var user = new User({
+    //     wallet : wallet,
+    //     password : req.body.key
+    // });
+
 });
 
 router.get('/logout', (req, res) => {
@@ -94,26 +112,65 @@ router.get('/sesid', (req, res) => {
 });
 
 router.post('/login', function(req, res, next) {
-    User.find({ password: req.body.key }, function(err, user) {
-    console.log(req.body);
-        
-      if (err) throw err;
+  var found = false,
+      count = 0,
+      userMap = [];
+  
 
-
-      console.log("CHECK USER");
-      console.log(user);
-      console.log(user.length);
-      if (user.length > 0)  { 
-        // console.log(user[0]._id);
-        req.session.userID = user[0]._id;
-        req.session.userWallet = user[0].wallet;
-        req.session.cookie.maxAge = 1000000;
-        // console.log(req.session);
-        res.json({success: true});
-      } else {
-        res.json({success: false});
-        }
+  var promise = new Promise(function(resolve, reject) {
+    User.find({}, function(err, users) {
+      resolve(users);
     });
+  })
+    // users.forEach(function(user) {
+    //   userMap[count++] = {id: user._id, pw: user.password, wt: user.wallet};
+    //   // console.log(user.password);
+    //   // console.log(req.body.key);
+    // });
+  promise.then(function(userMap) {
+    console.log(userMap);
+    userMap.forEach(function(user){
+      password(req.body.key).verifyAgainst(user.password, function(error, verified) {
+        console.log(req.body.key);
+        console.log(user);
+        
+
+        if(error){
+            throw new Error('Something went wrong!');
+            console.log(error);
+          }
+        if(!verified) {
+            console.log("Don't try! We got you!");
+            
+        } else {
+          req.session.userID = user._id;
+          req.session.userWallet = user.wallet;
+          req.session.cookie.maxAge = 1000000;
+          console.log("OK!!!!")
+          console.log(verified)
+          found = true;
+          // return;
+          if (found)
+            res.json({success: true});
+          else
+            res.json({success: false});
+          // return;
+          // console.log("nOhn");
+        };
+      });
+    });
+      
+  });
+
+    // User.find({ password: req.body.key }, function(err, user) {
+    // console.log(req.body);
+        
+    //   if (err) throw err;
+
+    //   console.log("CHECK USER");
+    //   console.log(user);
+    //   console.log(user.length);
+      
 });
 
 

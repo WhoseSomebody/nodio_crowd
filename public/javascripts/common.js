@@ -61,9 +61,9 @@ $( document ).ready(function(){
         $.post( "/login", { key: password }, function(res) {
             console.log(res.session);
             if (res.success)
-                window.setTimeout( function(){
+                // window.setTimeout( function(){
                     $( location ).attr("href", "/account");
-                }, 1000);
+                // }, 1000);
     } );
     
     });

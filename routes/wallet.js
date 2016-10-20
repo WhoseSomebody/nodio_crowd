@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   	if(req.session.userID) {
       User.findOne({ 'wallet': req.session.userWallet }, '_id wallet balance investments', function (err, user) {
         if (err) return handleError(err);
-        var nodes = 0, 
+        var nods = 0, 
             percent = 0;
         if (user.investments != undefined && req.session.totalInvested != undefined) {
           nods = helpers.format_nods(1000000 * user.investments / req.session.totalInvested);
@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
     }else{
   		res.redirect('/');
     }
-  }, 1000)
+  }, 1500)
   	
 });
 
