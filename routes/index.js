@@ -12,7 +12,7 @@ const express = require('express'),
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    if (req.headers.host != "localhost:3000")
+    //if (req.headers.host != "localhost:3000")
       res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
