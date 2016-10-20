@@ -170,7 +170,8 @@ svg#svg-sprite,
 svg#ic_logo,
 svg#dwnld,
 svg#gnrt,
-svg#arrow_right {
+svg#arrow_right,
+svg#ic_done {
   width: 0;
   height: 0;
   overflow: hidden;
@@ -987,7 +988,7 @@ textarea {
 }
 .wal .top-part .right-part #nods-amount .line {
   width: 151px;
-  height: 0.8px;
+  height: 1px;
   background-color: rgba(28,206,156,0.22);
   margin-top: 0.5px;
   -webkit-transition: visibility 0.32s linear;
@@ -1059,90 +1060,6 @@ textarea {
   width: 134px;
   height: auto;
   padding: 7px 7px 5px 8px;
-}
-.history {
-  width: 100%;
-}
-.history:first-child {
-  padding: 2px 0 0 0;
-}
-.history .hist-line {
-  position: relative;
-  font-size: 17px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  margin: 0 auto;
-}
-.history .hist-line .num {
-  font-size: 24px;
-}
-.history .hist-line span.num {
-  font-size: 17px;
-  width: 20px;
-  display: inline-block;
-}
-@media (min-width: 901px) {
-  .history .hist-line {
-    width: 721px;
-    height: 119px;
-  }
-}
-.history .hist-line > * {
-  display: inline-block;
-}
-.history .hist-line .col {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.history .hist-line .col.date {
-  width: 21%;
-  text-align: left;
-  left: 12px;
-}
-.history .hist-line .col.date .date-font {
-  color: rgba(255,255,255,0.5);
-}
-.history .hist-line .col.confirm {
-  width: 36%;
-  text-align: left;
-  left: 70px;
-}
-.history .hist-line .col.confirm .confirm-num {
-  color: rgba(255,255,255,0.5);
-}
-.history .hist-line .col.confirm .confirm-num span {
-  font-weight: 400;
-  color: #fff;
-  padding-right: 6px;
-}
-.history .hist-line .col.amount {
-  width: 34%;
-  text-align: right;
-}
-.history .hist-line .col.details {
-  width: 4%;
-}
-.history .hist-line .col.details .detail-arrow {
-  width: 28px;
-  height: 48px;
-  position: absolute;
-  background-color: #1cce9c;
-  -webkit-mask-image: url("/images/ic_arrow_right.svg");
-  mask-image: url("/images/ic_logo.svg");
-  display: inline-block;
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
-@media (min-width: 901px) {
-  .history .hist-line .col.details .detail-arrow {
-    margin: -47px 0 0 5px;
-  }
-}
-.history .hist-line .line {
-  width: 100%;
-  margin: -4px 0;
 }
 .next-link {
   display: block;
@@ -1441,11 +1358,17 @@ textarea {
 }
 .progress > * .text {
   display: inline-block;
-  font-size: 14px;
-  margin-left: 15px;
-  line-height: 59px;
   letter-spacing: 1px;
   font-weight: 400;
+  margin: 16px 0 -9px 10px;
+  line-height: 16px;
+}
+.progress > * .text .top {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+.progress > * .text .bottom {
   vertical-align: super;
 }
 .progress > * .number {
@@ -1518,7 +1441,7 @@ svg.active {
 .attention {
   margin: 48px auto;
   width: 360px;
-  color: #ff004d;
+  color: rgba(255,255,255,0.3);
   font-size: 11px;
   letter-spacing: 1px;
   line-height: 24px;
@@ -1526,6 +1449,7 @@ svg.active {
 .attention .bolded {
   font-weight: 600;
   font-size: 18px;
+  color: #ff004d;
 }
 @media (min-width: 901px) {
   #new.signin {
@@ -1568,6 +1492,7 @@ svg.active {
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
   transition: color 0.2s linear;
+  padding-bottom: 11px;
 }
 #forw:hover,
 #backw:hover {
@@ -1669,6 +1594,19 @@ svg.active {
                                   not supported by any browser */;
   user-select: none /* Non-prefixed version, currently
                                   not supported by any browser */;
+}
+.tick {
+  height: 13px;
+  position: absolute;
+  fill: rgba(23,229,178,0.3);
+  right: 213px;
+  top: 117px;
+}
+@media only screen and (min-width: 900px) {
+  .tick {
+    right: 301px;
+    top: 148px;
+  }
 }
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {
@@ -1875,6 +1813,9 @@ svg.active {
     position: absolute;
     margin: 19px 0 0px -107px !important;
   }
+  .progress > * .text {
+    margin: -8px 0px -10px 40px !important;
+  }
   .attention {
     width: 300px;
     font-size: 10px;
@@ -1998,10 +1939,7 @@ svg.active {
   #backw {
     z-index: 1000;
     position: absolute;
-    margin: 14px 0 0 -38px;
-  }
-  #forw {
-    left: 252px;
+    margin: -6px 0 0 -15px;
   }
   .step1 .text,
   .step2 .text {
@@ -2009,5 +1947,21 @@ svg.active {
   }
   .step2 .text {
     margin-left: 26px;
+  }
+  .arrow.left.mobile {
+    margin: -33px 0px 0px 35px;
+    height: 55px;
+  }
+  #arrow-to-first svg {
+    fill: #1cce9c;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    margin: 13px 0 0 -80px;
   }
 }

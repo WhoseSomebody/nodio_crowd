@@ -1,5 +1,6 @@
 
 var generated = '';
+var step = 1;
 
 var count = [1,1];
 
@@ -130,18 +131,30 @@ $('textarea').focus(
     // allows to copy after generation of the password
 
     function nextStep() {
+        step = 1;
         $('.group2').removeClass('group2');
         $('.invisible2').removeClass('invisible2');
         $('.group1').css({"visibility":"hidden","opacity":"0",'display':'none'});
-        $('.invisible1').css('opacity','0');
+        $('.invisible1').css('opacity','0', 'cursor', 'default');
+        $(".second .line").addClass("active");
+        $(".first .line").removeClass("active");
+        if ($(window).width() < 601) {
+            $("#backw").css({"visibility":"hidden","opacity":"0"});
+        }
     }
 
     function prevStep() {
+        step = 2;
+        $(".second .line").removeClass("active");
+        $(".first .line").addClass("active");
         $('.back').addClass('group2');
         $('.back_inv, #forw').addClass('invisible2');
         $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
         $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
         $('.invisible1').css({'opacity':'1','cursor':'pointer'});
+        if ($(window).width() < 601) {
+            $("#backw").css({"visibility":"visible","opacity":"1"});
+        }
     }
 
 
@@ -173,6 +186,21 @@ $('textarea').focus(
         // }, 300)
     });
 
+    $( window ).resize(function() {
+        if ($(window).width() > 600) {
+                $("#backw").css({"visibility":"visible","opacity":"1"});
+        } else {
+            if (step == 1)
+                $("#backw").css({"visibility":"visible","opacity":"1"});
+            else
+                $("#backw").css({"visibility":"hidden","opacity":"0"});
+        }
+    });
+
+    $("#arrow-to-first").click(function(){
+        prevStep();
+    })
+
 
 })
  // chenl if user copied the generated password and var him to to account
@@ -182,7 +210,7 @@ $('textarea').focus(
             console.log($(this).val());
             if (generated == $(this).val()) {
                 $("#new.signin").removeClass("disabled")
-                $(".second .line").addClass("active");
+
                 $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) \
                     {.second svg,active{ right:56px }}");
                 $('#new:not(.disabled) a').click(function(e){
@@ -194,22 +222,18 @@ $('textarea').focus(
                         } );
                         count[0] = 0;
                     }
-
-                    // $.post( "/new_user", { key: generated }, (res) =>{
-                    //     console.log(res.success);
-                    //     if (res.success)
-                    //         $( location ).attr("href", "/account");
-                    // } );
                     window.setTimeout( function(){
                         $( location ).attr("href", "/account");
                     }, 1000);
-
-                    
                 })}
             else {
                 $("#new.signin:not(.disabled)").addClass("disabled");
-                $(".second .line").removeClass("active");
                 $('style.progress-point').text("");
+                if ($(this).val().length == 69) {
+                    $("#new.signin span").text("Mismatch");
+                } else {
+                    $("#new.signin span").text("Sign In As A New StakeHolder");
+                }
 
             }
 
@@ -223,18 +247,20 @@ $('textarea').focus(
         $('#login textarea.password').bind('input propertychange paste keyup', function() {
         var area = $(this);
           if (area.val().length == 69) {
-            console.log( $(this).val());
+            // console.log( $(this).val());
             $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
                     $('.signin').removeClass("disabled");
-
+                    $('.signin a').text("Sign In")
                     $( location ).attr("href", "/account");
                 } else {
+                    $('.signin a').text("Mismatch");
                     $('.signin:not(.disabled)').addClass("disabled");
                 }
             });
             count[1] = 0;
           } else {
+                $('.signin a').text("Sign In");
                 $('.signin:not(.disabled)').addClass("disabled");
           }
         });

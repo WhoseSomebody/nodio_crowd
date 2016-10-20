@@ -5,20 +5,30 @@ var User = require('../models/user');
 var FormatNumber = require('../helpers/format_number');
 /* GET wallet page. */
 router.get('/', function(req, res, next) {
-	if(req.session.userID) {
-    User.findOne({ 'wallet': req.session.userWallet }, '_id wallet balance investments', function (err, user) {
-      if (err) return handleError(err);
-      res.render('wallet', { title: 'My Wallet | Nodio Crowd', 
-                    userID: user._id, 
-                    userWallet: user.wallet,
-                    userInvestments: (user.investments == undefined || user.investments == 0)? 0 : helpers.format_numb(user.investments),
-                    userBalance: (user.balance == undefined || user.balance == 0) ? 0 : helpers.format_numb(user.balance) 
-                    });
+  setTimeout(function(){
+  	if(req.session.userID) {
+      User.findOne({ 'wallet': req.session.userWallet }, '_id wallet balance investments', function (err, user) {
+        if (err) return handleError(err);
+        var nodes = 0, 
+            percent = 0;
+        if (user.investments != undefined && req.session.totalInvested != undefined) {
+          nods = helpers.format_nods(1000000 * user.investments / req.session.totalInvested);
+          percent = helpers.format_nods(nods / 10000);
+        }
+        res.render('wallet', { title: 'My Wallet | Nodio Crowd', 
+                      userID: user._id, 
+                      userWallet: user.wallet,
+                      userInvestments: (user.investments == undefined || user.investments == 0)? 0 : helpers.format_numb(user.investments),
+                      userBalance: (user.balance == undefined || user.balance == 0) ? 0 : helpers.format_numb(user.balance),
+                      userNods: nods,
+                      userPercent: percent
+                      });
 
-  	});}
-    else{
+    	});
+    }else{
   		res.redirect('/');
     }
+  }, 1000)
   	
 });
 

@@ -2,12 +2,17 @@ extends layout
 
 block content
   .row
-    .progress
+    .progress.noselect
       .first
         .step1
+          svg.invisible2.tick.back_inv.desktop.tablet
+            use(xlink:href="#ic_done")
           .number#backw
             | 01
           .text.invisible1
+            span.top
+              | New Account
+            br
             | Generate & Copy Pass Phrase
         .desktop.tablet    
           svg.active.invisible1
@@ -16,9 +21,16 @@ block content
 
       .second
         .step2
+            .arrow.left.mobile.invisible2.back_inv
+              a(href="#")#arrow-to-first
+                svg
+                  use(xlink:href="#arrow_right")
           .number#forw.invisible2
             | 02
           .text.invisible2.back_inv
+            span.top
+              | Verification
+            br
             | Paste Your Pass Phrase
         .desktop.tablet
           svg.active.invisible2.back_inv

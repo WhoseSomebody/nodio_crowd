@@ -48,7 +48,7 @@ block content
             | #{userInvestments} BTC
           #nods-amount.pointer
             .label.info
-              | ∽ 1 000 001 Nods
+              | ∽ #{userNods} Nods
             .line.blue
           #nods-tip.pointer.hidden.disappear
             .point.bottom.left
@@ -57,9 +57,9 @@ block content
             .point.top.right
             div.inner-tip
               p(style="padding-top: 17px;") 
-                | For now it's 99.999999999%
+                | For now it's #{userPercent}%
                 | from total 
-                b 1 000 002 BTC
+                b 1 000 000 BTC
               br
               p Final part will be known at
                 b  May 19, 2016 00:00
