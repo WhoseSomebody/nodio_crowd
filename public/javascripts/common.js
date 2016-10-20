@@ -218,9 +218,9 @@ $('textarea').focus(
 
                     if (count[0] == 1) {
                         $.post( "/signup", { key: generated }, function(res){
-                            window.setTimeout( function(){
+                            // window.setTimeout( function(){
                                 $( location ).attr("href", "/account");
-                            }, 1000);
+                            // }, 1000);
                         } );
                         count[0] = 0;
                     }

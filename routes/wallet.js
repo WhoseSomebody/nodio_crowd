@@ -23,7 +23,8 @@ router.get('/', function(req, res, next) {
                       userInvestments: (user.investments == undefined || user.investments == 0)? 0 : helpers.format_numb(user.investments),
                       userBalance: (user.balance == undefined || user.balance == 0) ? 0 : helpers.format_numb(user.balance),
                       userNods: nods,
-                      userPercent: percent
+                      userPercent: percent,
+                      totalInvested: (req.session.totalInvested == undefined || req.session.totalInvested == 0) ? 0 : helpers.format_numb(req.session.totalInvested)
                       });
 
     	});
