@@ -12,8 +12,10 @@ router.get('/', function(req, res, next) {
         var nods = 0, 
             percent = 0;
         if (user.investments != undefined && req.session.totalInvested != undefined) {
-          nods = helpers.format_nods(1000000 * user.investments / req.session.totalInvested);
-          percent = helpers.format_nods(nods / 10000);
+          var numb = 1000000 * user.investments / req.session.totalInvested;
+          nods = helpers.format_nods(numb);
+          percent = parseFloat((numb * 1.0 / 10000).toFixed(10));
+          console.log(nods + " " + percent);
         }
         res.render('wallet', { title: 'My Wallet | Nodio Crowd', 
                       userID: user._id, 

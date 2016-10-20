@@ -5,8 +5,8 @@ Total = require('./models/total');
 var password = require('password-hash-and-salt');
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-// var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonjh@ds061826-a0.mlab.com:61826,ds061826-a1.mlab.com:61826/heroku_nlwlq2hc?replicaSet=rs-ds061826";
-var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
+var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonjh@ds061826-a0.mlab.com:61826,ds061826-a1.mlab.com:61826/heroku_nlwlq2hc?replicaSet=rs-ds061826";
+// var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
 var agenda = new Agenda({db: {address: mongoConnectionString}});
 mongoose.Promise = global.Promise;
 console.log("connecting to db ...");
