@@ -272,7 +272,6 @@ textarea
 .pass-phrase
   box-sizing: border-box;
   position relative
-  cursor pointer
   max-width 840px
   min-width 300px
   @media (min-width: 901px)
@@ -571,13 +570,17 @@ svg
     text-align right
     top 0
 
-#forw, #backw 
-  cursor pointer
+#forw
+  color rgba(23,229,178,0.7)
+  padding-bottom 11px
+#backw 
   -webkit-transition color .2s linear
   transition color .5s linear
   padding-bottom 11px
   &:hover
     color rgba(23, 229, 178, 0.7)
+.closed #backw
+  color rgba(23, 229, 178, 0.7)
 .group1, .group2, .invisible1, .invisible2, .back_inv, .back
   transition visibility 2s, opacity 2s linear, border-color .2s linear
   -webkit-transition visibility 2s linear, opacity 2s linear, border-color .2s linear
@@ -649,14 +652,20 @@ svg
   user-select none           /* Non-prefixed version, currently
                                   not supported by any browser */
 .tick
-  height: 13px;
-  position: absolute;
+  height 13px
+  width 15px
+  position absolute
   @media only screen and  (min-width:900px)
     right 301px
     top 148px
   fill rgba(23, 229, 178, 0.3)
-  right 213px
+  left 53px
   top 117px
 
+
+.closed
+  cursor default !important 
+.open .number
+  cursor pointer !important
 @import "style-tablet.styl"
 @import "style-mobile.styl"

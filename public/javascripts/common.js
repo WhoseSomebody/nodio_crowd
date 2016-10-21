@@ -27,25 +27,29 @@ $( document ).ready(function(){
     checkWidth();
     $(window).resize(checkWidth);
 
-    $('textarea').keypress(function(event){ 
-        if (event.keyCode == 13) {
-            event.preventDefault();
-        }
+    $('textarea').on("keydown", function(event){
+      // Ignore controls such as backspace
+      var arr = [8,16,17,20,32,35,36,37,38,39,40,45,46];
+
+      // Allow letters
+      for(var i = 65; i <= 90; i++){
+        arr.push(i);
+      }
+
+      if(jQuery.inArray(event.which, arr) === -1){
+        event.preventDefault();
+      }
     });
 
-    $('textarea').keyup(function() {
-        $(this).val( $(this).val().replace( /\r?\n/gi, '' )); 
-    })
+    $('textarea').on("input", function(){
+        var regexp = /[^\sa-zA-Z]/gi;
+        if($(this).val().match(regexp)){
+          $(this).val( $(this).val().replace(regexp,'') );
+        }
+    });
 
     $('textarea').bind("enterKey",function(e){
        $('#new:not(.disabled) a').click();
-    });
-    $('textarea').keyup(function(e){
-
-        if(e.keyCode == 13)
-        {
-            $(this).trigger("enterKey");
-        }
     });
 
 
@@ -125,11 +129,12 @@ $('textarea').focus(
     // allows to copy after generation of the password
 
     function nextStep() {
-        step = 1;
+        step = 2;
         $('.group2').removeClass('group2');
+        $('.step1').removeClass('closed').addClass("open");
         $('.invisible2').removeClass('invisible2');
         $('.group1').css({"visibility":"hidden","opacity":"0",'display':'none'});
-        $('.invisible1').css('opacity','0', 'cursor', 'default');
+        $('.invisible1').css('opacity','0', 'cursor', 'pointer');
         $(".second .line").addClass("active");
         $(".first .line").removeClass("active");
         if ($(window).width() < 601) {
@@ -138,26 +143,26 @@ $('textarea').focus(
     }
 
     function prevStep() {
-        step = 2;
+        step = 1;
+        $('.step1').addClass('closed').removeClass("open");
         $(".second .line").removeClass("active");
         $(".first .line").addClass("active");
         $('.back').addClass('group2');
         $('.back_inv, #forw').addClass('invisible2');
         $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
         $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
-        $('.invisible1').css({'opacity':'1','cursor':'pointer'});
+        $('.invisible1').css({'opacity':'1','cursor':'default'});
         if ($(window).width() < 601) {
             $("#backw").css({"visibility":"visible","opacity":"1"});
         }
     }
 
 
-    $("#forw, #backw").click(function() {
-        if ($(this).attr('id') == "forw"){
-            nextStep();
-        } else {
-            prevStep();
-        }
+    $(".step1 div").click(function() {
+        prevStep();
+    });
+    $(".step2 div").click(function() {
+        nextStep();
     });
 
     var client = new ClientJS();
@@ -176,7 +181,7 @@ $('textarea').focus(
     $('#nods-amount, #nods-tip').click( function() {
         $('#nods-amount .line, #nods-tip').toggleClass("disappear");
         // setTimeout(function() {
-            $('#nods-amount .line, #nods-tip').toggleClass("hidden");
+            // $('#nods-amount .line, #nods-tip').toggleClass("hidden");
         // }, 300)
     });
 
@@ -200,8 +205,6 @@ $('textarea').focus(
  // chenl if user copied the generated password and var him to to account
     function checkIfCopied() {
         $('#login_new textarea.password').bind('input', function() {
-            console.log(generated);
-            console.log($(this).val());
             if (generated == $(this).val()) {
                 $("#new.signin span").text("Sign In As A New StakeHolder");
                 $("#new.signin").removeClass("disabled")

@@ -99,18 +99,17 @@ router.get('/sesid', (req, res) => {
 router.post('/login', function(req, res, next) {
   var hash = helpers.saltSHA512(req.body.key);
 
-  User.findOne({password: hash}, null, {safe: true}, function(err, user){
+  User.findOne({password: hash}, function(err, user){
     if (err) return next(err);
-  
+
     if (user) {
       req.session.userID = user._id;
       req.session.userWallet = user.wallet;
       req.session.cookie.maxAge = 1000000;
-      res.json({success: true});
-    } else {
-      res.json({success: false});
-      next();
-    }
+    } 
+
+    res.json({success: user != null});
+    next();
   })
 });
 

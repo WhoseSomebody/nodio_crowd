@@ -4,7 +4,7 @@ block content
   .row
     .progress.noselect
       .first
-        .step1
+        .step1.closed
           svg.invisible2.tick.back_inv.desktop.tablet
             use(xlink:href="#ic_done")
           .number#backw
@@ -20,11 +20,11 @@ block content
           .line.active
 
       .second
-        .step2
-            .arrow.left.mobile.invisible2.back_inv
-              a(href="#")#arrow-to-first
-                svg
-                  use(xlink:href="#arrow_right")
+        .step2.closed
+          .arrow.left.mobile.invisible2.back_inv
+            a(href="")#arrow-to-first
+              svg
+                use(xlink:href="#arrow_right")
           .number#forw.invisible2
             | 02
           .text.invisible2.back_inv

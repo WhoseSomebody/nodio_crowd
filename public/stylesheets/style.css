@@ -1121,7 +1121,6 @@ textarea {
 .pass-phrase {
   box-sizing: border-box;
   position: relative;
-  cursor: pointer;
   max-width: 840px;
   min-width: 300px;
   border: 1px solid rgba(255,255,255,0.22);
@@ -1489,16 +1488,20 @@ svg.active {
   text-align: right;
   top: 0;
 }
-#forw,
+#forw {
+  color: rgba(23,229,178,0.7);
+  padding-bottom: 11px;
+}
 #backw {
-  cursor: pointer;
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.5s linear;
   transition: color 0.5s linear;
   padding-bottom: 11px;
 }
-#forw:hover,
 #backw:hover {
+  color: rgba(23,229,178,0.7);
+}
+.closed #backw {
   color: rgba(23,229,178,0.7);
 }
 .group1,
@@ -1602,9 +1605,10 @@ svg.active {
 }
 .tick {
   height: 13px;
+  width: 15px;
   position: absolute;
   fill: rgba(23,229,178,0.3);
-  right: 213px;
+  left: 53px;
   top: 117px;
 }
 @media only screen and (min-width: 900px) {
@@ -1612,6 +1616,12 @@ svg.active {
     right: 301px;
     top: 148px;
   }
+}
+.closed {
+  cursor: default !important;
+}
+.open .number {
+  cursor: pointer !important;
 }
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {
