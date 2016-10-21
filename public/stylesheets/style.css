@@ -1265,7 +1265,7 @@ textarea {
 }
 .signin {
   position: relative;
-  margin: 59px auto;
+  margin: 59px auto 30px auto;
   border: 1px solid rgba(28,206,156,0.22);
   display: -webkit-box;
   display: -webkit-flex;
@@ -1493,8 +1493,8 @@ svg.active {
 #backw {
   cursor: pointer;
   -webkit-transition: color 0.2s linear;
-  -webkit-transition: color 0.2s linear;
-  transition: color 0.2s linear;
+  -webkit-transition: color 0.5s linear;
+  transition: color 0.5s linear;
   padding-bottom: 11px;
 }
 #forw:hover,

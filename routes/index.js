@@ -12,7 +12,7 @@ const express = require('express'),
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    //if (req.headers.host != "localhost:3000")
+    // if (req.headers.host != "localhost:3000")
       res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
@@ -52,57 +52,42 @@ router.post('/signup', (req, res, next) => {
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
-    password(req.body.key).hash(function(error, hash) {
-        if(error){
-            throw new Error('Something went wrong!');
-            console.log(error);
-        }
-     
-        // Store hash (incl. algorithm, iterations, and salt) 
-        user = new User({
-            wallet : wallet,
-            password : hash
-        });
-        console.log(user);
-        
-        user.generateId(function(err, name) {
-          if (err) throw err;
 
-          console.log('Your new id is ' + name);
-        });
-        console.log(user);
+    var hash = helpers.saltSHA512(req.body.key);
 
-        var dbPromise = user.save();
-        console.log(user);
-        dbPromise.then(user => {
-            req.session.userID = user._id;
-            req.session.userWallet = user.wallet;
-            req.session.cookie.maxAge = 1000000;
-            console.log(req.session);
+    user = new User({
+      wallet : wallet,
+      password : hash
+    });
 
-            res.json({success: true});
-        })
+    user.generateId(function(err, name) {
+      if (err) throw err;
+      console.log('Your new id is ' + name);
+    });
 
-    })
+    var dbPromise = user.save();
+    console.log(user);
+    dbPromise.then(user => {
+      req.session.userID = user._id;
+      req.session.userWallet = user.wallet;
+      req.session.cookie.maxAge = 1000000;
+      console.log(req.session);
 
-    // var user = new User({
-    //     wallet : wallet,
-    //     password : req.body.key
-    // });
-
+      res.json({success: true});
+    });
 });
 
 router.get('/logout', (req, res) => {
+  var promise = new Promise((resolve, reject) => {
     req.session.userID = null;
     req.session.userWallet = null;
     req.session.cookie.maxAge = 0;
-    console.log(session);
-    // setTimeout(function() {res.redirect('/');}, 2000);
-    if (req.session.userID == null && req.session.userWallet == null && req.session.cookie.maxAge == 0) {
-        res.send({no_session:true})
-    } else {
-        res.send({no_session:false})
-    }
+    console.log(res.session);
+    resolve();
+  });
+  promise.then(function(){
+    res.redirect('/');
+  })
 });
 
 router.get('/sesid', (req, res) => {
@@ -112,66 +97,54 @@ router.get('/sesid', (req, res) => {
 });
 
 router.post('/login', function(req, res, next) {
-  var found = false,
-      count = 0,
-      userMap = [];
+  var hash = helpers.saltSHA512(req.body.key);
+
+  User.findOne({password: hash}, null, {safe: true}, function(err, user){
+    if (err) return next(err);
   
-
-  var promise = new Promise(function(resolve, reject) {
-    User.find({}, function(err, users) {
-      resolve(users);
-    });
+    if (user) {
+      req.session.userID = user._id;
+      req.session.userWallet = user.wallet;
+      req.session.cookie.maxAge = 1000000;
+      res.json({success: true});
+    } else {
+      res.json({success: false});
+      next();
+    }
   })
-    // users.forEach(function(user) {
-    //   userMap[count++] = {id: user._id, pw: user.password, wt: user.wallet};
-    //   // console.log(user.password);
-    //   // console.log(req.body.key);
-    // });
-  promise.then(function(userMap) {
-    console.log(userMap);
-    userMap.forEach(function(user){
-      password(req.body.key).verifyAgainst(user.password, function(error, verified) {
-        console.log(req.body.key);
-        console.log(user);
-        
-
-        if(error){
-            throw new Error('Something went wrong!');
-            console.log(error);
-          }
-        if(!verified) {
-            console.log("Don't try! We got you!");
-            
-        } else {
-          req.session.userID = user._id;
-          req.session.userWallet = user.wallet;
-          req.session.cookie.maxAge = 1000000;
-          console.log("OK!!!!")
-          console.log(verified)
-          found = true;
-          // return;
-          if (found)
-            res.json({success: true});
-          else
-            res.json({success: false});
-          // return;
-          // console.log("nOhn");
-        };
-      });
-    });
-      
-  });
-
-    // User.find({ password: req.body.key }, function(err, user) {
-    // console.log(req.body);
-        
-    //   if (err) throw err;
-
-    //   console.log("CHECK USER");
-    //   console.log(user);
-    //   console.log(user.length);
-      
 });
+
+
+  // var promise = new Promise(function(resolve, reject) {
+  //   User.find({}, function(err, users) {
+  //     resolve(users);
+  //   });
+  // })
+
+  // promise.then(function(userMap) {
+  //   userMap.forEach(function(user){
+  //     password(req.body.key).verifyAgainst(user.password, function(error, verified) {
+  //       if(error){
+  //           throw new Error('Something went wrong!');
+  //           console.log(error);
+  //         }
+  //       if(!verified) {
+  //           console.log("Missmatch!");           
+  //       } else {
+  //         found = true;
+  //         req.session.userID = user._id;
+  //         req.session.userWallet = user.wallet;
+  //         req.session.cookie.maxAge = 1000000;
+  //         console.log("OK!!!!")
+  //         console.log(verified)
+  //         res.json({success: true});
+          
+  //       };
+  //     });
+  //   });
+  //   if (!found)
+  //     res.json({success: false});
+  // });
 
 
 router.get('/refresh_wallets', function(req, res, next){
@@ -289,76 +262,6 @@ router.post("/create-total-score", function(req, res, next){
     if (err) return console.error(err);
   })
 })
-  // User.find({}, function(err, users) 
-  // {
-  //   if (err) throw err;
-  //   updUsers = users,
 
-    // for (var i=0; i < updUsers.length; i++)
-    // {
-
-    //   link += updUsers[i].wallet != undefined ? (updUsers[i].wallet + ",") : "";
-    //   if (i % 50 === 0 || i === updUsers.length % 50) 
-    //   {
-    //     console.log(link);
-    //     xmlHttp.open("GET", link, false);
-    //     xmlHttp.send(null);
-    //     var response = JSON.parse(xmlHttp.responseText);
-
-    //     console.log(response);
-    //     if (response.data != undefined)
-    //     {
-    //       // if (response.data.length > 1)
-    //       // {
-    //         // console.log("response.data");
-    //         // console.log(response.data);
-    //         // response.data.forEach(function(wallet, j) 
-    //         var wallet = response.data;
-    //         for (var j = 0; j < response.data.length; j++ )
-    //         {
-    //           for (var t = 0; t < updUsers.length; t++) 
-    //           {
-    //             if (updUsers[t].wallet == wallet[j].address) 
-    //             {
-    //               summaryInvested += wallet[j].totalreceived;
-    //               // updUsers[t].balance = wallet[j].balance;
-    //               users[i].estments = wallet[j].totalreceived,
-    //               users[i].balance = wallet[j].balance
-
-    //               console.log(summaryInvested);
-    //               console.log("======= " + i + " =======");
-    //               link = 'http://btc.blockr.io/api/v1/address/info/';
-    //             }
-    //           }
-    //         }  
-    //       }
-    //   }
-    // }
-    // console.log("?????");
-    // if (Total.findOneAndUpdate({totalInvested: summaryInvested})) 
-    // {
-    //   Total.findOneAndUpdate(
-    //     {totalInvested: summaryInvested},
-    //   {
-    //     totalInvested: summaryInvested,
-    //     lastUpdate: Date.now
-    //   },function(err, affected, resp) 
-    //     {
-    //       // console.log(resp);
-    //     });
-    // } else 
-    // {
-    //   var newTotal = new Total(
-    //   {
-    //     totalInvested: summaryInvested,
-    //     lastUpdate: Date.now
-    //   });
-    //   newTotal.save(function(error) 
-    //   {
-    //     assert.ifError(error);
-
-    //   });
-    // }  
-      
 
 module.exports = router;

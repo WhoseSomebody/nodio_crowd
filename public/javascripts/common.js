@@ -27,14 +27,21 @@ $( document ).ready(function(){
     checkWidth();
     $(window).resize(checkWidth);
 
-    $('textarea').keyup(function(){ 
-        $(this).val( $(this).val().replace( /\r?\n/gi, '' )); 
+    $('textarea').keypress(function(event){ 
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
     });
+
+    $('textarea').keyup(function() {
+        $(this).val( $(this).val().replace( /\r?\n/gi, '' )); 
+    })
 
     $('textarea').bind("enterKey",function(e){
        $('#new:not(.disabled) a').click();
     });
     $('textarea').keyup(function(e){
+
         if(e.keyCode == 13)
         {
             $(this).trigger("enterKey");
@@ -43,14 +50,8 @@ $( document ).ready(function(){
 
 
     $('#logout').click(function (e) {
-        $.get( "/logout", function(res){
-            console.log(res.no_session);
-            if (res.no_session)
-                $( location ).attr("href", "/");
-            else {
-                $('#logout').click();
-            }
-
+        $.get( "/logout", {}, function(res){
+            console.log("log out");
         });
     });
     // 
@@ -60,10 +61,7 @@ $( document ).ready(function(){
 
         $.post( "/login", { key: password }, function(res) {
             console.log(res.session);
-            if (res.success)
-                // window.setTimeout( function(){
-                    $( location ).attr("href", "/account");
-                // }, 1000);
+            $( location ).attr("href", "/account");
     } );
     
     });
@@ -106,26 +104,22 @@ $('textarea').focus(
         document.execCommand('copy'); 
         window.getSelection().removeAllRanges();
         nextStep();
+
     });
     $("#walcop").click(function(e){
         e.preventDefault();
-        // creating new textarea element and giveing it id 't'
         var t = document.createElement('textarea');
         t.id = 't';
-        // Optional step to make less noise in the page, if any!
         t.style.height = 0;
-        // You have to append it to your page somewhere, I chose <body>
         document.body.appendChild(t);
-        // Copy whatever is in your div to our new textarea
         t.value = $('#code').text();
-        // Now copy whatever inside the textarea to clipboard
         var selector = document.querySelector('#t');
         selector.select();
         document.execCommand('copy');
-        // Remove the textarea
         document.body.removeChild(t);
-        window.getSelection().removeAllRanges()
- ;       nextStep();
+        window.getSelection().removeAllRanges();
+
+        $(this).text("Copied!");
     });
 
     // allows to copy after generation of the password
@@ -176,7 +170,7 @@ $('textarea').focus(
     }
         
     $(".paste").click(function(){
-      $("#login_new .password").val($("#generator .password").val()).keyup();
+      $("#login_new .password").val($("#generator .password").val()).trigger('input');
     })
 
     $('#nods-amount, #nods-tip').click( function() {
@@ -205,12 +199,12 @@ $('textarea').focus(
 })
  // chenl if user copied the generated password and var him to to account
     function checkIfCopied() {
-        $('#login_new textarea.password').bind('input propertychange paste keyup', function() {
+        $('#login_new textarea.password').bind('input', function() {
             console.log(generated);
             console.log($(this).val());
             if (generated == $(this).val()) {
+                $("#new.signin span").text("Sign In As A New StakeHolder");
                 $("#new.signin").removeClass("disabled")
-
                 $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) \
                     {.second svg,active{ right:56px }}");
                 $('#new:not(.disabled) a').click(function(e){
@@ -230,7 +224,7 @@ $('textarea').focus(
                 $("#new.signin:not(.disabled)").addClass("disabled");
                 $('style.progress-point').text("");
                 if ($(this).val().length == 69) {
-                    $("#new.signin span").text("Mismatch");
+                   $("#new.signin span").text("Mismatch");
                 } else {
                     $("#new.signin span").text("Sign In As A New StakeHolder");
                 }
@@ -244,14 +238,14 @@ $('textarea').focus(
 // check if user with such password exists and var him come in
 
      function checkIfExists() {
-        $('#login textarea.password').bind('input propertychange paste keyup', function() {
+        $('#login textarea.password').bind('input', function() {
         var area = $(this);
-          if (area.val().length == 69) {
+        if (area.val().length == 69) {
             // console.log( $(this).val());
             $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
                     $('.signin').removeClass("disabled");
-                    $('.signin a').text("Sign In")
+                    $('.signin a').text("Success")
                     $( location ).attr("href", "/account");
                 } else {
                     $('.signin a').text("Mismatch");
@@ -259,10 +253,10 @@ $('textarea').focus(
                 }
             });
             count[1] = 0;
-          } else {
-                $('.signin a').text("Sign In");
-                $('.signin:not(.disabled)').addClass("disabled");
-          }
+        } else {
+            $('.signin a').text("Sign In");
+            $('.signin:not(.disabled)').addClass("disabled");
+        }
         });
     }
   
@@ -284,8 +278,9 @@ function onFileSelected(event, me) {
 
       reader.readAsText(selectedFile);
       resetFormElement($('.file input'));
-      setTimeout(function() {result.keyup()}, 100);
+      setTimeout(function() {result.trigger('input')}, 100);
     } else {
+        result.val("");
         result.attr("placeholder","Should be a *.txt file format.");
         console.log("Should be a *.txt file.")
     }
