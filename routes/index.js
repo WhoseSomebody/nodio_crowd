@@ -78,16 +78,16 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/logout', (req, res) => {
-  var promise = new Promise((resolve, reject) => {
-    req.session.userID = null;
-    req.session.userWallet = null;
-    req.session.cookie.maxAge = 0;
-    console.log(res.session);
-    resolve();
-  });
-  promise.then(function(){
-    res.redirect('/');
-  })
+  
+  req.session.userID = null;
+  req.session.userWallet = null;
+  req.session.cookie.maxAge = 0;
+  console.log(res.session);
+  resolve();
+
+  // res.redirect('/');
+  res.json({session: closed});
+
 });
 
 router.get('/sesid', (req, res) => {
@@ -96,21 +96,23 @@ router.get('/sesid', (req, res) => {
     else res.send('Session not set');
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
   var hash = helpers.saltSHA512(req.body.key);
 
-  User.findOne({password: hash}, function(err, user){
-    if (err) return next(err);
+  if (hash)
+    User.findOne({password: hash}, function(err, user){
 
-    if (user) {
-      req.session.userID = user._id;
-      req.session.userWallet = user.wallet;
-      req.session.cookie.maxAge = 1000000;
-    } 
+      if (user) {
+        req.session.userID = user._id;
+        req.session.userWallet = user.wallet;
+        req.session.cookie.maxAge = 1000000;
+      } 
 
-    res.json({success: user != null});
-    next();
-  })
+      res.json({success: user != null});
+    })
+  else 
+    res.json({success: false});
+
 });
 
 

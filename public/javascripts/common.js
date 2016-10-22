@@ -9,6 +9,8 @@ $("#generator textarea").ready(function() {
         generateRandom();
     })
 $( document ).ready(function(){
+    $("body").fadeIn(500).removeClass('hidden');
+
     var show = true;
 
 
@@ -42,10 +44,9 @@ $( document ).ready(function(){
     });
 
     $('textarea').on("input", function(){
-        var regexp = /[^\sa-zA-Z]/gi;
-        if($(this).val().match(regexp)){
-          $(this).val( $(this).val().replace(regexp,'') );
-        }
+        var regexp = /[^\sa-zA-Z]|\n|\r|\t/g;
+        $(this).val( $(this).val().replace(regexp,'') );
+
     });
 
     $('textarea').bind("enterKey",function(e){
@@ -54,8 +55,8 @@ $( document ).ready(function(){
 
 
     $('#logout').click(function (e) {
-        $.get( "/logout", {}, function(res){
-            console.log("log out");
+        $.get( "/logout",function(res){
+            $( location ).attr("href", "/");
         });
     });
     // 
@@ -130,13 +131,19 @@ $('textarea').focus(
 
     function nextStep() {
         step = 2;
-        $('.group2').removeClass('group2');
-        $('.step1').removeClass('closed').addClass("open");
-        $('.invisible2').removeClass('invisible2');
-        $('.group1').css({"visibility":"hidden","opacity":"0",'display':'none'});
-        $('.invisible1').css('opacity','0', 'cursor', 'pointer');
-        $(".second .line").addClass("active");
-        $(".first .line").removeClass("active");
+        $("body").fadeOut(200).addClass('hidden');
+        setTimeout(function() {
+            $('.group2').removeClass('group2');
+            $('.step1').removeClass('closed').addClass("open");
+            $('.invisible2').removeClass('invisible2');
+            $('.group1').css({"visibility":"hidden","opacity":"0",'display':'none'});
+            $('.invisible1').css('opacity','0', 'cursor', 'pointer');
+            $(".second .line").addClass("active");
+            $(".first .line").removeClass("active");
+            $("body").fadeIn(300).removeClass('hidden');
+        }, 200);
+        
+
         if ($(window).width() < 601) {
             $("#backw").css({"visibility":"hidden","opacity":"0"});
         }
@@ -144,6 +151,8 @@ $('textarea').focus(
 
     function prevStep() {
         step = 1;
+        $("body").fadeOut(200).addClass('hidden');
+        setTimeout(function() {
         $('.step1').addClass('closed').removeClass("open");
         $(".second .line").removeClass("active");
         $(".first .line").addClass("active");
@@ -152,6 +161,8 @@ $('textarea').focus(
         $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
         $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
         $('.invisible1').css({'opacity':'1','cursor':'default'});
+            $("body").fadeIn(300).removeClass('hidden');
+        }, 200);
         if ($(window).width() < 601) {
             $("#backw").css({"visibility":"visible","opacity":"1"});
         }
@@ -178,11 +189,14 @@ $('textarea').focus(
       $("#login_new .password").val($("#generator .password").val()).trigger('input');
     })
 
-    $('#nods-amount, #nods-tip').click( function() {
-        $('#nods-amount .line, #nods-tip').toggleClass("disappear");
-        // setTimeout(function() {
-            // $('#nods-amount .line, #nods-tip').toggleClass("hidden");
-        // }, 300)
+    $('#nods-amount').hover(
+        function () {
+            $('#nods-tip').stop().slideDown(100);
+            $('#nods-amount .line').hide(100);
+        },
+        function () {
+            $('#nods-tip').stop().slideUp(100);
+            $('#nods-amount .line').show(100);
     });
 
     $( window ).resize(function() {
