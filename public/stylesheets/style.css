@@ -804,7 +804,6 @@ body {
   position: absolute;
   margin: -33px 0px 0px 35px;
 }
-#logo,
 #arrow-right,
 #arrow-left,
 .detail-arrow a {
@@ -814,9 +813,19 @@ body {
   display: inline-block;
   -webkit-mask-size: cover;
   mask-size: cover;
-  -webkit-transition: background-color 0.2s linear;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+}
+#logo {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-transition: background-color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
 }
 #logo svg {
   fill: #fff;
@@ -1031,9 +1040,9 @@ textarea {
   text-align: center;
   max-width: 539px;
   border: 1px solid rgba(23,229,178,0.2);
-  -webkit-transition: border-color 0.2s linear;
-  -webkit-transition: border-color 0.2s linear;
-  transition: border-color 0.2s linear;
+  -webkit-transition: border-color 0.5s linear;
+  -webkit-transition: border-color 0.5s linear;
+  transition: border-color 0.5s linear;
 }
 .wal .bottom-part .left-part .copy:hover {
   border-color: #17e6b2;
@@ -1077,8 +1086,8 @@ textarea {
   visibility: hidden;
   cursor: pointer;
   fill: rgba(23,229,178,0.2);
-  -webkit-transition: fill 0.2s linear;
-  transition: fill 0.2s linear;
+  -webkit-transition: fill 0.5s linear;
+  transition: fill 0.5s linear;
 }
 .footer .copyright {
   padding-bottom: 20px;
@@ -1126,9 +1135,9 @@ textarea {
   min-width: 300px;
   border: 1px solid rgba(255,255,255,0.22);
   margin: 0 auto;
-  -webkit-transition: border-color 0.2s linear, color 0.2s linear, -webkit-text-fill-color 0.2s linear, background-color 50000s ease-in-out 50000s;
-  -webkit-transition: border-color 0.2s linear, color 0.2s linear, -webkit-text-fill-color 0.2s linear, background-color 50000s ease-in-out 50000s;
-  transition: border-color 0.2s linear, color 0.2s linear, -webkit-text-fill-color 0.2s linear, background-color 50000s ease-in-out 50000s;
+  -webkit-transition: border-color 0.5s linear, color 0.5s linear, -webkit-text-fill-color 0.5s linear, background-color 50000s ease-in-out 50000s;
+  -webkit-transition: border-color 0.5s linear, color 0.5s linear, -webkit-text-fill-color 0.5s linear, background-color 50000s ease-in-out 50000s;
+  transition: border-color 0.5s linear, color 0.5s linear, -webkit-text-fill-color 0.5s linear, background-color 50000s ease-in-out 50000s;
 }
 @media (min-width: 901px) {
   .pass-phrase {
@@ -1142,14 +1151,14 @@ textarea {
   z-index: 100;
   font-weight: 600;
   color: rgba(23,230,178,0.6);
-  -webkit-transition: color 0.2s linear;
-  -webkit-transition: color 0.2s linear;
-  transition: color 0.2s linear;
+  -webkit-transition: color 0.5s linear;
+  -webkit-transition: color 0.5s linear;
+  transition: color 0.5s linear;
 }
 .pass-phrase .label:hover {
   color: #17e5b2;
 }
-.pass-phrase .paste {
+.pass-phrase .problem {
   position: absolute;
   bottom: 23px;
   left: 23px;
@@ -1277,9 +1286,9 @@ textarea {
   text-align: center;
   max-width: 479px;
   border: 1px solid rgba(23,229,178,0.2);
-  -webkit-transition: border-color 0.2s linear;
-  -webkit-transition: border-color 0.2s linear;
-  transition: border-color 0.2s linear;
+  -webkit-transition: border-color 0.5s linear;
+  -webkit-transition: border-color 0.5s linear;
+  transition: border-color 0.5s linear;
 }
 .signin:not(.disabled):hover {
   border-color: #17e5b2;
@@ -1306,9 +1315,9 @@ textarea {
   text-align: center;
   max-width: 239px;
   border: 1px solid rgba(23,229,178,0.2);
-  -webkit-transition: border-color 0.2s linear;
-  -webkit-transition: border-color 0.2s linear;
-  transition: border-color 0.2s linear;
+  -webkit-transition: border-color 0.5s linear;
+  -webkit-transition: border-color 0.5s linear;
+  transition: border-color 0.5s linear;
 }
 .signup:not(.disabled):hover {
   border-color: #17e5b2;
@@ -1382,10 +1391,10 @@ textarea {
   margin: 0 0 0 8px;
 }
 svg.active {
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+  -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+  -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
   width: 10px;
   height: 10px;
   position: absolute;
@@ -1401,9 +1410,9 @@ svg.active {
   display: inline-block;
   -webkit-mask-size: cover;
   mask-size: cover;
-  -webkit-transition: background-color 0.2s linear;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
 }
 .save-to-file:not(.disabled):hover svg {
   fill: #17e5b2;
@@ -1420,9 +1429,9 @@ svg.active {
   display: inline-block;
   -webkit-mask-size: cover;
   mask-size: cover;
-  -webkit-transition: background-color 0.2s linear;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
 }
 .generate:not(.disabled):hover svg {
   fill: #17e5b2;
@@ -1494,7 +1503,7 @@ svg.active {
   padding-bottom: 11px;
 }
 #backw {
-  -webkit-transition: color 0.2s linear;
+  -webkit-transition: color 0.5s linear;
   -webkit-transition: color 0.5s linear;
   transition: color 0.5s linear;
   padding-bottom: 11px;
@@ -1511,18 +1520,18 @@ svg.active {
 .invisible2,
 .back_inv,
 .back {
-  -webkit-transition: visibility0 0.5s, opacity0 0.5s linear, border-color 0.2s linear;
-  transition: visibility0 0.5s, opacity0 0.5s linear, border-color 0.2s linear;
-  -webkit-transition: visibility0 0.5s linear, opacity0 0.5s linear, border-color 0.2s linear;
+  -webkit-transition: visibility0 0.5s, opacity0 0.5s linear, border-color 0.5s linear;
+  transition: visibility0 0.5s, opacity0 0.5s linear, border-color 0.5s linear;
+  -webkit-transition: visibility0 0.5s linear, opacity0 0.5s linear, border-color 0.5s linear;
 }
 #back-to-main,
 .terms a,
 #stat_link,
 #nods-amount .label {
   color: rgba(23,230,178,0.6);
-  -webkit-transition: color 0.2s linear;
-  -webkit-transition: color 0.2s linear;
-  transition: color 0.2s linear;
+  -webkit-transition: color 0.5s linear;
+  -webkit-transition: color 0.5s linear;
+  transition: color 0.5s linear;
 }
 #back-to-main:hover,
 .terms a:hover,
