@@ -61,7 +61,7 @@ html
     script(type='text/javascript', src='/javascripts/common.js')
     script(type="text/javascript", src='/javascripts/client.min.js')
 
-  body(style="display:none;")
+  body(style="")
     include ../public/images/svg-sprite.svg
     include ../public/images/ic_logo.svg
     include ../public/images/ic_download.svg
@@ -73,14 +73,14 @@ html
         .glow-container
           svg
             use(xlink:href="#glow-svg")
-      .container
+      .container.hidden
         .logo
           a(href="/")#logo
             svg
               use(xlink:href="#ic_logo")
             //- img(src="/images/logo_crowd.png")
         block content
-    footer.footer(style="display:table-footer-group;")
+    footer.footer(style="display:table-footer-group;").hidden
       .copyright
         a(href="/") Nodio 
         |  © 2016. All Rights Reserved.

@@ -12,7 +12,8 @@ $( document ).ready(function(){
     setTimeout(function(){
         $("body, html").css('overflow-y','auto');
     },300);
-    $("body").fadeIn(500).removeClass('hidden');
+
+    $('.container, .footer').fadeIn(500);
 
     var show = true;
 
@@ -59,7 +60,8 @@ $( document ).ready(function(){
 
     $('#logout').click(function (e) {
         $.get( "/logout",function(res){
-            $( location ).attr("href", "/");
+            if (res.session == "closed")
+                $( location ).attr("href", "/");
         });
     });
     // 
@@ -142,7 +144,7 @@ $('textarea').focus(
 
     function nextStep() {
         step = 2;
-        $("body").fadeOut(200).addClass('hidden');
+        $('.container, .footer').fadeOut(170).addClass('hidden');
         setTimeout(function() {
             $('.group2').removeClass('group2');
             $('.step1').removeClass('closed').addClass("open");
@@ -152,8 +154,8 @@ $('textarea').focus(
             $(".second .line").addClass("active");
             $(".first .line").removeClass("active");
             $(".second .desktop.tablet svg").css("margin","-4.7px 0px 0px -5.7px");
-            $("body").fadeIn(300).removeClass('hidden');
-        }, 200);
+            $('.container, .footer').fadeIn(250).removeClass('hidden');
+        }, 80);
         
 
         if ($(window).width() < 601) {
@@ -163,19 +165,19 @@ $('textarea').focus(
 
     function prevStep() {
         step = 1;
-        $("body").fadeOut(200).addClass('hidden');
+        $('.container, .footer').fadeOut(170).addClass('hidden');
         setTimeout(function() {
-        $('.step1').addClass('closed').removeClass("open");
-        $(".second .line").removeClass("active");
-        $(".first .line").addClass("active");
-        $('.back').addClass('group2');
-        $('.back_inv, #forw').addClass('invisible2');
-        $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
-        $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
-        $(".second .desktop.tablet svg").css("margin","-4.7px 0px 0px -4px");
-        $('.invisible1').css({'opacity':'1','cursor':'default'});
-            $("body").fadeIn(300).removeClass('hidden');
-        }, 200);
+            $('.step1').addClass('closed').removeClass("open");
+            $(".second .line").removeClass("active");
+            $(".first .line").addClass("active");
+            $('.back').addClass('group2');
+            $('.back_inv, #forw').addClass('invisible2');
+            $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
+            $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
+            $(".second .desktop.tablet svg").css("margin","-4.7px 0px 0px -4px");
+            $('.invisible1').css({'opacity':'1','cursor':'default'});
+            $('.container, .footer').fadeIn(250).removeClass('hidden');
+        }, 80);
         if ($(window).width() < 601) {
             $("#backw").css({"visibility":"visible","opacity":"1"});
         }
@@ -196,6 +198,14 @@ $('textarea').focus(
       $("#copy .button .tablet").text("Next Step")
       $("#copy .button .mobile").text("Next")
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
+      $(".qr img").css("padding", "7px 7px 6px 8px");
+      $('body').click(function(){
+        if ($('#nods-tip:not(.hidden)').length == 1){
+            $('#nods-tip').stop().slideUp(100);
+            $('#nods-amount .line').css("opacity",1);
+            $('#nods-tip').addClass("hidden");
+        }
+      })
       // $("#walcop, .copy, .file").css("display","none");
     }
         
@@ -258,17 +268,18 @@ $('textarea').focus(
                 $('style.progress-point').text("");
                 if ($(this).val().length == 69) {
                     $('#new.signin').css({"opacity":"1","border-color":"#ff004d"});
+                    $('#new.signin .point').css({"background-color":"#ff004d"});
                     $('#new.signin span').text("Mismatch").css("color","#ff004d");
                     setTimeout(function(){
-                        // $('#new.signin span').text("Sign In As A New StakeHolder").css("color","#17e6b2");
                         $('#new.signin').css({"opacity":"0.2"});
                         setTimeout(function(){
-                            $('#new.signin').css({"border-color":"#17e6b2"});
-                            $('#new.signin span').css({"opacity" : "0"});
+                            $('#new.signin').css({"opacity":"0"});
+                            $('#new.signin span').css({"opacity" : "0.2"});
 
                         },100);
                         setTimeout(function(){
-                            $('#new.signin').css({"border-color":"#17e6b2"});
+                            $('#new.signin').css({"border-color":"#17e6b2","opacity":"0.2"});
+                            $('#new.signin .point').css({"background-color":"#17e6b2"});
                             $('#new.signin span').text("Sign In As A New StakeHolder").css({"color":"#17e6b2", "opacity" : "1"});
 
                         },200);
@@ -291,23 +302,25 @@ $('textarea').focus(
         $('#login textarea.password').bind('input', function() {
         var area = $(this);
         if (area.val().length == 69) {
-            // console.log( $(this).val());
             $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
+                    $( location ).attr("href", "/account");
                     $('.signin').removeClass("disabled").css("opacity", "1");
                     $('.signin a').text("Success!").css("opacity","1");
-                    $( location ).attr("href", "/account");
                 } else {
                     $('#signin').css({"opacity":"1","border-color":"#ff004d"});
+                    $('.signin .point').css({"background-color":"#ff004d"});
                     $('.signin a').text("Mismatch").css("color","#ff004d");
                     setTimeout(function(){
+                        $('.signin').css({"opacity":"0.2"});
                         setTimeout(function(){
-                            $('.signin').css({"opacity":"0.2"});
-                            $('.signin a').css({"opacity" : "0"});
+                            $('#new.signin').css({"opacity":"0"});
+                            $('#new.signin a').css({"opacity" : "0.2"});
 
                         },100);
                         setTimeout(function(){
-                            $('.signin').css({"border-color":"#17e6b2"});
+                            $('.signin').css({"border-color":"#17e6b2","opacity":"0.2"});
+                            $('.signin .point').css({"background-color":"#17e6b2"});
                             $('.signin a').text("Sign In").css({"color":"#17e6b2", "opacity" : "1"});
 
                         },200);
@@ -349,21 +362,22 @@ function onFileSelected(event, me) {
     } else {
         var text = $(me.closest(".pass-phrase")).attr('id') == "formspace_new" ? "SIGN IN AS A NEW STAKEHOLDER" : "SIGN IN";
         $('.signin').css({"opacity":"1","border-color":"#ff004d"});
+        $('.signin .point').css({"background-color":"#ff004d"});
         $('.signin a').text("Should be a *.txt file format.").css("color","#ff004d");
         setTimeout(function(){
+            $('.signin').css({"opacity":"0.2"});
             setTimeout(function(){
-                $('.signin').css({"opacity":"0.2"});
-                $('.signin a').css({"opacity" : "0"});
+                $('.signin').css({"opacity":"0"});
+                $('.signin a').css({"opacity" : "0.2"});
 
             },100);
             setTimeout(function(){
-                $('.signin').css({"border-color":"#17e6b2"});
+                $('.signin').css({"border-color":"#17e6b2","opacity":"0.2"});
+                $('.signin .point').css({"background-color":"#17e6b2"});
                 $('.signin a').text(text).css({"color":"#17e6b2", "opacity" : "1"});
 
             },200);
-
-        }, 3000);
-       console.log("Should be a *.txt file.")
+        }, 3000)
     }
 }
 

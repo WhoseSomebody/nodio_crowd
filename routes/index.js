@@ -87,9 +87,9 @@ router.get('/logout', (req, res) => {
   req.session.cookie.maxAge = 0;
 
   // res.redirect('/');
-  setTimeout(function() {
+  // setTimeout(function() {
     res.json({session: "closed"});
-  }, 500);
+  // }, 500);
 
 });
 

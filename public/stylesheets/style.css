@@ -1079,7 +1079,7 @@ textarea {
 .wal .bottom-part .right-part .qr img {
   width: 134px;
   height: auto;
-  padding: 7px 7px 6px 8px;
+  padding: 7px 7px 5px 8px;
 }
 .next-link {
   display: block;
@@ -1468,7 +1468,7 @@ svg.active {
   color: rgba(255,255,255,0.3);
 }
 .terms a {
-  font-size: 9px;
+  font-size: 11px;
   color: #16cdae;
   cursor: pointer;
 }
@@ -1997,6 +1997,9 @@ svg.active {
   .terms {
     font-size: 9px;
     padding: 12px 0;
+  }
+  .terms a {
+    font-size: 9px;
   }
   #forw,
   #backw {
