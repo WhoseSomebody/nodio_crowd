@@ -11,7 +11,8 @@ $("#generator textarea").ready(function() {
 $( document ).ready(function(){
     setTimeout(function(){
         $("body, html").css('overflow-y','auto');
-    },300);
+        $('.container, .footer').removeClass("hidden");
+    },150);
 
     $('.container, .footer').fadeIn(500);
 
