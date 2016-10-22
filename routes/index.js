@@ -12,7 +12,7 @@ const express = require('express'),
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    // if (req.headers.host != "localhost:3000")
+    if (req.headers.host != "localhost:3000")
       res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
@@ -82,11 +82,11 @@ router.get('/logout', (req, res) => {
   req.session.userID = null;
   req.session.userWallet = null;
   req.session.cookie.maxAge = 0;
-  console.log(res.session);
-  resolve();
 
   // res.redirect('/');
-  res.json({session: closed});
+  setTimeout(function() {
+    res.json({session: "closed"});
+  }, 500);
 
 });
 

@@ -785,6 +785,9 @@ body {
     line-height: 17px;
   }
 }
+* {
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
 .container {
   text-align: center;
 }
@@ -1158,7 +1161,8 @@ textarea {
 .pass-phrase .label:hover {
   color: #17e5b2;
 }
-.pass-phrase .problem {
+.pass-phrase .problem,
+.pass-phrase .paste {
   position: absolute;
   bottom: 23px;
   left: 23px;

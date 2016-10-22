@@ -264,7 +264,7 @@ $('textarea').focus(
             $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
                     $('.signin').removeClass("disabled");
-                    $('.signin a').text("Success")
+                    $('.signin a').text("Success!")
                     $( location ).attr("href", "/account");
                 } else {
                     $('.signin a').text("Mismatch");
