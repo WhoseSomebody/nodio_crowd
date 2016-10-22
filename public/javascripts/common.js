@@ -193,12 +193,12 @@ $('textarea').focus(
         function () {
             $('#nods-tip').stop().slideDown(100);
             $('#nods-amount .line').hide(100);
-            $('#nods-tip').removeClass(".hidden");
+            $('#nods-tip').removeClass("hidden");
         },
         function () {
             $('#nods-tip').stop().slideUp(100);
             $('#nods-amount .line').show(100);
-            $('#nods-tip').addClass(".hidden");
+            $('#nods-tip').addClass("hidden");
     });
 
     $( window ).resize(function() {
