@@ -9,6 +9,9 @@ $("#generator textarea").ready(function() {
         generateRandom();
     })
 $( document ).ready(function(){
+    setTimeout(function(){
+        $("body, html").css('overflow-y','auto');
+    },300);
     $("body").fadeIn(500).removeClass('hidden');
 
     var show = true;
@@ -115,6 +118,7 @@ $('textarea').focus(
         e.preventDefault();
         var t = document.createElement('textarea');
         t.id = 't';
+        t.setAttribute("readonly","readonly");
         t.style.height = 0;
         document.body.appendChild(t);
         t.value = $('#code').text();
@@ -125,6 +129,13 @@ $('textarea').focus(
         window.getSelection().removeAllRanges();
 
         $(this).text("Copied!");
+        $(".left-part .copy").css("border-color", "#17e6b2");
+
+        setTimeout(function(){
+            $("#walcop").html('<span class="desktop">Copy wallet number to clipboard</span><span class="mobile tablet">Copy number</span>');
+            $(".left-part .copy").css("border-color", "rgba(28,206,156,0.22)");
+            
+        }, 3000);
     });
 
     // allows to copy after generation of the password
@@ -140,6 +151,7 @@ $('textarea').focus(
             $('.invisible1').css('opacity','0', 'cursor', 'pointer');
             $(".second .line").addClass("active");
             $(".first .line").removeClass("active");
+            $(".second .desktop.tablet svg").css("margin","-4.7px 0px 0px -5.7px");
             $("body").fadeIn(300).removeClass('hidden');
         }, 200);
         
@@ -160,6 +172,7 @@ $('textarea').focus(
         $('.back_inv, #forw').addClass('invisible2');
         $('.group1:not(#copy)').css({"visibility":"visible", "opacity":"1",'display':'block'});
         $('#copy').css({"visibility":"visible", "opacity":"1","display": "-webkit-flex", "display": "-ms-flexbox", "display": "flex"});
+        $(".second .desktop.tablet svg").css("margin","-4.7px 0px 0px -4px");
         $('.invisible1').css({'opacity':'1','cursor':'default'});
             $("body").fadeIn(300).removeClass('hidden');
         }, 200);
@@ -182,6 +195,7 @@ $('textarea').focus(
     if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step")
       $("#copy .button .mobile").text("Next")
+      $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       // $("#walcop, .copy, .file").css("display","none");
     }
         
@@ -189,15 +203,15 @@ $('textarea').focus(
       $("#login_new .password").val($("#generator .password").val()).trigger('input');
     })
 
-    $('#nods-amount').hover(
+    $('#nods-amount .label.info').hover(
         function () {
             $('#nods-tip').stop().slideDown(100);
-            $('#nods-amount .line').hide(100);
+            $('#nods-amount .line').css("opacity",0);
             $('#nods-tip').removeClass("hidden");
         },
         function () {
             $('#nods-tip').stop().slideUp(100);
-            $('#nods-amount .line').show(100);
+            $('#nods-amount .line').css("opacity",1);
             $('#nods-tip').addClass("hidden");
     });
 
@@ -223,7 +237,7 @@ $('textarea').focus(
         $('#login_new textarea.password').bind('input', function() {
             if (generated == $(this).val()) {
                 $("#new.signin span").text("Sign In As A New StakeHolder");
-                $("#new.signin").removeClass("disabled")
+                $("#new.signin").removeClass("disabled").css("opacity", "1");
                 $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) \
                     {.second svg,active{ right:56px }}");
                 $('#new:not(.disabled) a').click(function(e){
@@ -243,9 +257,26 @@ $('textarea').focus(
                 $("#new.signin:not(.disabled)").addClass("disabled");
                 $('style.progress-point').text("");
                 if ($(this).val().length == 69) {
-                   $("#new.signin span").text("Mismatch");
+                    $('#new.signin').css({"opacity":"1","border-color":"#ff004d"});
+                    $('#new.signin span').text("Mismatch").css("color","#ff004d");
+                    setTimeout(function(){
+                        // $('#new.signin span').text("Sign In As A New StakeHolder").css("color","#17e6b2");
+                        $('#new.signin').css({"opacity":"0.2"});
+                        setTimeout(function(){
+                            $('#new.signin').css({"border-color":"#17e6b2"});
+                            $('#new.signin span').css({"opacity" : "0"});
+
+                        },100);
+                        setTimeout(function(){
+                            $('#new.signin').css({"border-color":"#17e6b2"});
+                            $('#new.signin span').text("Sign In As A New StakeHolder").css({"color":"#17e6b2", "opacity" : "1"});
+
+                        },200);
+
+
+                    }, 3000)
                 } else {
-                    $("#new.signin span").text("Sign In As A New StakeHolder");
+                    // $("#new.signin span").text("Sign In As A New StakeHolder");
                 }
 
             }
@@ -263,17 +294,34 @@ $('textarea').focus(
             // console.log( $(this).val());
             $.post( "/login", { key: $(this).val()}, function(res) {
                 if (res.success) {
-                    $('.signin').removeClass("disabled");
-                    $('.signin a').text("Success!")
+                    $('.signin').removeClass("disabled").css("opacity", "1");
+                    $('.signin a').text("Success!").css("opacity","1");
                     $( location ).attr("href", "/account");
                 } else {
-                    $('.signin a').text("Mismatch");
+                    $('#signin').css({"opacity":"1","border-color":"#ff004d"});
+                    $('.signin a').text("Mismatch").css("color","#ff004d");
+                    setTimeout(function(){
+                        setTimeout(function(){
+                            $('.signin').css({"opacity":"0.2"});
+                            $('.signin a').css({"opacity" : "0"});
+
+                        },100);
+                        setTimeout(function(){
+                            $('.signin').css({"border-color":"#17e6b2"});
+                            $('.signin a').text("Sign In").css({"color":"#17e6b2", "opacity" : "1"});
+
+                        },200);
+                    }, 3000)
                     $('.signin:not(.disabled)').addClass("disabled");
                 }
             });
             count[1] = 0;
         } else {
-            $('.signin a').text("Sign In");
+            // setTimeout(function(){
+            //     $('.signin a').text("").css("color","#17e6b2");
+            //     $('#signin').css({"opacity":"0.2","border-color":"rgba(28,206,156,0.22)"});
+            //     $('.signin a').text("Sign In");
+            // }, 3000)
             $('.signin:not(.disabled)').addClass("disabled");
         }
         });
@@ -299,9 +347,23 @@ function onFileSelected(event, me) {
       resetFormElement($('.file input'));
       setTimeout(function() {result.trigger('input')}, 100);
     } else {
-        result.val("");
-        result.attr("placeholder","Should be a *.txt file format.");
-        console.log("Should be a *.txt file.")
+        var text = $(me.closest(".pass-phrase")).attr('id') == "formspace_new" ? "SIGN IN AS A NEW STAKEHOLDER" : "SIGN IN";
+        $('.signin').css({"opacity":"1","border-color":"#ff004d"});
+        $('.signin a').text("Should be a *.txt file format.").css("color","#ff004d");
+        setTimeout(function(){
+            setTimeout(function(){
+                $('.signin').css({"opacity":"0.2"});
+                $('.signin a').css({"opacity" : "0"});
+
+            },100);
+            setTimeout(function(){
+                $('.signin').css({"border-color":"#17e6b2"});
+                $('.signin a').text(text).css({"color":"#17e6b2", "opacity" : "1"});
+
+            },200);
+
+        }, 3000);
+       console.log("Should be a *.txt file.")
     }
 }
 
