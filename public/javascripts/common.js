@@ -196,15 +196,15 @@ $('textarea').focus(
     var os = client.getOS();
      console.log(client);
     if (os.indexOf("iOS") >= 0){
-      $("#copy .button .tablet").text("Next Step")
-      $("#copy .button .mobile").text("Next")
+      $("#copy .button .tablet").text("Next Step");
+      $("#copy .button .mobile").text("Next");
+      $(".copy pblue").css("display","none");
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       $(".qr img").css("padding", "7px 7px 6px 8px");
-      $('body').click(function(){
+      $('body,  #nods-tip').click(function(){
         if ($('#nods-tip:not(.hidden)').length == 1){
-            $('#nods-tip').stop().slideUp(100);
-            $('#nods-amount .line').css("opacity",1);
-            $('#nods-tip').addClass("hidden");
+            $('#nods-tip').hide();
+            $('#nods-tip').addClass("hidden");            
         }
       })
       // $("#walcop, .copy, .file").css("display","none");
@@ -225,6 +225,8 @@ $('textarea').focus(
             $('#nods-amount .line').css("opacity",1);
             $('#nods-tip').addClass("hidden");
     });
+
+
 
     $( window ).resize(function() {
         if ($(window).width() > 600) {

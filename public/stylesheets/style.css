@@ -1108,11 +1108,6 @@ textarea {
     color: rgba(255,255,255,0.2);
   }
 }
-@media (max-width: 900px) {
-  .footer .copyright {
-    text-align: center;
-  }
-}
 .footer .copyright a {
   color: inherit;
   text-decoration: none;
@@ -1766,30 +1761,16 @@ svg.active {
   .wal .bottom-part .right-part .qr img {
     width: 164px;
   }
-  .history .hist-line {
-    font-size: 16px;
-    height: 119px;
+  #nods-tip {
+    top: 60px;
   }
-  .history .hist-line .num {
-    font-size: 17px;
-  }
-  .history .col.details .detail-arrow {
-    margin: -42px 0 0 -3px;
-  }
-  .history .col.confirm {
-    left: 54px;
-  }
-  #nods-tip,
-  top 60px,
   .footer {
     letter-spacing: 1px;
     text-align: center;
   }
-  #nods-tip .copyright,
-  top 60px .copyright,
   .footer .copyright {
     margin: 60px auto 0 auto;
-    font-size: 11px;
+    font-size: 9px;
     color: rgba(255,255,255,0.3);
   }
 }
@@ -1990,7 +1971,7 @@ svg.active {
     padding-bottom: 15px;
   }
   .footer .copyright {
-    font-size: 11px;
+    font-size: 9px;
     color: rgba(255,255,255,0.3);
     margin: 21px auto 0 auto;
   }
