@@ -9,6 +9,7 @@ $("#generator textarea").ready(function() {
         generateRandom();
     })
 $( document ).ready(function(){
+    $('head').append('<script type="text/javascript" src="/javascripts/client.min.js"> </script>')
     setTimeout(function(){
         $("body, html").css('overflow-y','auto');
         $('.container, .footer').removeClass("hidden");
@@ -194,7 +195,7 @@ $('textarea').focus(
 
     var client = new ClientJS();
     var os = client.getOS();
-     console.log(client);
+     // console.log(client);
     if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step");
       $("#copy .button .mobile").text("Next");
@@ -209,6 +210,9 @@ $('textarea').focus(
       })
       // $("#walcop, .copy, .file").css("display","none");
     }
+    if (client.isMac() && client.isSafari())
+      $(".copy pblue").css("display","none");
+        
         
     $(".paste").click(function(){
       $("#login_new .password").val($("#generator .password").val()).trigger('input');

@@ -59,16 +59,16 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/jquery-3.1.1.min.js")
     script(type='text/javascript', src='/javascripts/common.js')
-    script(type="text/javascript", src='/javascripts/client.min.js')
+    //- script(style="display:none" type="text/javascript", src='/javascripts/client.min.js') 
 
-  body(style="display:table;")
+  body(style="display:flex; min-height: 100vh; flex-direction: column;")
     include ../public/images/svg-sprite.svg
     include ../public/images/ic_logo.svg
     include ../public/images/ic_download.svg
     include ../public/images/ic_generate.svg
     include ../public/images/ic_arrow_right.svg
     include ../public/images/ic_done.svg
-    #background(style="display:table;")
+    #background(style="flex:10;")
       #glow.show
         .glow-container
           svg
@@ -80,7 +80,7 @@ html
               use(xlink:href="#ic_logo")
             //- img(src="/images/logo_crowd.png")
         block content
-    footer.footer(style="display:table-footer-group;").hidden
+    footer.footer(style="").hidden
       .copyright
         a(href="https://nodio.net" target="_blank") Nodio 
         |  © 2016. All Rights Reserved.
