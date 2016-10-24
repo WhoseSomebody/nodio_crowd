@@ -246,9 +246,10 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
-                window.onblur = function() { $("button#confirm").click(); };
-                window.onfocus = function() { $("button#confirm").click(); };
-                window.location = "bitcoin:"+$('#wallet-number').val();
+                function() {
+                    window.location = "bitcoin:"+$('#wallet-number').val();
+                    location.reload();
+                }
             });
         } else {
             $('#walcop').click(function(){
@@ -267,9 +268,10 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
-                window.onblur = function() { $("button#confirm").click(); };
-                window.onfocus = function() { $("button#confirm").click(); };
-                window.location = "bitcoin:"+$('#wallet-number').val();
+                function() {
+                    window.location = "bitcoin:"+$('#wallet-number').val();
+                    location.reload();
+                }
             });
         }
     } else {
