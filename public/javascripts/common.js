@@ -204,10 +204,7 @@ $('textarea').focus(
             $('#nods-tip').addClass("hidden");            
         }
       })
-      $("#walcop, .copy, .file").css("display","none");
     }
-    if (client.isMac() && client.isSafari())
-      $(".copy pblue").css("display","none");
     if (client.isMobileAndroid() || client.isMobileIOS()){
         $('#walcop').text("Refill");
         $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
