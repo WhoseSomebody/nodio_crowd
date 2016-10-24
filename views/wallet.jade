@@ -87,7 +87,8 @@ block content
             .point.bottom.right
             .point.top.left
             .point.top.right
-            img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWallet}&size=326x326&margin=18")
+            a(href="bitcoin:#{userWallet}")
+              img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWallet}&size=326x326&margin=18")
   .row#history
     a(href="https://blockchain.info/address/#{userWallet}", target="_blank")#stat_link
       | TRANSACTIONS HISTORY
