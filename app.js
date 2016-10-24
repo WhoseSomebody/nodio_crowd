@@ -39,6 +39,7 @@ app.use(session({
   cookie: { maxAge: 3600000 }
 }));
 
+app.use('/clientjs', express.static(__dirname + '/node_modules/clientjs/dist/'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

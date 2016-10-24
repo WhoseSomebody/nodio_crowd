@@ -9,7 +9,6 @@ $("#generator textarea").ready(function() {
         generateRandom();
     })
 $( document ).ready(function(){
-    $('head').append('<script type="text/javascript" src="/javascripts/client.min.js"> </script>')
     setTimeout(function(){
         $("body, html").css('overflow-y','auto');
         $('.container, .footer').removeClass("hidden");
@@ -118,29 +117,26 @@ $('textarea').focus(
         nextStep();
 
     });
-    $("#walcop").click(function(e){
-        e.preventDefault();
-        var t = document.createElement('textarea');
-        t.id = 't';
-        t.setAttribute("readonly","readonly");
-        t.style.height = 0;
-        document.body.appendChild(t);
-        t.value = $('#code').text();
-        var selector = document.querySelector('#t');
-        selector.select();
-        document.execCommand('copy');
-        document.body.removeChild(t);
-        window.getSelection().removeAllRanges();
 
-        $(this).text("Copied!");
-        $(".left-part .copy").css("border-color", "#17e6b2");
+    function walltetCopy() {
+        $("#walcop").click(function(e){
+            e.preventDefault();
 
-        setTimeout(function(){
-            $("#walcop").html('<span class="desktop">Copy wallet number to clipboard</span><span class="mobile tablet">Copy number</span>');
-            $(".left-part .copy").css("border-color", "rgba(28,206,156,0.22)");
-            
-        }, 3000);
-    });
+            var selector = document.querySelector('#wallet-number');
+            selector.select();
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+
+            $(this).text("Copied!");
+            $(".left-part .copy").css("border-color", "#17e6b2");
+
+            setTimeout(function(){
+                $("#walcop").html('<span class="desktop">Copy wallet number to clipboard</span><span class="mobile tablet">Copy number</span>');
+                $(".left-part .copy").css("border-color", "rgba(28,206,156,0.22)");
+                
+            }, 3000);
+        });
+    }
 
     // allows to copy after generation of the password
 
@@ -195,7 +191,7 @@ $('textarea').focus(
 
     var client = new ClientJS();
     var os = client.getOS();
-     // console.log(client);
+    console.log(client.getDevice());
     if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step");
       $("#copy .button .mobile").text("Next");
@@ -208,11 +204,18 @@ $('textarea').focus(
             $('#nods-tip').addClass("hidden");            
         }
       })
-      // $("#walcop, .copy, .file").css("display","none");
+      $("#walcop, .copy, .file").css("display","none");
     }
     if (client.isMac() && client.isSafari())
       $(".copy pblue").css("display","none");
-        
+    if (client.isMobileAndroid()){
+        $('#walcop').text("Refill");
+        $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
+    } else {
+        $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
+
+        walltetCopy();
+    }
         
     $(".paste").click(function(){
       $("#login_new .password").val($("#generator .password").val()).trigger('input');

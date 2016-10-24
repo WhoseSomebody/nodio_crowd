@@ -91,6 +91,8 @@ block content
   .row#history
     a(href="https://blockchain.info/address/#{userWallet}", target="_blank")#stat_link
       | TRANSACTIONS HISTORY
+  textarea#wallet-number(style="position:absolute;top:0;left:-9999px;")
+    | #{userWallet}
   //- .history
   //-   .hist-line
   //-     .point.bottom.left

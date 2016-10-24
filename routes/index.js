@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
   if(req.session.userID)
       res.redirect('/account');
   else {
+      console.log(req.headers['user-agent']);
       totalInv = 0;
       Total.findOne({}, {}, { sort: { 'lastUpdate' : -1 } }, function(err, post) {
           totalInv = post == null ? 0 : post.totalInvested;
