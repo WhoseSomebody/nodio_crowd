@@ -1053,6 +1053,9 @@ textarea {
 .wal .bottom-part .left-part .copy:hover {
   border-color: #17e6b2;
 }
+.wal .bottom-part .left-part .copy .label {
+  outline: none;
+}
 .wal .bottom-part .left-part .copy .label.button {
   padding: 21px 0;
   font-size: 17px;
