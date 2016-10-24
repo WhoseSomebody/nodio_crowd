@@ -246,6 +246,8 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
+                window.onblur = function() { $("button#confirm").click(); };
+                window.onfocus = function() { $("button#confirm").click(); };
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         } else {
@@ -265,6 +267,8 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
+                window.onblur = function() { $("button#confirm").click(); };
+                window.onfocus = function() { $("button#confirm").click(); };
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         }
