@@ -48,7 +48,7 @@
 		}
 	],
 	"theme_color": "#ffffff",
-	"start_url": "https:\/\/nod.io\/",
+	"start_url": "https:\/\/crowdsale.nodio.net\/",
 	"display": "standalone",
 	"orientation": "portrait"
 }

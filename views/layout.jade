@@ -84,3 +84,22 @@ html
       .copyright
         a(href="https://nodio.net" target="_blank") Nodio 
         |  © 2016. All Rights Reserved.
+    noscript
+      style.
+        .container, .footer
+        {
+          display: block !important;
+        }
+        .container:before 
+        {
+          content: "Enable JavaScript execution, please... Otherwise, no way :(";
+          color: rgb(255, 0, 77);
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 35px;
+        }
+        body, html
+        {
+          overflow: auto;
+          overflow-x: hidden;
+        }

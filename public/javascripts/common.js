@@ -191,7 +191,7 @@ $('textarea').focus(
 
     var client = new ClientJS();
     var os = client.getOS();
-    console.log(client.getDevice());
+    // console.log(client.getDevice());
     if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step");
       $("#copy .button .mobile").text("Next");
