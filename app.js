@@ -40,6 +40,7 @@ app.use(session({
 }));
 
 app.use('/clientjs', express.static(__dirname + '/node_modules/clientjs/dist/'));
+app.use('/sweetalert', express.static(__dirname + '/node_modules/sweetalert/dist/'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

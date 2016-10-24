@@ -204,18 +204,67 @@ $('textarea').focus(
             $('#nods-tip').addClass("hidden");            
         }
       })
+    } else {
+        // $('#nods-amount .label.info').hover(
+        //     function () {
+        //         $('#nods-tip').stop().slideDown(100);
+        //         $('#nods-amount .line').css("opacity",0);
+        //         $('#nods-tip').removeClass("hidden");
+        //     },
+        //     function () {
+        //         $('#nods-tip').stop().slideUp(100);
+        //         $('#nods-amount .line').css("opacity",1);
+        //         $('#nods-tip').addClass("hidden");
+        // });
+
+        $('#nods-amount .label.info').click( function(){
+            swal({  
+              title: "",
+              text: $('#nods-tip').html(),
+              html: true
+            });
+        });
+
     }
     if (client.isMobileAndroid() || client.isMobileIOS()){
         $('#walcop').text("Refill");
         $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
         if (client.isMobileAndroid()){
             $('#walcop').click(function(){
-                setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
+                // setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
+                setTimeout(function() {
+                    swal({  
+                      title: "Unable to find wallet app on this device. ",
+                      text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                      html: true,
+                      confirmButtonText: 'COPY'
+                    },
+                    function() {
+                        var Field = $('#wallet-swal');
+                        Field.select();
+                        document.execCommand('copy'); 
+                        window.getSelection().removeAllRanges();
+                    });
+                }, 50);
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         } else {
             $('#walcop').click(function(){
-                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
+                // setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
+                setTimeout(function() {
+                    swal({  
+                      title: "Unable to find wallet app on this device. ",
+                      text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                      html: true,
+                      confirmButtonText: 'COPY'
+                    },
+                    function() {
+                        var Field = $('#wallet-swal');
+                        Field.select();
+                        document.execCommand('copy'); 
+                        window.getSelection().removeAllRanges();
+                    });
+                }, 50);
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         }
@@ -226,19 +275,6 @@ $('textarea').focus(
     $(".paste").click(function(){
       $("#login_new .password").val($("#generator .password").val()).trigger('input');
     })
-
-    $('#nods-amount .label.info').hover(
-        function () {
-            $('#nods-tip').stop().slideDown(100);
-            $('#nods-amount .line').css("opacity",0);
-            $('#nods-tip').removeClass("hidden");
-        },
-        function () {
-            $('#nods-tip').stop().slideUp(100);
-            $('#nods-amount .line').css("opacity",1);
-            $('#nods-tip').addClass("hidden");
-    });
-
 
 
     $( window ).resize(function() {

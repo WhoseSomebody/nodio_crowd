@@ -1668,6 +1668,9 @@ svg.active {
 .generate {
   cursor: pointer !important;
 }
+.sweet-alert b {
+  font-weight: 900;
+}
 object[type="application/x-shockwave-flash"] {
   display: none;
 }
