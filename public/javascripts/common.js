@@ -233,13 +233,13 @@ $('textarea').focus(
                   confirmButtonText: 'COPY'
                 },
                 function() {
-                    if (isConfirm) {
-                        var Field = $('#wallet-swal');
-                        Field.select();
-                        document.execCommand('copy'); 
-                        window.getSelection().removeAllRanges();
+                    var Field = $('#wallet-swal');
+                    Field.select();
+                    document.execCommand('copy'); 
+                    window.getSelection().removeAllRanges();
+                    $('.confirm').click(function(){
                         window.location = "bitcoin:"+$('#wallet-number').val();
-                    }
+                    })
                 });
                   
             });
@@ -253,19 +253,38 @@ $('textarea').focus(
                   confirmButtonText: 'OK'
                 },
                 function() {
-                    if (isConfirm) {
-                        var Field = $('#wallet-swal');
-                        Field.select();
-                        document.execCommand('copy'); 
-                        window.getSelection().removeAllRanges();
+                    var Field = $('#wallet-swal');
+                    Field.select();
+                    document.execCommand('copy'); 
+                    window.getSelection().removeAllRanges();
+                    $('.confirm').click(function(){
                         window.location = "bitcoin:"+$('#wallet-number').val();
-                    }
+                    })
                 });
             });
         }
     } else {
         walltetCopy();
+
     }
+    $('#walcop').click(function(){
+        // setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
+        swal({  
+          title: "Please copy this code to refill your account balance.",
+          text: '<input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+          html: true,
+          confirmButtonText: 'OK'
+        },
+        function() {
+            var Field = $('#wallet-swal');
+            Field.select();
+            document.execCommand('copy'); 
+            window.getSelection().removeAllRanges();
+            $('button.confirm').click(function(){
+                window.location = "bitcoin:"+$('#wallet-number').val();
+            })
+        });
+    });
         
     $(".paste").click(function(){
       $("#login_new .password").val($("#generator .password").val()).trigger('input');
