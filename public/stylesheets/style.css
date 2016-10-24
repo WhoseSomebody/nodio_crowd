@@ -1672,11 +1672,34 @@ svg.active {
 .generate {
   cursor: pointer !important;
 }
-.sweet-alert b {
-  font-weight: 900;
-}
 object[type="application/x-shockwave-flash"] {
   display: none;
+}
+.sweet-alert {
+  border-radius: 0 !important;
+  font-family: "ProximaNova" !important;
+}
+.sweet-alert * {
+  border-radius: 0 !important;
+}
+.sweet-alert b {
+  font-weight: 900 !important;
+}
+.sweet-alert button {
+  background-color: transparent !important;
+  color: #17e6b2 !important;
+  border: 1px solid #17e6b2 !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+.sweet-alert input {
+  border: 1px solid #17e6b2 !important;
+}
+.sweet-alert h2 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  color: #000 !important;
 }
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {
