@@ -233,11 +233,11 @@ $('textarea').focus(
                   confirmButtonText: 'COPY'
                 },
                 function() {
+                    window.location = "bitcoin:"+$('#wallet-number').val();
                     var Field = $('#wallet-swal');
                     Field.select();
                     document.execCommand('copy'); 
                     window.getSelection().removeAllRanges();
-                    window.location = "bitcoin:"+$('#wallet-number').val();
                 });
                 
 
