@@ -237,10 +237,10 @@ $('textarea').focus(
                     Field.select();
                     document.execCommand('copy'); 
                     window.getSelection().removeAllRanges();
-                    $('.confirm').click(function(){
-                        window.location = "bitcoin:"+$('#wallet-number').val();
-                    })
+                    window.location = "bitcoin:"+$('#wallet-number').val();
                 });
+                
+
                   
             });
         } else {
@@ -253,13 +253,7 @@ $('textarea').focus(
                   confirmButtonText: 'OK'
                 },
                 function() {
-                    var Field = $('#wallet-swal');
-                    Field.select();
-                    document.execCommand('copy'); 
-                    window.getSelection().removeAllRanges();
-                    $('.confirm').click(function(){
-                        window.location = "bitcoin:"+$('#wallet-number').val();
-                    })
+                    window.location = "bitcoin:"+$('#wallet-number').val();
                 });
             });
         }
