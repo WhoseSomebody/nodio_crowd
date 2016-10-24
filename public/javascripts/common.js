@@ -208,7 +208,7 @@ $('textarea').focus(
     }
     if (client.isMac() && client.isSafari())
       $(".copy pblue").css("display","none");
-    if (client.isMobileAndroid()){
+    if (client.isMobileAndroid() || client.isMobileIOS()){
         $('#walcop').text("Refill");
         $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
     } else {
