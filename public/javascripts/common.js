@@ -226,45 +226,37 @@ $('textarea').focus(
         if (client.isMobileAndroid()){
             $('#walcop').click(function(){
                 // setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
-                setTimeout(function() {
-                    swal({  
-                      title: "Unable to find wallet app on this device. ",
-                      text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
-                      html: true,
-                      confirmButtonText: 'COPY'
-                    },
-                    function() {
-                        var Field = $('#wallet-swal');
-                        Field.select();
-                        document.execCommand('copy'); 
-                        window.getSelection().removeAllRanges();
-                    });
-                }, 50);
-                window.onblur = function() { $("button#confirm").click(); };
-                window.onfocus = function() { $("button#confirm").click(); };
-                window.location = "bitcoin:"+$('#wallet-number').val();
+                swal({  
+                  title: "Unable to find wallet app on this device. ",
+                  text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                  html: true,
+                  confirmButtonText: 'COPY'
+                },
+                function() {
+                    var Field = $('#wallet-swal');
+                    Field.select();
+                    document.execCommand('copy'); 
+                    window.getSelection().removeAllRanges();
+                    window.location = "bitcoin:"+$('#wallet-number').val();
+                });
+                  
             });
         } else {
             $('#walcop').click(function(){
                 // setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
-                setTimeout(function() {
-                    swal({  
-                      title: "Unable to find wallet app on this device. ",
-                      text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
-                      html: true,
-                      confirmButtonText: 'COPY'
-                    },
-                    function() {
-                        var Field = $('#wallet-swal');
-                        Field.select();
-                        document.execCommand('copy'); 
-                        window.getSelection().removeAllRanges();
-                    });
-                }, 50);
-                window.onblur = function() { $("button#confirm").click(); };
-                window.onfocus = function() { $("button#confirm").click(); };
-                window.location = "bitcoin:"+$('#wallet-number').val();
-                window.location = "bitcoin:"+$('#wallet-number').val();
+                swal({  
+                  title: "Unable to find wallet app on this device. ",
+                  text: '<p>Please copy this code to refill your account balance.</p><input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                  html: true,
+                  confirmButtonText: 'OK'
+                },
+                function() {
+                    var Field = $('#wallet-swal');
+                    Field.select();
+                    document.execCommand('copy'); 
+                    window.getSelection().removeAllRanges();
+                    window.location = "bitcoin:"+$('#wallet-number').val();
+                });
             });
         }
     } else {
