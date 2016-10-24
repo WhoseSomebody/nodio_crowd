@@ -215,7 +215,7 @@ $('textarea').focus(
             });
         } else {
             $('#walcop').click(function(){
-                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/"; }, 50);
+                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         }
