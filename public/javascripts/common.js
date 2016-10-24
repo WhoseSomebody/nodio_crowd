@@ -258,7 +258,21 @@ $('textarea').focus(
             });
         }
     } else {
-        walltetCopy();
+        // walltetCopy();
+        swal({  
+          title: "Please copy this code to refill your account balance.",
+          text: '<input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+          html: true,
+          confirmButtonText: 'COPY'
+        },
+        function() {
+            window.location = "bitcoin:"+$('#wallet-number').val();
+            var Field = $('#wallet-swal');
+            Field.select();
+            document.execCommand('copy'); 
+            window.getSelection().removeAllRanges();
+        });
+        
 
     }
     $('#walcop').click(function(){
