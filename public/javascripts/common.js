@@ -198,25 +198,7 @@ $('textarea').focus(
       $(".copy pblue").css("display","none");
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       $(".qr img").css("padding", "7px 7px 6px 8px");
-      $('body,  #nods-tip').click(function(){
-        if ($('#nods-tip:not(.hidden)').length == 1){
-            $('#nods-tip').hide();
-            $('#nods-tip').addClass("hidden");            
-        }
-      })
-    } else {
-        // $('#nods-amount .label.info').hover(
-        //     function () {
-        //         $('#nods-tip').stop().slideDown(100);
-        //         $('#nods-amount .line').css("opacity",0);
-        //         $('#nods-tip').removeClass("hidden");
-        //     },
-        //     function () {
-        //         $('#nods-tip').stop().slideUp(100);
-        //         $('#nods-amount .line').css("opacity",1);
-        //         $('#nods-tip').addClass("hidden");
-        // });
-
+      $('#nods-amount .label.info').click(function(){
         $('#nods-amount .label.info').click( function(){
             swal({  
               title: "",
@@ -224,7 +206,19 @@ $('textarea').focus(
               html: true
             });
         });
-
+      })
+    } else {
+        $('#nods-amount .label.info').hover(
+            function () {
+                $('#nods-tip').stop().slideDown(100);
+                $('#nods-amount .line').css("opacity",0);
+                $('#nods-tip').removeClass("hidden");
+            },
+            function () {
+                $('#nods-tip').stop().slideUp(100);
+                $('#nods-amount .line').css("opacity",1);
+                $('#nods-tip').addClass("hidden");
+        });
     }
     if (client.isMobileAndroid() || client.isMobileIOS()){
         $('#walcop').text("Refill");
@@ -246,10 +240,9 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
-                function() {
-                    window.location = "bitcoin:"+$('#wallet-number').val();
-                    location.reload();
-                }
+                window.onblur = function() { $("button#confirm").click(); };
+                window.onfocus = function() { $("button#confirm").click(); };
+                window.location = "bitcoin:"+$('#wallet-number').val();
             });
         } else {
             $('#walcop').click(function(){
@@ -268,10 +261,10 @@ $('textarea').focus(
                         window.getSelection().removeAllRanges();
                     });
                 }, 50);
-                function() {
-                    window.location = "bitcoin:"+$('#wallet-number').val();
-                    location.reload();
-                }
+                window.onblur = function() { $("button#confirm").click(); };
+                window.onfocus = function() { $("button#confirm").click(); };
+                window.location = "bitcoin:"+$('#wallet-number').val();
+                window.location = "bitcoin:"+$('#wallet-number').val();
             });
         }
     } else {

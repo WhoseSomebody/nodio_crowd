@@ -1048,6 +1048,7 @@ textarea {
   -webkit-transition: border-color 0.2s linear;
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
+  outline: none;
 }
 .wal .bottom-part .left-part .copy:hover {
   border-color: #17e6b2;
