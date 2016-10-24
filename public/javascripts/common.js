@@ -93,14 +93,14 @@ $('textarea').focus(
     
     // save generated into the txt file
 
-    $('.save-to-file').click(function() {
-        contentType =  'data:application/octet-stream,';
-        var area = $(this.closest(".pass-phrase")).find("textarea");
-        uriContent = contentType + encodeURIComponent(area.val());
-        this.setAttribute('href', uriContent);
-        var filename = "key.txt";
-        $("<a download='" + filename + "' href='" + uriContent + "'></a>")[0].click();
-    });
+    // $('.save-to-file').click(function() {
+    //     contentType =  'data:application/octet-stream,';
+    //     var area = $(this.closest(".pass-phrase")).find("textarea");
+    //     uriContent = contentType + encodeURIComponent(area.val());
+    //     this.setAttribute('href', uriContent);
+    //     var filename = "key.txt";
+    //     $("<a download='" + filename + "' href='" + uriContent + "'></a>")[0].click();
+    // });
 
     // write generated into the textbox
     $('.generate').click(function(){
@@ -411,7 +411,8 @@ function generateRandom() {
     }
     var password = random.join(' ').replace(/(\r\n|\n|\r)/gm,"");
     $('#generator .password').val(password);
-    generated =  password;
+    $('#key-download').attr("href", $('#key-download').attr("href")+password.replace(/ /g, "%20"));
+    generated = password;
 });
 }
 

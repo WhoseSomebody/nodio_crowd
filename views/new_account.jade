@@ -56,8 +56,9 @@ block content
         cols="6",
         readonly="readonly")
       .save-to-file.label(title="Save As *.txt")
-        svg
-          use(xlink:href="#dwnld")
+        a(id="key-download" download='key.txt' href="data:application/octet-stream,")
+          svg
+            use(xlink:href="#dwnld")
 
   #login_new.group2.back
     #formspace_new.pass-phrase
