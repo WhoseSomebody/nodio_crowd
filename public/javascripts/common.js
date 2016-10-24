@@ -208,9 +208,18 @@ $('textarea').focus(
     if (client.isMobileAndroid() || client.isMobileIOS()){
         $('#walcop').text("Refill");
         $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
+        if (client.isMobileAndroid()){
+            $('#walcop').click(function(){
+                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/"; }, 50);
+                window.location = "bitcoin:"+$('#wallet-number').val();
+            });
+        } else {
+            $('#walcop').click(function(){
+                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/"; }, 50);
+                window.location = "bitcoin:"+$('#wallet-number').val();
+            });
+        }
     } else {
-        $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
-
         walltetCopy();
     }
         
