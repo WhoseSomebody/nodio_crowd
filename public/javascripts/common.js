@@ -210,7 +210,7 @@ $('textarea').focus(
         $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
         if (client.isMobileAndroid()){
             $('#walcop').click(function(){
-                setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/"; }, 50);
+                setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
                 window.location = "bitcoin:"+$('#wallet-number').val();
             });
         } else {
