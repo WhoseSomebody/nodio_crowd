@@ -702,10 +702,29 @@ svg
 .open .number, .save-to-file, .generate 
   cursor pointer !important
 
-.sweet-alert b
-  font-weight 900
+
   
 object[type="application/x-shockwave-flash"]
   display none
+  
+// ============ SWEETALLERT ============
+.sweet-alert 
+  border-radius 0
+  *
+    border-radius 0
+  b
+    font-weight 900
+  button
+    background-color: transparent !important;
+    color: rgb(23, 230, 178);
+    border: 1px solid rgb(23, 230, 178);
+    font-size: 17px;
+    font-weight: 600;
+  input
+    border: 1px solid #17e6b2;
+  h2
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
 @import "style-tablet.styl"
 @import "style-mobile.styl"
