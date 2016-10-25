@@ -1678,6 +1678,7 @@ object[type="application/x-shockwave-flash"] {
 .sweet-alert {
   border-radius: 0 !important;
   font-family: "ProximaNova" !important;
+  letter-spacing: 1px;
 }
 .sweet-alert * {
   border-radius: 0 !important;
@@ -1685,21 +1686,38 @@ object[type="application/x-shockwave-flash"] {
 .sweet-alert b {
   font-weight: 900 !important;
 }
+.sweet-alert .sa-confirm-button-container {
+  width: 72%;
+  padding: 0 25px 30px 25px;
+}
 .sweet-alert button {
   background-color: transparent !important;
   color: #17e6b2 !important;
-  border: 1px solid #17e6b2 !important;
+  border: 2px solid #17e6b2 !important;
   font-size: 17px !important;
-  font-weight: 600 !important;
+  font-weight: 800 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  letter-spacing: 3px;
 }
-.sweet-alert input {
-  border: 1px solid #17e6b2 !important;
+.sweet-alert textarea {
+  border: none !important;
+  outline: none;
+  font-size: 18px;
+  resize: none;
+  width: 100%;
+  margin: 0 !important;
+  font-weight: 600;
+  padding: 20px 0;
 }
-.sweet-alert h2 {
-  font-size: 24px !important;
-  font-weight: 600 !important;
+.sweet-alert .h2 {
   letter-spacing: 1px !important;
   color: #000 !important;
+  font-size: 14px;
+}
+.sweet-alert #inner-swal {
+  padding: 13px 43px;
+  text-align: justify;
 }
 @media all and (min-width: 601px) and (max-width: 900px) {
   .container {

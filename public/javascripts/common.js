@@ -225,10 +225,13 @@ $('textarea').focus(
         // $('#walcop').attr('href',"bitcoin:"+$('#wallet-number').val());
         if (client.isMobileAndroid()){
             $('#walcop').click(function(){
-                // setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
                 swal({  
-                  title: "If you don't have an app, please copy this code to refill your account balance.",
-                  text: '<input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                  title: "",
+                  text: '<div id="inner-swal"> \
+                            <span class="h2"> If you don\'t have a bitcoin wallet app or you want to refill \
+                                            your account balance in other way, please copy this wallet number to use it in transaction.</span>\
+                            <textarea type="text" lang="en" style="display:block !important; text-align:center;" id="wallet-swal" readonly>' + $('#wallet-number').val()+'</textarea>\
+                        </div>',
                   html: true,
                   confirmButtonText: 'COPY'
                 },
@@ -239,43 +242,55 @@ $('textarea').focus(
                     window.getSelection().removeAllRanges();
                 });
                 window.location = "bitcoin:"+$('#wallet-number').val();
+                $('textarea').focus(function() {
+                    $this = $(this);
+                    $this.select();
+                    window.setTimeout(function() {
+                        $this.select();
+                    }, 1);
 
-                  
+                    // Work around WebKit's little problem
+                    $this.mouseup(function() {
+                        // Prevent further mouseup intervention
+                        $this.unbind("mouseup");
+                        return false;
+                    });
+                });
             });
         } else {
             $('#walcop').click(function(){
-                // setTimeout(function () { window.location = "https://itunes.apple.com/us/app/copay-bitcoin-wallet/id951330296"; }, 50);
                 swal({  
-                  title: "If you don't have an app, please copy this code to refill your account balance.",
-                  text: '<input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
+                  title: "",
+                  text: '<div id="inner-swal"> \
+                            <span class="h2"> If you don\'t have a bitcoin wallet app or you want to refill \
+                                            your account balance in other way, please copy this wallet number to use it in transaction.</span>\
+                            <textarea type="text" lang="en" style="display:block !important; text-align:center;" id="wallet-swal" readonly>' + $('#wallet-number').val()+'</textarea>\
+                        </div>',
                   html: true,
                   confirmButtonText: 'OK'
                 });
                 window.location = "bitcoin:"+$('#wallet-number').val();
+                $('textarea').focus(function() {
+                    $this = $(this);
+                    $this.select();
+                    window.setTimeout(function() {
+                        $this.select();
+                    }, 1);
+
+                    // Work around WebKit's little problem
+                    $this.mouseup(function() {
+                        // Prevent further mouseup intervention
+                        $this.unbind("mouseup");
+                        return false;
+                    });
+                });
             });
         }
     } else {
-        // walltetCopy();
-        $('#walcop').click(function(){
-                // setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.bitpay.copay"; }, 50);
-            swal({  
-              title: "If you don't have an app, please copy this code to refill your account balance.",
-              text: '<input style="display:block !important; text-align:center;" id="wallet-swal" readonly value="'+$('#wallet-number').val()+'"">',
-              html: true,
-              confirmButtonText: 'COPY'
-            },
-            function() {
-                var Field = $('#wallet-swal');
-                Field.select();
-                document.execCommand('copy'); 
-                window.getSelection().removeAllRanges();
-            });
-            window.location = "bitcoin:"+$('#wallet-number').val();
-
-              
-        });
+        walltetCopy();
     }
 
+    
         
     $(".paste").click(function(){
       $("#login_new .password").val($("#generator .password").val()).trigger('input');
