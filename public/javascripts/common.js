@@ -34,6 +34,9 @@ $( document ).ready(function(){
     checkWidth();
     $(window).resize(checkWidth);
 
+
+    
+  
     $('textarea').on("keydown", function(event){
       // Ignore controls such as backspace
       var arr = [8,16,17,20,32,35,36,37,38,39,40,45,46];
@@ -43,11 +46,21 @@ $( document ).ready(function(){
         arr.push(i);
       }
 
-      if(jQuery.inArray(event.which, arr) === -1){
-        event.preventDefault();
-      }
-      if (event.which === 13)
-        $('#new:not(.disabled) a').click();
+      var prom1 = new Promise((resolve, reject) => {
+          
+          if (event.which == '13' || event.keyCode == '13'){
+            $('#new:not(.disabled) a').click();
+          }
+    
+          resolve();
+      });
+      prom1.then(function(){
+          if(jQuery.inArray(event.which, arr) === -1){
+            event.preventDefault();
+          }
+      })
+      
+      
     });
 
     $('textarea').on("input", function(){
@@ -55,10 +68,12 @@ $( document ).ready(function(){
         $(this).val( $(this).val().replace(regexp,'') );
 
     });
+   
+        
+  
+    
 
-    $('textarea').bind("enterKey",function(e){
-       $('#new:not(.disabled) a').click();
-    });
+    
 
 
     $('#logout').click(function (e) {
@@ -200,6 +215,12 @@ $('textarea').focus(
       $(".copy pblue").css("display","none");
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       $(".qr img").css("padding", "7px 7px 6px 8px");
+
+      $( window ).resize(function() {
+        if ($(window).width() <= 900) {
+            $(".signin:not(#signin)").css("margin","61px auto 30px auto");
+        }
+      })
       $('#nods-amount .label.info').click(function(){
         swal({  
           title: "",
@@ -319,6 +340,16 @@ $('textarea').focus(
 
 
 })
+$.fn.enterKey = function (fnc) {
+    return this.each(function () {
+        $(this).keypress(function (ev) {
+            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+            if (keycode == '13') {
+                fnc.call(this, ev);
+            }
+        })
+    })
+}
  // chenl if user copied the generated password and var him to to account
     function checkIfCopied() {
         $('#login_new textarea.password').bind('input', function() {
