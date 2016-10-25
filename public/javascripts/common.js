@@ -319,7 +319,7 @@ $('textarea').focus(
     function checkIfCopied() {
         $('#login_new textarea.password').bind('input', function() {
             if (generated == $(this).val()) {
-                $("#new.signin span").text("Sign In As A New StakeHolder");
+                $("#new.signin a").html('<span class="desktop tablet">Sign In As A New StakeHolder</span><span class="mobile">Sign In</span>');
                 $("#new.signin").removeClass("disabled").css("opacity", "1");
                 $('style.progress-point').text(".second svg,active {right:0} @media (min-width:901px) \
                     {.second svg,active{ right:56px }}");
@@ -353,7 +353,7 @@ $('textarea').focus(
                         setTimeout(function(){
                             $('#new.signin').css({"border-color":"#17e6b2","opacity":"0.2"});
                             $('#new.signin .point').css({"background-color":"#17e6b2"});
-                            $('#new.signin span').text("Sign In As A New StakeHolder").css({"color":"#17e6b2", "opacity" : "1"});
+                            $('#new.signin a').html('<span class="desktop tablet">Sign In As A New StakeHolder</span><span class="mobile">Sign In</span>').css({"color":"#17e6b2", "opacity" : "1"});
 
                         },200);
 
@@ -433,7 +433,7 @@ function onFileSelected(event, me) {
       resetFormElement($('.file input'));
       setTimeout(function() {result.trigger('input')}, 100);
     } else {
-        var text = $(me.closest(".pass-phrase")).attr('id') == "formspace_new" ? "SIGN IN AS A NEW STAKEHOLDER" : "SIGN IN";
+        var html = $(me.closest(".pass-phrase")).attr('id') == "formspace_new" ? '<span class="desktop tablet">Sign In As A New StakeHolder</span><span class="mobile">Sign In</span>' : '<span class="desktop tablet">Sign In</span><span class="mobile">Sign In</span>';
         $('.signin').css({"opacity":"1","border-color":"#ff004d"});
         $('.signin .point').css({"background-color":"#ff004d"});
         $('.signin a').text("Should be a *.txt file format.").css("color","#ff004d");
@@ -447,7 +447,7 @@ function onFileSelected(event, me) {
             setTimeout(function(){
                 $('.signin').css({"border-color":"#17e6b2","opacity":"0.2"});
                 $('.signin .point').css({"background-color":"#17e6b2"});
-                $('.signin a').text(text).css({"color":"#17e6b2", "opacity" : "1"});
+                $('.signin a').html(html).css({"color":"#17e6b2", "opacity" : "1"});
 
             },200);
         }, 3000)

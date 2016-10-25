@@ -1691,7 +1691,7 @@ object[type="application/x-shockwave-flash"] {
   padding: 0 25px 30px 25px;
 }
 .sweet-alert #tip {
-  padding: 13px 43px 45px 43px;
+  padding: 13px 20px 45px 20px;
 }
 .sweet-alert button {
   background-color: transparent !important;
@@ -1713,10 +1713,20 @@ object[type="application/x-shockwave-flash"] {
   font-weight: 600;
   padding: 20px 0;
 }
+.sweet-alert .h1 {
+  letter-spacing: 1px !important;
+  color: #2e2e2e !important;
+  font-size: 16px !important;
+}
 .sweet-alert .h2 {
   letter-spacing: 1px !important;
-  color: #000 !important;
-  font-size: 14px;
+  color: #2e2e2e !important;
+  font-size: 14px !important;
+}
+.sweet-alert .h2 p {
+  letter-spacing: 1px !important;
+  color: #2e2e2e !important;
+  font-size: 14px !important;
 }
 .sweet-alert #inner-swal {
   padding: 13px 43px;
@@ -1791,6 +1801,9 @@ object[type="application/x-shockwave-flash"] {
   }
   .signin {
     max-width: 419px;
+  }
+  .signin:not(#signin) {
+    margin: 60px auto 30px auto;
   }
   .signup {
     margin-top: 89px;
@@ -1897,6 +1910,9 @@ object[type="application/x-shockwave-flash"] {
     max-width: 239px;
     margin: 29px 30px;
     position: relative;
+  }
+  .signin:not(#signin) {
+    margin: 30px 30px 29px 30px;
   }
   .signup {
     margin-top: 59px;
