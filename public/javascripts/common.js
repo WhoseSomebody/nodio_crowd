@@ -209,12 +209,16 @@ $('textarea').focus(
     var client = new ClientJS();
     var os = client.getOS();
     // console.log(client.getDevice());
+    if (os.indexOf("Mac") >= 0){
+        $('#key-download').attr("title",'Right click on the link and choose "Download Linked File As..."');
+    }
     if (os.indexOf("iOS") >= 0){
       $("#copy .button .tablet").text("Next Step");
       $("#copy .button .mobile").text("Next");
       $(".copy pblue").css("display","none");
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       $(".qr img").css("padding", "7px 7px 6px 8px");
+      $('.save-to-file ').css("display","none");
 
       $( window ).resize(function() {
         if ($(window).width() <= 900) {
