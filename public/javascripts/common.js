@@ -207,7 +207,7 @@ $('textarea').focus(
           html: true,
           confirmButtonText: 'OK, GOT IT'
         });
-      })
+      });
     } else {
         $('#nods-amount .label.info').hover(
             function () {
@@ -307,6 +307,8 @@ $('textarea').focus(
             else
                 $("#backw").css({"visibility":"hidden","opacity":"0"});
         }
+
+        $(".terms, .terms a").css('font-size', $(window).width() <= 600 ? "9px" : "11px");
     });
 
     $("#arrow-to-first").click(function(){
