@@ -199,12 +199,13 @@ $('textarea').focus(
       $(".bar-item .passive .line").css("margin","1px 0 -1px 0");
       $(".qr img").css("padding", "7px 7px 6px 8px");
       $('#nods-amount .label.info').click(function(){
-        $('#nods-amount .label.info').click( function(){
-            swal({  
-              title: "",
-              text: $('#nods-tip').html(),
-              html: true
-            });
+        swal({  
+          title: "",
+          text: '<div id="tip"> <span class="h1"> Your investment is <br> <b>' + $("#invest-amount").text() + '</b></span>\
+                    <span class="h2"> ' + $('.inner-tip').html() +'\
+                    </div>',
+          html: true,
+          confirmButtonText: 'OK, GOT IT'
         });
       })
     } else {

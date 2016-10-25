@@ -1690,6 +1690,9 @@ object[type="application/x-shockwave-flash"] {
   width: 72%;
   padding: 0 25px 30px 25px;
 }
+.sweet-alert #tip {
+  padding: 13px 43px 45px 43px;
+}
 .sweet-alert button {
   background-color: transparent !important;
   color: #17e6b2 !important;
