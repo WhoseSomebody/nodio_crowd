@@ -46,6 +46,8 @@ $( document ).ready(function(){
       if(jQuery.inArray(event.which, arr) === -1){
         event.preventDefault();
       }
+      if (event.which === 13)
+        $('#new:not(.disabled) a').click();
     });
 
     $('textarea').on("input", function(){
@@ -340,6 +342,7 @@ $('textarea').focus(
                 })}
             else {
                 $("#new.signin:not(.disabled)").addClass("disabled");
+                $('#new.signin').css({"opacity":"0.2"});
                 $('style.progress-point').text("");
                 if ($(this).val().length == 69) {
                     $('#new.signin').css({"opacity":"1","border-color":"#ff004d"});
