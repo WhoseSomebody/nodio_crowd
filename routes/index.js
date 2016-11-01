@@ -61,12 +61,16 @@ router.post('/signup', (req, res, next) => {
       password : hash
     });
 
-    user.generateId(function(err, name) {
-      if (err) throw err;
-      console.log('Your new id is ' + name);
+    // user.generateId(function(err, name) {
+    // //   if (err) throw err;
+    // //   console.log('Your new id is ' + name);
+    // //   console.log
+    // //   ////save
+      
+    // // });
+    user._id = '1101dab424a'
 
-      ////save
-      user.save((err, user) => {
+    user.save((err, user) => {
         if(err) throw err;
         console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 
@@ -77,7 +81,6 @@ router.post('/signup', (req, res, next) => {
 
         res.json({success: true});
       });
-    });
 
 
     // var dbPromise = user.save();
