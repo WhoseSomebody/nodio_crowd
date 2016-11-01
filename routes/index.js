@@ -68,6 +68,7 @@ router.post('/signup', (req, res, next) => {
       ////save
       user.save((err, user) => {
         if(err) throw err;
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 
         req.session.userID = user._id;
         req.session.userWallet = user.wallet;
