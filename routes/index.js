@@ -61,10 +61,12 @@ router.post('/signup', (req, res, next) => {
       password : hash
     });
 
-    user.generateId(function(err, name) {
-      if (err) throw err;
-      console.log('Your new id is ' + name);
-    });
+    // user.generateId(function(err, name) {
+    //   if (err) throw err;
+    //   console.log('Your new id is ' + name);
+    // });
+
+user._id = '12345678'
 
     var dbPromise = user.save();
     dbPromise.then(user => {
