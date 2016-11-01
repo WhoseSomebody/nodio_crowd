@@ -67,20 +67,30 @@ router.post('/signup', (req, res, next) => {
     // });
 
 user._id = '12345678'
-
-    var dbPromise = user.save();
-    dbPromise.then(user => {
-      req.session.userID = user._id;
+user.save((err, user) => {
+  if (err) throw err;
+  
+  req.session.userID = user._id;
       req.session.userWallet = user.wallet;
       req.session.cookie.maxAge = 1000000;
       console.log(req.session + "Session !!!");
 
       res.json({success: true});
-    })
-    dbPromise.catch(e => {
-      console("ERROR !!!!!")
-      console.log(e);
-    });
+});
+
+    // var dbPromise = user.save();
+    // dbPromise.then(user => {
+    //   req.session.userID = user._id;
+    //   req.session.userWallet = user.wallet;
+    //   req.session.cookie.maxAge = 1000000;
+    //   console.log(req.session + "Session !!!");
+
+    //   res.json({success: true});
+    // })
+    // dbPromise.catch(e => {
+    //   console("ERROR !!!!!")
+    //   console.log(e);
+    // });
 });
 
 
