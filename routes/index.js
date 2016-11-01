@@ -53,7 +53,7 @@ router.post('/signup', (req, res, next) => {
     fs.writeFileSync(output, content.join("\n"));
     fs.renameSync(output,input);
 
-
+    console.log(req.body.key + "BODY KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     var hash = helpers.saltSHA512(req.body.key);
 
     user = new User({
