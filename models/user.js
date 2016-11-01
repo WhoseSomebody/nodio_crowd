@@ -15,6 +15,7 @@ userSchema.methods.generateId = function() {
 	this._id += now.getUTCMilliseconds().toString(30);
 	this._id += now.getUTCMilliseconds().toString(36);
 	this._id += now.getUTCMilliseconds().toString(13);
+	console.log(this._id + "        IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
 	return this._id;
 };
 
