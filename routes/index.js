@@ -61,42 +61,24 @@ router.post('/signup', (req, res, next) => {
       password : hash
     });
 
-    // user.generateId(function(err, name) {
-    // //   if (err) throw err;
-    // //   console.log('Your new id is ' + name);
-    // //   console.log
-    // //   ////save
-      
-    // // });
-    user._id = '1101dab424a'
+    user.generateId(function(err, name) {
+      if (err) throw err;
+      console.log('Your new id is ' + name);
+    });
 
-    user.save((err, user) => {
-        if(err) throw err;
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    var dbPromise = user.save();
+    dbPromise.then(user => {
+      req.session.userID = user._id;
+      req.session.userWallet = user.wallet;
+      req.session.cookie.maxAge = 1000000;
+      console.log(req.session + "Session !!!");
 
-        req.session.userID = user._id;
-        req.session.userWallet = user.wallet;
-        req.session.cookie.maxAge = 1000000;
-        console.log(req.session + "Session !!!");
-
-        res.json({success: true});
-      });
-
-
-    // var dbPromise = user.save();
-    // console.log(user);
-    // dbPromise.then(user => {
-    //   req.session.userID = user._id;
-    //   req.session.userWallet = user.wallet;
-    //   req.session.cookie.maxAge = 1000000;
-    //   console.log(req.session + "Session !!!");
-
-    //   res.json({success: true});
-    // })
-    // dbPromise.catch(e => {
-    //   console("ERROR !!!!!")
-    //   console.log(e);
-    // });
+      res.json({success: true});
+    })
+    dbPromise.catch(e => {
+      console("ERROR !!!!!")
+      console.log(e);
+    });
 });
 
 
