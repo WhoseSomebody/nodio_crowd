@@ -64,21 +64,35 @@ router.post('/signup', (req, res, next) => {
     user.generateId(function(err, name) {
       if (err) throw err;
       console.log('Your new id is ' + name);
+
+      ////save
+      user.save((err, user) => {
+        if(err) throw err;
+
+        req.session.userID = user._id;
+        req.session.userWallet = user.wallet;
+        req.session.cookie.maxAge = 1000000;
+        console.log(req.session + "Session !!!");
+
+        res.json({success: true});
+      });
     });
 
-    var dbPromise = user.save();
-    console.log(user);
-    dbPromise.then(user => {
-      req.session.userID = user._id;
-      req.session.userWallet = user.wallet;
-      req.session.cookie.maxAge = 1000000;
-      console.log(req.session + "Session !!!");
 
-      res.json({success: true});
-    }).catch(e => {
-      console("ERROR !!!!!")
-      console.log(e);
-    });
+    // var dbPromise = user.save();
+    // console.log(user);
+    // dbPromise.then(user => {
+    //   req.session.userID = user._id;
+    //   req.session.userWallet = user.wallet;
+    //   req.session.cookie.maxAge = 1000000;
+    //   console.log(req.session + "Session !!!");
+
+    //   res.json({success: true});
+    // })
+    // dbPromise.catch(e => {
+    //   console("ERROR !!!!!")
+    //   console.log(e);
+    // });
 });
 
 
