@@ -72,9 +72,11 @@ router.post('/signup', (req, res, next) => {
       req.session.userID = user._id;
       req.session.userWallet = user.wallet;
       req.session.cookie.maxAge = 1000000;
-      console.log(req.session);
+      console.log(req.session + "Session !!!");
 
       res.json({success: true});
+    }).catch(e => {
+      console.log(e);
     });
 });
 
