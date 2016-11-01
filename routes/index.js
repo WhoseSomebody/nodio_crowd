@@ -61,15 +61,15 @@ router.post('/signup', (req, res, next) => {
       password : hash
     });
 
-    // user.generateId(function(err, name) {
-    //   if (err) throw err;
-    //   console.log('Your new id is ' + name);
-    // });
+    user.generateId(function(err, name) {
+      if (err) throw err;
+      console.log('Your new id is ' + name);
+    });
 
-user._id = '12345678'
+
 user.save((err, user) => {
   if (err) throw err;
-  
+
   req.session.userID = user._id;
       req.session.userWallet = user.wallet;
       req.session.cookie.maxAge = 1000000;
