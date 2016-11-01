@@ -21,7 +21,7 @@ var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonj
 
 var app = express();
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 mongoose.connect(mongoConnectionString)
 // view engine setup
 app.use(svgFallback({
