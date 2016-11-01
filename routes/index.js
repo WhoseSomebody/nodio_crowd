@@ -76,7 +76,7 @@ router.post('/signup', (req, res, next) => {
 
       res.json({success: true});
     }).catch(e => {
-      console("ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      console("ERROR !!!!!")
       console.log(e);
     });
 });
