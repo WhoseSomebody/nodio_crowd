@@ -39,57 +39,48 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/getusers', (req, res, next) => {
-  User.find({}, (err, users) => {
-    console.log(users);
+// router.get('/getusers', (req, res, next) => {
+//   User.find({}, (err, users) => {
+//     console.log(users);
      
-      res.json(users);
-  });
-});
+//       res.json(users);
+//   });
+// });
 
 router.post('/signup', (req, res, next) => {
-  User.find({}, (err, users) => {
-    console.log(users);
-      fs.writeFile('list.json', JSON.stringify(users), 'utf8', err => {
-        if(err) throw err;
-      });
-      res.send(users);
-  });
-//     var input = __dirname + '/../public/crowdsale_list.txt',
-//         output = __dirname + '/../public/crowdsale_list_temp.txt',
-//         content = fs.readFileSync(input, 'utf8'),
-//         user;
-//     content = content.split("\n");
-//     var wallet = content.splice(0,1);
-//     console.log(wallet);
 
-//     fs.writeFileSync(output, content.join("\n"));
-//     fs.renameSync(output,input);
+    var input = __dirname + '/../public/crowdsale_list.txt',
+        output = __dirname + '/../public/crowdsale_list_temp.txt',
+        content = fs.readFileSync(input, 'utf8'),
+        user;
+    content = content.split("\n");
+    var wallet = content.splice(0,1);
+    console.log(wallet);
 
-//     console.log(req.body.key + "BODY KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//     var hash = helpers.saltSHA512(req.body.key);
+    fs.writeFileSync(output, content.join("\n"));
+    fs.renameSync(output,input);
 
-//     user = new User({
-//       wallet : wallet,
-//       password : hash
-//     });
+    var hash = helpers.saltSHA512(req.body.key);
 
-//     user.generateId(function(err, name) {
-//       if (err) throw err;
-//       console.log('Your new id is ' + name);
-//     });
+    user = new User({
+      wallet : wallet,
+      password : hash
+    });
+
+    user.generateId(function(err, name) {
+      if (err) throw err;
+      console.log('Your new id is ' + name);
+    });
 
 
-// user.save((err, user) => {
-//   if (err) throw err;
+    user.save((err, user) => {
+      if (err) throw err;
 
-//   req.session.userID = user._id;
-//       req.session.userWallet = user.wallet;
-//       req.session.cookie.maxAge = 1000000;
-//       console.log(req.session + "Session !!!");
-
-//       res.json({success: true});
-// });
+      req.session.userID = user._id;
+          req.session.userWallet = user.wallet;
+          req.session.cookie.maxAge = 1000000;
+          res.json({success: true});
+    });
 
     // var dbPromise = user.save();
     // dbPromise.then(user => {
