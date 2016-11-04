@@ -42,41 +42,45 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/signup', (req, res, next) => {
-    var input = __dirname + '/../public/crowdsale_list.txt',
-        output = __dirname + '/../public/crowdsale_list_temp.txt',
-        content = fs.readFileSync(input, 'utf8'),
-        user;
-    content = content.split("\n");
-    var wallet = content.splice(0,1);
-    console.log(wallet);
+  User.find({}, (err, users) => {
+      fs.writeFileSync(__dirname + '/../public/list.txt', JSON.stringify(users));
+      res.json({success: 'ok'});
+  });
+//     var input = __dirname + '/../public/crowdsale_list.txt',
+//         output = __dirname + '/../public/crowdsale_list_temp.txt',
+//         content = fs.readFileSync(input, 'utf8'),
+//         user;
+//     content = content.split("\n");
+//     var wallet = content.splice(0,1);
+//     console.log(wallet);
 
-    fs.writeFileSync(output, content.join("\n"));
-    fs.renameSync(output,input);
+//     fs.writeFileSync(output, content.join("\n"));
+//     fs.renameSync(output,input);
 
-    console.log(req.body.key + "BODY KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    var hash = helpers.saltSHA512(req.body.key);
+//     console.log(req.body.key + "BODY KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//     var hash = helpers.saltSHA512(req.body.key);
 
-    user = new User({
-      wallet : wallet,
-      password : hash
-    });
+//     user = new User({
+//       wallet : wallet,
+//       password : hash
+//     });
 
-    user.generateId(function(err, name) {
-      if (err) throw err;
-      console.log('Your new id is ' + name);
-    });
+//     user.generateId(function(err, name) {
+//       if (err) throw err;
+//       console.log('Your new id is ' + name);
+//     });
 
 
-user.save((err, user) => {
-  if (err) throw err;
+// user.save((err, user) => {
+//   if (err) throw err;
 
-  req.session.userID = user._id;
-      req.session.userWallet = user.wallet;
-      req.session.cookie.maxAge = 1000000;
-      console.log(req.session + "Session !!!");
+//   req.session.userID = user._id;
+//       req.session.userWallet = user.wallet;
+//       req.session.cookie.maxAge = 1000000;
+//       console.log(req.session + "Session !!!");
 
-      res.json({success: true});
-});
+//       res.json({success: true});
+// });
 
     // var dbPromise = user.save();
     // dbPromise.then(user => {
