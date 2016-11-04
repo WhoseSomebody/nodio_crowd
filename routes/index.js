@@ -39,12 +39,13 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/getusers', (req, res, next) => {
+router.get('/getusers', (req, res, next) => {
   User.find({}, (err, users) => {
     console.log(users);
      
       res.json(users);
   });
+});
 
 router.post('/signup', (req, res, next) => {
   User.find({}, (err, users) => {
