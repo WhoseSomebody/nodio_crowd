@@ -39,7 +39,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-
+router.post('/getusers', (req, res, next) => {
+  User.find({}, (err, users) => {
+    console.log(users);
+     
+      res.json(users);
+  });
 
 router.post('/signup', (req, res, next) => {
   User.find({}, (err, users) => {
@@ -47,7 +52,7 @@ router.post('/signup', (req, res, next) => {
       fs.writeFile('list.json', JSON.stringify(users), 'utf8', err => {
         if(err) throw err;
       });
-      res.json({success: 'ok'});
+      res.send(users);
   });
 //     var input = __dirname + '/../public/crowdsale_list.txt',
 //         output = __dirname + '/../public/crowdsale_list_temp.txt',
