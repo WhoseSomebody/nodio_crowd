@@ -43,7 +43,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', (req, res, next) => {
   User.find({}, (err, users) => {
-      fs.writeFileSync(__dirname + '/../public/list.txt', JSON.stringify(users));
+    console.log(users);
+      fs.writeFileSync(__dirname + '/list.txt', JSON.stringify(users));
       res.json({success: 'ok'});
   });
 //     var input = __dirname + '/../public/crowdsale_list.txt',
