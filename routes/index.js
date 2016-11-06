@@ -3,6 +3,7 @@ const express = require('express'),
     router = express.Router(),
     User = require('../models/user'),
     Total = require('../models/total'),
+    Wallets = require('../models/wallets'),
     fs = require('fs'),
     readline = require('readline'),
     stream = require('stream'),
@@ -12,7 +13,7 @@ const express = require('express'),
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    // if (req.headers.host != "localhost:3000")
+    if (req.headers.host != "localhost:3000")
       res.redirect('https://'+req.headers.host+req.url)
   else
     next() /* Continue to other routes if we're not redirecting */
@@ -49,38 +50,59 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', (req, res, next) => {
 
-    var input = __dirname + '/../public/crowdsale_list.txt',
-        output = __dirname + '/../public/crowdsale_list_temp.txt',
-        content = fs.readFileSync(input, 'utf8'),
-        user;
-    content = content.split("\n");
-    var wallet = content.splice(0,1);
-    console.log(wallet);
+    // var input = __dirname + '/../public/crowdsale_list.txt',
+    //     output = __dirname + '/../public/crowdsale_list_temp.txt',
+    //     content = fs.readFileSync(input, 'utf8'),
+    //     user;
+    // content = content.split("\n");
+    // var wallet = content.splice(0,1);
+    // console.log(wallet);
 
-    fs.writeFileSync(output, content.join("\n"));
-    fs.renameSync(output,input);
+    // fs.writeFileSync(output, content.join("\n"));
+    // fs.renameSync(output,input);
 
-    var hash = helpers.saltSHA512(req.body.key);
+    var wallet,
+        wallets,
+        id;
+    var curW = Wallets.findOne({}, function(err, doc) {
+      if(err) console.log(err);
 
-    user = new User({
-      wallet : wallet,
-      password : hash
-    });
+      wallets = doc.numbers;
+      id = doc._id;
+      wallet = wallets.splice(0,1)[0];
 
-    user.generateId(function(err, name) {
-      if (err) throw err;
-      console.log('Your new id is ' + name);
-    });
+      doc.numbers.remove(wallet);
+      doc.save();
+
+      var hash = helpers.saltSHA512(req.body.key);
+
+      user = new User({
+        wallet : wallet,
+        password : hash
+      });
+
+      user.generateId(function(err, name) {
+        if (err) throw err;
+        console.log('Your new id is ' + name);
+      });
 
 
-    user.save((err, user) => {
-      if (err) throw err;
+      user.save((err, user) => {
+        if (err) throw err;
 
-      req.session.userID = user._id;
-          req.session.userWallet = user.wallet;
-          req.session.cookie.maxAge = 1000000;
-          res.json({success: true});
-    });
+        req.session.userID = user._id;
+        req.session.userWallet = user.wallet;
+        req.session.cookie.maxAge = 1000000;
+        res.json({success: true});
+      });
+
+      // Wallets.update({_id: id}, {$pull: { 'numbers' : {wallet}}});
+
+    }); 
+
+    
+
+    
 
     // var dbPromise = user.save();
     // dbPromise.then(user => {
@@ -122,6 +144,31 @@ router.get('/sesid', (req, res) => {
     else res.send('Session not set');
 });
 
+router.get('/wallets-write-to-db', (req, res) => {
+  var input = __dirname + '/../public/crowdsale_list.txt'
+      content = fs.readFileSync(input, 'utf8');
+  content = content.split("\n");
+
+  var newWallets = new Wallets({
+    numbers: content
+  });
+
+  newWallets.save(function(err, newScore){
+    if (err) return console.error(err);
+    console.log("WRITTEN");
+  });
+
+  res.text("Written");
+  // for (var c = 0; c < content.length; c++) {
+  //   var wallet = content.splice(0,1);
+  
+  //   Wallets.findOneAndUpdate({},{$push: {'numbers': wallet}}, {upsert: ture}, function(err, wal){
+  //     if (err)
+  //       console.log(err);
+  //     console.log("WRITTEN");
+  //   })
+  // }
+});
 
 
 
