@@ -1,5 +1,6 @@
-	const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose'),
+Schema = mongoose.Schema;
+var shortid = require('shortid');
 
 var userSchema = new Schema({
 	_id: {type: String, unique: true},
@@ -12,10 +13,8 @@ userSchema.methods.generateId = function() {
 	var now = new Date();
 	this._id = (now.getMonth() < 9 ? '0' : '') + (now.getMonth()+1).toString();
 	this._id += (now.getDate() < 10 ? '0' : '') + now.getDate().toString();
-	this._id += now.getUTCMilliseconds().toString(30);
-	this._id += now.getUTCMilliseconds().toString(36);
-	this._id += now.getUTCMilliseconds().toString(13);
-	console.log(this._id + "        IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+	this._id += shortid.generate();
+
 	return this._id;
 };
 
