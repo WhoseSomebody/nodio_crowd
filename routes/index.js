@@ -10,6 +10,17 @@ const express = require('express'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
     helpers = require('utils'),
     password = require('password-hash-and-salt');
+var wallet,
+    wallets,
+    id;
+
+Wallets.findOne({}, 
+  function(err, doc) {
+    if(err) console.log(err);
+    wallets = doc.numbers;
+    id = doc._id;
+  }
+);
 
 router.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -19,6 +30,37 @@ router.get('*',function(req,res,next){
     next() /* Continue to other routes if we're not redirecting */
 })
 
+router.post('/signup', (req, res, next) => {
+  wallet = wallets.splice(0,1)[0];
+
+  Wallets.findOne({}, 
+    function(err, doc) {
+      doc.numbers.remove(wallet);
+      doc.save();
+  });
+  var hash = helpers.saltSHA512(req.body.key);
+
+  user = new User({
+    wallet : wallet,
+    password : hash
+  });
+
+  user.generateId(function(err, name) {
+    if (err) throw err;
+    console.log('Your new id is ' + name);
+  });
+
+
+  user.save((err, user) => {
+    if (err) throw err;
+
+    req.session.userID = user._id;
+    req.session.userWallet = user.wallet;
+    req.session.cookie.maxAge = 1000000;
+    res.json({success: true});
+  });
+     
+});
 
 
 
@@ -38,88 +80,6 @@ router.get('/', function(req, res, next) {
       });
   }
 });
-
-
-// router.get('/getusers', (req, res, next) => {
-//   User.find({}, (err, users) => {
-//     console.log(users);
-     
-//       res.json(users);
-//   });
-// });
-
-router.post('/signup', (req, res, next) => {
-
-    // var input = __dirname + '/../public/crowdsale_list.txt',
-    //     output = __dirname + '/../public/crowdsale_list_temp.txt',
-    //     content = fs.readFileSync(input, 'utf8'),
-    //     user;
-    // content = content.split("\n");
-    // var wallet = content.splice(0,1);
-    // console.log(wallet);
-
-    // fs.writeFileSync(output, content.join("\n"));
-    // fs.renameSync(output,input);
-
-    var wallet,
-        wallets,
-        id;
-    var curW = Wallets.findOne({}, function(err, doc) {
-      if(err) console.log(err);
-
-      wallets = doc.numbers;
-      id = doc._id;
-      wallet = wallets.splice(0,1)[0];
-
-      doc.numbers.remove(wallet);
-      doc.save();
-
-      var hash = helpers.saltSHA512(req.body.key);
-
-      user = new User({
-        wallet : wallet,
-        password : hash
-      });
-
-      user.generateId(function(err, name) {
-        if (err) throw err;
-        console.log('Your new id is ' + name);
-      });
-
-
-      user.save((err, user) => {
-        if (err) throw err;
-
-        req.session.userID = user._id;
-        req.session.userWallet = user.wallet;
-        req.session.cookie.maxAge = 1000000;
-        res.json({success: true});
-      });
-
-      // Wallets.update({_id: id}, {$pull: { 'numbers' : {wallet}}});
-
-    }); 
-
-    
-
-    
-
-    // var dbPromise = user.save();
-    // dbPromise.then(user => {
-    //   req.session.userID = user._id;
-    //   req.session.userWallet = user.wallet;
-    //   req.session.cookie.maxAge = 1000000;
-    //   console.log(req.session + "Session !!!");
-
-    //   res.json({success: true});
-    // })
-    // dbPromise.catch(e => {
-    //   console("ERROR !!!!!")
-    //   console.log(e);
-    // });
-});
-
-
 
 
 router.get('/logout', (req, res) => {
