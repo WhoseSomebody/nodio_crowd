@@ -17,29 +17,29 @@ console.log("connected.");
 
 
 agenda.define('update all wallets', function(job, done) {
-  console.log(Date.now());
+  // console.log(Date.now());
   summaryInvested = 10,
   link = 'http://btc.blockr.io/api/v1/address/info/',
   xmlHttp = new XMLHttpRequest(),
   jsonResponses = [];
   
-  console.log("Looking through USERs ...");
+  // console.log("Looking through USERs ...");
   User.find({}, function(err, users) {
     var userMap = {};
     var wallets = [];
     users.forEach(function(user) {
-      console.log("USER");
-      console.log(user);
+      // console.log("USER");
+      // console.log(user);
 
       userMap[user.wallet] = user.investments;
       wallets.push(user.wallet);
     });
-    console.log(userMap);
-    console.log(wallets);
+    // console.log(userMap);
+    // console.log(wallets);
 
     links = makeLinks(nol, wallets);
 
-    console.log(links);
+    // console.log(links);
 
     for (var i=0; i<links.length; i++){
       xmlHttp.open("GET", links[i].replace(/(\\r|\\)/g, ""), false);
@@ -47,7 +47,7 @@ agenda.define('update all wallets', function(job, done) {
       var response = JSON.parse(xmlHttp.responseText);
       var accounts = response.data;
 
-      console.log(response.data);
+      // console.log(response.data);
 
       for (var j=0; j<accounts.length; j++){
         if (userMap[accounts[j].address] != accounts[j].totalreceived)
@@ -58,7 +58,7 @@ agenda.define('update all wallets', function(job, done) {
         summaryInvested += accounts[j] != undefined ? accounts[j].totalreceived : 0;
         
         // console.log(accounts[j] != undefined ? accounts[j] : "undefined");
-        console.log(summaryInvested);
+        // console.log(summaryInvested);
       }
 
     }
@@ -67,10 +67,10 @@ agenda.define('update all wallets', function(job, done) {
     // createTotal(summaryInvested);
     Total.findOne( {}, function (err, result) {
         if (err) { 
-          console.log(err);
+          // console.log(err);
         }
         if (!result) {
-          console.log("Empty Total yet!");
+          // console.log("Empty Total yet!");
           createTotal(summaryInvested);
         } else {
           updateTotal(summaryInvested);
@@ -94,9 +94,9 @@ agenda.define('update all wallets', function(job, done) {
       var options = {returnNewDocument: true};
       Total.findOneAndUpdate(query, update, options, function(err, total) {
         if (err) {
-          console.log('got a BD "Total" error.');
+          // console.log('got a BD "Total" error.');
         }
-        console.log('total');
+        // console.log('total');
       });
     }
 
@@ -108,8 +108,8 @@ agenda.define('update all wallets', function(job, done) {
         function(err, affected, resp) 
         {
           if (err) return console.error(err);
-           console.log("*********************************");
-           console.log(this);
+           // console.log("*********************************");
+           // console.log(this);
         });
     }
 
@@ -126,7 +126,7 @@ agenda.define('update all wallets', function(job, done) {
 
   });
 
-  console.log(Date.now());
+  // console.log(Date.now());
 
   res.send("REFRESH IS MADE.");
   done();
@@ -134,7 +134,7 @@ agenda.define('update all wallets', function(job, done) {
 
 
 agenda.on('ready', function() {
-  console.log("I am ready.")
+  // console.log("I am ready.")
   agenda.every('1 minute','update all wallets');
   // agenda.every('2 minutes', 'update all wallets');
 
