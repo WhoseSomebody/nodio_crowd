@@ -18,7 +18,7 @@ console.log("connected.");
 
 agenda.define('update all wallets', function(job, done) {
   // console.log(Date.now());
-  summaryInvested = 10,
+  summaryInvested = 17.3918,
   link = 'http://btc.blockr.io/api/v1/address/info/',
   xmlHttp = new XMLHttpRequest(),
   jsonResponses = [];
