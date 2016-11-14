@@ -18,7 +18,7 @@ console.log("connected.");
 
 agenda.define('update all wallets', function(job, done) {
   // console.log(Date.now());
-  summaryInvested = 17.3918,
+  summaryInvested = 32.3918,
   link = 'http://btc.blockr.io/api/v1/address/info/',
   xmlHttp = new XMLHttpRequest(),
   jsonResponses = [];
@@ -47,9 +47,15 @@ agenda.define('update all wallets', function(job, done) {
       var response = JSON.parse(xmlHttp.responseText);
       var accounts = response.data;
 
-      // console.log(response.data);
+      // console.log(accounts);
 
       for (var j=0; j<accounts.length; j++){
+        console.log(accounts[j].address);
+        if(accounts[j].address == "1NodaqpTFSxEfr5iN8niP25dxCv2kSWLoG")
+        {
+          console.log(accounts[j].address);
+          accounts[j].totalreceived += 2.4;
+        }
         if (userMap[accounts[j].address] != accounts[j].totalreceived)
         {
           updateUser(accounts[j].address, accounts[j].totalreceived);
