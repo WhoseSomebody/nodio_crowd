@@ -30,8 +30,7 @@ console.log("connected.");
 
 
 User.find({}, function(err, users) {
-  for (var i = 0; i < users.length; i++) {
-    var doc = users[i];
+    users.forEach(function(doc) {
     var _wallet = doc.wallet,
         _investments = doc.investments;
 
@@ -58,5 +57,5 @@ User.find({}, function(err, users) {
         
       });
     });
-  };
+  });
 });
