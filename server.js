@@ -28,15 +28,16 @@ console.log("connecting to db ...");
 mongoose.connect(mongoConnectionString);
 console.log("connected.");
 
-
+coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
+      if (err) console.log(err)
 User.find({}, function(err, users) {
+    console.log(users);
     users.forEach(function(doc) {
     var _wallet = doc.wallet,
         _investments = doc.investments;
 
-    coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
-      if (err) console.log(err)
-      console.log(doc);
+    
+      // console.log(doc);
       account.createAddress(null, function(err, addressETH) {
         if (err) console.log(err)
         setTimeout(function(){
@@ -50,7 +51,7 @@ User.find({}, function(err, users) {
           }
         }, function(error, usr) {
           console.log(error);
-          console.log(usr)
+          // console.log(usr)
         });
         }, 10)
         
