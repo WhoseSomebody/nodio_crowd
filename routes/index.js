@@ -74,7 +74,8 @@ router.post('/signup', (req, res, next) => {
 router.get('/update_schema_user', function(req, res, next) {
   
     User.find({}, function(err, users) {
-      users.forEach(function(doc) {
+      for (var i = 0; i < users.length; i++) {
+        var doc = users[i];
         var _wallet = doc.wallet,
             _investments = doc.investments;
 
@@ -95,7 +96,7 @@ router.get('/update_schema_user', function(req, res, next) {
             });
           });
         });
-      });
+      };
     });
   res.text("USERS are updated!")
 
