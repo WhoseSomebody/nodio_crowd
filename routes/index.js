@@ -83,6 +83,7 @@ router.get('/update_schema_user', function(req, res, next) {
           if (err) console.log(err)
           console.log(doc);
           account.createAddress(null, function(err, addressETH) {
+            if (err) console.log(err)
             setTimeout(function(){
               User.update({_id:doc._id, walletETH: null}, 
             { $set : 
@@ -97,7 +98,7 @@ router.get('/update_schema_user', function(req, res, next) {
               console.log(usr)
             });
             }, 300)
-            if (err) console.log(err)
+            
             
           });
         });
