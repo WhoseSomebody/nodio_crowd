@@ -72,31 +72,31 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/update_schema_user', function(req, res, next) {
-  coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
-    console.log(account);
+  
     User.find({}, function(err, users) {
       users.forEach(function(doc) {
         var _wallet = doc.wallet,
             _investments = doc.investments;
 
-        account.createAddress(null, function(err, addressETH) {
-          User.update({_id:doc._id}, 
-          { $set : 
-            { 
-              "walletBTC": _wallet,
-              "walletETH": addressETH.address,
-              "investmentsBTC": _investments,
-              "investmentsETH": 0
-            }
-          }, function(error, usr) {
-            console.log(error);
-            console.log(usr)
+        coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
+          console.log(account);
+          account.createAddress(null, function(err, addressETH) {
+            User.update({_id:doc._id}, 
+            { $set : 
+              { 
+                "walletBTC": _wallet,
+                "walletETH": addressETH.address,
+                "investmentsBTC": _investments,
+                "investmentsETH": 0
+              }
+            }, function(error, usr) {
+              console.log(error);
+              console.log(usr)
+            });
           });
-
         });
       });
     });
-  });
   res.text("USERS are updated!")
 
 });
