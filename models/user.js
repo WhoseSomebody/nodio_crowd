@@ -4,9 +4,13 @@ var shortid = require('shortid');
 
 var userSchema = new Schema({
 	_id: {type: String, unique: true},
-    wallet: {type: String, unique: true},
+    wallet: { type: String, unique: false},
+    walletBTC: {type: String, unique: true},
+    walletETH: {type: String, unique: true},
     password: {type: String, unique: true},
-    investments: { type: Number, default: 0 }
+    investments: { type: Number, default: 0 },
+    investmentsBTC: { type: Number, default: 0 },
+    investmentsETH: { type: Number, default: 0 }
 }, { _id: false });
 
 userSchema.methods.generateId = function() {

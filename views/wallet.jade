@@ -42,10 +42,17 @@ block content
               | Log Out
         .right-part
           .label.general
-            | Your investment
+            | Your investment / 
+            a.label.link#eth.switch_cur
+              | ETH
+            a.label.link#btc.switch_cur.hide
+              | BTC
           .label.numbers#invest-amount
             //- | 1 000 001.789 BTC
-            | #{userInvestments} BTC
+            span#btc
+              | #{userInvestmentsBTC} BTC
+            span#eth.hide
+              | #{userInvestmentsETH} ETH
           #nods-amount.pointer
             .label.info
               | ∽ #{userNods} Nods
@@ -68,9 +75,14 @@ block content
       .bottom-part
         .left-part
           .label.general
-            | Wallet to put bitcoins
+            | Wallet to put 
+            span#btc bitcoins
+            span#eth.hide ethereum
           .label.code#code
-            | #{userWallet}
+            span#btc
+              | #{userWalletBTC}
+            span#eth.hide
+              | #{userWalletETH}
           .copy.pblue
             .point.bottom.left
             .point.bottom.right
@@ -87,13 +99,17 @@ block content
             .point.bottom.right
             .point.top.left
             .point.top.right
-            a(href="bitcoin:#{userWallet}")
-              img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWallet}&size=326x326&margin=18")
+            a(href="bitcoin:#{userWalletBTC}")#btc
+              img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWalletBTC}&size=326x326&margin=18")
+            a(href="")#eth.hide
+              img(src="https://api.qrserver.com/v1/create-qr-code/?data=#{userWalletETH}&size=326x326&margin=18")
   .row#history
-    a(href="https://blockchain.info/address/#{userWallet}", target="_blank")#stat_link
+    a(href="https://blockchain.info/address/#{userWalletBTC}", target="_blank").stat_link#btc
+      | TRANSACTIONS HISTORY
+    a(href="https://etherscan.io/address/#{userWalletETH}", target="_blank").stat_link#eth.hide
       | TRANSACTIONS HISTORY
   textarea#wallet-number(style="position:absolute;top:0;left:-9999px;")
-    | #{userWallet}
+    | #{userWalletBTC}
   //- .history
   //-   .hist-line
   //-     .point.bottom.left

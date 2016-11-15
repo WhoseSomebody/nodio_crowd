@@ -6,7 +6,7 @@ var count = [1,1];
 
 $("#generator textarea").ready(function() {
     if ($("#generator textarea").length > 0)
-        generateRandom();
+        generateRandom();generateRandom
     })
 $( document ).ready(function(){
     setTimeout(function(){
@@ -34,8 +34,14 @@ $( document ).ready(function(){
     checkWidth();
     $(window).resize(checkWidth);
 
-
-    
+    $(".switch_cur").click(function(e) {
+        $("#btc, #eth").toggleClass("hide");
+        setTimeout(function(){
+           $('#wallet-number').val($("#code span:not(.hide)").text())
+                            .text($("#code span:not(.hide)").text())
+        }, 400)
+    })
+        
   
     $('textarea').on("keydown", function(event){
       // Ignore controls such as backspace
@@ -91,8 +97,8 @@ $( document ).ready(function(){
             console.log(res.session);
             $( location ).attr("href", "/account");
     } );
-    
-    });
+
+});
 $('textarea').focus(
     function(){
         $(this).parent('div').css('border-color','#fff');
@@ -121,6 +127,7 @@ $('textarea').focus(
 
     // write generated into the textbox
     $('.generate').click(function(){
+        generated = '';
         generated = generateRandom();
         $("#copy").removeClass("disabled");
     });
@@ -508,7 +515,7 @@ function generateRandom() {
     }
     var password = random.join(' ').replace(/(\r\n|\n|\r)/gm,"");
     $('#generator .password').val(password);
-    $('#key-download').attr("href", $('#key-download').attr("href")+password.replace(/ /g, "%20"));
+    $('#key-download').attr("href", "data:application/octet-stream,"+password.replace(/ /g, "%20"));
     generated = password;
 });
 }

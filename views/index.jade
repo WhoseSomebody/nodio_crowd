@@ -4,9 +4,8 @@ block content
   .total
     .label.head
       | Total raised
-    .label.numbers
-      | #{total} BTC
-      //- | 1 000 232 342 234 BTC
+    .label.numbers(title="From which #{totalETH} ETH")
+      | ≈ #{total} BTC
 
   #login
     #formspace.pass-phrase

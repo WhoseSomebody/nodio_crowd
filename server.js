@@ -7,6 +7,10 @@ Agenda = require('agenda');
 User = require('./models/user');
 Total = require('./models/total');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var ClientCoin = require('coinbase').Client;
+var coin_client = new ClientCoin({'apiKey': '31wiI9hyhDoxlRI9',
+                         'apiSecret': 'MLaXYt2NFcaqqTIr4KHpPgSUdAPWNtUL'});
+
 var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonjh@ds061826-a0.mlab.com:61826,ds061826-a1.mlab.com:61826/heroku_nlwlq2hc?replicaSet=rs-ds061826";
 // var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
 var agenda = new Agenda({db: {address: mongoConnectionString}});
@@ -19,20 +23,55 @@ console.log("connected.");
 agenda.define('update all wallets', function(job, done) {
   // console.log(Date.now());
   summaryInvested = 32.3918,
+  summaryInvestedETH = 0,
   link = 'http://btc.blockr.io/api/v1/address/info/',
   xmlHttp = new XMLHttpRequest(),
   jsonResponses = [];
-  
+
+
+    
   // console.log("Looking through USERs ...");
   User.find({}, function(err, users) {
     var userMap = {};
     var wallets = [];
+    var walletsETH = [];
+    coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
+      updateTotalETH(account.balance.amount);
+      summaryInvestedETH += account.balance.amount;
+
+      coin_client.getExchangeRates({'currency': 'ETH'}, function(err, rates) {
+        summaryInvested += summaryInvestedETH*rates.data.rates.BTC;
+      });
+
+      account.getAddresses(null, function(err, addresses) {
+        addresses.forEach(function(address){
+          updateUserETH(address.address, address.account.balance.amount);
+        // console.log(address.address);
+        // console.log(address.account.balance.amount);
+
+        })
+        // console.log(addresses[1]);
+        // console.log(addresses);
+      });
+    });
+
     users.forEach(function(user) {
       // console.log("USER");
       // console.log(user);
 
-      userMap[user.wallet] = user.investments;
-      wallets.push(user.wallet);
+      userMap[user.walletBTC] = user.investmentsBTC;
+      wallets.push(user.walletBTC);
+      walletsETH.push(user.walletETH);
+
+    });
+    users.forEach(function(user) {
+
+      // web3.eth.getBalance.request(user.walletETH, function(err, value){
+      //   console.log(err)
+      //   console.log(value)
+      //   updateUserETH(user.walletETH, value.toNumber());
+         
+      //  });
     });
     // console.log(userMap);
     // console.log(wallets);
@@ -50,15 +89,16 @@ agenda.define('update all wallets', function(job, done) {
       // console.log(accounts);
 
       for (var j=0; j<accounts.length; j++){
-        console.log(accounts[j].address);
+
+        // console.log(accounts[j].address);
         if(accounts[j].address == "1NodaqpTFSxEfr5iN8niP25dxCv2kSWLoG")
         {
-          console.log(accounts[j].address);
+          // console.log(accounts[j].address);
           accounts[j].totalreceived += 2.4;
         }
         if (userMap[accounts[j].address] != accounts[j].totalreceived)
         {
-          updateUser(accounts[j].address, accounts[j].totalreceived);
+          updateUserBTC(accounts[j].address, accounts[j].totalreceived);
         }
         
         summaryInvested += accounts[j] != undefined ? accounts[j].totalreceived : 0;
@@ -79,7 +119,7 @@ agenda.define('update all wallets', function(job, done) {
           // console.log("Empty Total yet!");
           createTotal(summaryInvested);
         } else {
-          updateTotal(summaryInvested);
+          updateTotalBTC(summaryInvested);
         }
     });
 
@@ -93,10 +133,22 @@ agenda.define('update all wallets', function(job, done) {
       })
     }
 
-    function updateTotal(new_score){
+    function updateTotalBTC(new_score){
       var date = Date.now();
       var query = {"_id": "58077826aac9e83f99b01af9"};
-      var update = {totalInvested: new_score, lastUpdate: date};
+      var update = {totalInvestedBTC: new_score, lastUpdate: date};
+      var options = {returnNewDocument: true};
+      Total.findOneAndUpdate(query, update, options, function(err, total) {
+        if (err) {
+          // console.log('got a BD "Total" error.');
+        }
+        // console.log('total');
+      });
+    }
+    function updateTotalETH(new_score){
+      var date = Date.now();
+      var query = {"_id": "58077826aac9e83f99b01af9"};
+      var update = {totalInvestedETH: new_score, lastUpdate: date};
       var options = {returnNewDocument: true};
       Total.findOneAndUpdate(query, update, options, function(err, total) {
         if (err) {
@@ -107,10 +159,10 @@ agenda.define('update all wallets', function(job, done) {
     }
 
 
-    function updateUser(p_wallet, new_investments){
+    function updateUserBTC(p_wallet, new_investments){
       User.findOneAndUpdate(
-      {wallet: p_wallet}, 
-      {investments: new_investments}, 
+      {walletBTC: p_wallet}, 
+      {investmentsBTC: new_investments}, 
         function(err, affected, resp) 
         {
           if (err) return console.error(err);
@@ -118,7 +170,20 @@ agenda.define('update all wallets', function(job, done) {
            // console.log(this);
         });
     }
+    function updateUserETH(p_wallet, new_investments){
+      User.findOneAndUpdate(
+      {walletETH: p_wallet}, 
+      {investmentsETH: new_investments}, 
+        function(err, affected, resp) 
+        {
+          if (err) return console.error(err);
+           // console.log("*********************************");
+           // console.log(this);
+          // console.log(affected)
+          // console.log(new_investments)
+        });
 
+    }
 
     function makeLinks(chunk, arr){
       var i,j,temparray,links = [];
