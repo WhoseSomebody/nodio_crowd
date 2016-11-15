@@ -19,7 +19,6 @@ var coin_client = new ClientCoin({'apiKey': '31wiI9hyhDoxlRI9',
 var mongoose = require("mongoose");
 User = require('./models/user');
 Total = require('./models/total');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 var mongoConnectionString = "mongodb://heroku_nlwlq2hc:vg4e8l6uuv0lvnrgh5jvgeonjh@ds061826-a0.mlab.com:61826,ds061826-a1.mlab.com:61826/heroku_nlwlq2hc?replicaSet=rs-ds061826";
 // var mongoConnectionString = "mongodb://nod_adm:backtothesky@ds057816.mlab.com:57816/nodio_crowd";
