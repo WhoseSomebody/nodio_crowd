@@ -80,9 +80,11 @@ router.get('/update_schema_user', function(req, res, next) {
             _investments = doc.investments;
 
         coin_client.getAccount('84e00c4a-bc5f-5025-b395-459329b8e1d1', function(err, account) {
-          console.log(account);
+          if (err) console.log(err)
+          console.log(doc);
           account.createAddress(null, function(err, addressETH) {
-            User.update({_id:doc._id}, 
+            if (err) console.log(err)
+            User.update({_id:doc._id, walletETH: null}, 
             { $set : 
               { 
                 "walletBTC": _wallet,
