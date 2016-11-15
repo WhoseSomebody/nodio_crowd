@@ -1,7 +1,7 @@
 const express = require('express'),
     session = require('express-session'),
     router = express.Router(),
-    Wallets = require('../models/wallets'),
+    Wallets = require('./models/wallets'),
     fs = require('fs'),
     readline = require('readline'),
     stream = require('stream'),
