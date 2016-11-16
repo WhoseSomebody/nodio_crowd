@@ -109,15 +109,16 @@ agenda.define('update all wallets', function (job, done) {
                     amountArr.splice(-18, 0, ".");
                     // console.log(amountArr);
                     balance = amountArr.slice(0, -14).join("");
+                    balance = parseFloat(balance);
                 }
 
-                // console.log(balance);
                 if (userMapETH[accounts[j].account] != balance) {
                     updateUser(accounts[j].account, balance, "ETH");
                     // console.log("Write " + balance + "ETH")
                 }
 
                 summaryInvestedETH += balance != undefined ? balance : 0;
+
             }
         }
 
@@ -136,7 +137,6 @@ agenda.define('update all wallets', function (job, done) {
 
         // TOTAL SUM OF ALL CURRENCIES in BTC currency
         summaryInvested += summaryInvestedBTC + summaryInvestedETH * priceE_B;
-        summaryInvested = parseFloat(summaryInvested);
 
         Total.findOne({}, function (err, result) {
             if (err) {

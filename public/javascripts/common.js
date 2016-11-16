@@ -44,7 +44,7 @@ $(document).ready(function () {
         }, 400)
     })
 
-    if ($("#code .btc").text() === "1NodCR3My7rpwNT74BduxKJFiV49CQL7WM") {
+    if ($("#code .btc").text() === "1NodgSQqR7aXnQ8knAUjsrCQ3CXftB3xrS") {
         $('.tech_info').removeClass("hidden");
     }
 
