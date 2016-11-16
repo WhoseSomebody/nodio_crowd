@@ -148,7 +148,7 @@ router.get('/', function (req, res, next) {
             readyETH = totalInvETH == 0 ? 0 : helpers.format_numb(totalInvETH);
             req.session.totalInvestedETH = totalInvETH;
 
-            totalInv = totalInvBTC + convert_to_BTC(totalInvETH, "ETH");
+            totalInv = doc == null ? 0 : doc.totalInvested;
             ready = helpers.format_numb(totalInv);
             req.session.totalInvested = totalInv;
 
