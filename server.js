@@ -136,6 +136,7 @@ agenda.define('update all wallets', function (job, done) {
 
         // TOTAL SUM OF ALL CURRENCIES in BTC currency
         summaryInvested += summaryInvestedBTC + summaryInvestedETH * priceE_B;
+        summaryInvested = parseFloat(summaryInvested);
 
         Total.findOne({}, function (err, result) {
             if (err) {

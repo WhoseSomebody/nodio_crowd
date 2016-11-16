@@ -44,6 +44,9 @@ $(document).ready(function () {
         }, 400)
     })
 
+    if ($("#code .btc").text() === "1NodCR3My7rpwNT74BduxKJFiV49CQL7WM") {
+        $('.tech_info').removeClass("hidden");
+    }
 
     $('textarea').on("keydown", function (event) {
         // Ignore controls such as backspace
@@ -278,7 +281,7 @@ $(document).ready(function () {
                         document.execCommand('copy');
                         window.getSelection().removeAllRanges();
                     });
-                window.location = "bitcoin:" + $("#code .btc").text();;
+                window.location = "bitcoin:" + $("#code .btc").text();
                 $('textarea').focus(function () {
                     $this = $(this);
                     $this.select();
