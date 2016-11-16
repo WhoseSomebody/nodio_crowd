@@ -7,12 +7,12 @@ var FormatNumber = require('../helpers/format_number');
 router.get('/', function (req, res, next) {
     setTimeout(function () {
         if (req.session.userID) {
-            User.findOne({'walletBTC': req.session.userWalletBTC}, '_id walletBTC walletETH investmentsETH investmentsBTC', function (err, user) {
+            User.findOne({'walletBTC': req.session.userWalletBTC}, '_id walletBTC walletETH investmentsETH investmentsBTC investments', function (err, user) {
                 if (err) return handleError(err);
                 var nods = 0,
                     percent = 0;
                 if (user.investmentsBTC != undefined && req.session.totalInvestedBTC != undefined) {
-                    var numb = 1000000 * user.investmentsBTC / req.session.totalInvestedBTC;
+                    var numb = 1000000 * user.investments / req.session.totalInvested;
                     // SUM CONVERTED ETH TO BTC !!!
                     nods = helpers.format_nods(numb);
                     percent = parseFloat((numb * 1.0 / 10000).toFixed(10));
@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
                     userInvestmentsBTC: (user.investmentsBTC == undefined || user.investmentsBTC == 0) ? 0 : helpers.format_numb(user.investmentsBTC),
                     userWalletETH: user.walletETH,
                     userInvestmentsETH: (user.investmentsETH == undefined || user.investmentsETH == 0) ? 0 : helpers.format_numb(user.investmentsETH),
-                    userBalance: (user.balance == undefined || user.balance == 0) ? 0 : helpers.format_numb(user.balance),
+                    userInvestments: (user.investments == undefined || user.investments == 0) ? 0 : helpers.format_numb(user.investments),
                     userNods: nods,
                     userPercent: percent,
                     totalInvestedBTC: (req.session.totalInvestedBTC == undefined || req.session.totalInvestedBTC == 0) ? 0 : helpers.format_numb(req.session.totalInvestedBTC),

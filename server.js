@@ -121,6 +121,19 @@ agenda.define('update all wallets', function (job, done) {
             }
         }
 
+        users.forEach(function (user) {
+            User.findOneAndUpdate(
+                {_id:user._id},
+                {investments: user.investmentsBTC + user.investmentsETH * priceE_B},
+                function (err, affected, resp) {
+                    if (err) return console.error(err);
+                    // console.log("*********************************");
+                    console.log(affected);
+                    console.log(user.investmentsBTC + user.investmentsETH * priceE_B);
+                }
+            );
+        });
+
         // TOTAL SUM OF ALL CURRENCIES in BTC currency
         summaryInvested = summaryInvestedBTC + summaryInvestedETH * priceE_B;
 

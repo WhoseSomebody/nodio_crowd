@@ -1677,23 +1677,23 @@ object[type="application/x-shockwave-flash"] {
   display: none;
 }
 @media only screen and (min-width: 901px) {
-  #code #eth {
+  #code .eth {
     font-size: 19px;
     line-height: 67px;
   }
 }
 @media only screen and (max-width: 900px) {
-  #code #eth {
+  #code .eth {
     font-size: 18px;
   }
 }
 @media only screen and (max-width: 600px) {
-  #code #eth {
+  #code .eth {
     font-size: 18px;
   }
 }
-.link#eth,
-.link#btc {
+.link.eth,
+.link.btc {
   line-height: 12px;
 }
 .hide {

@@ -1,150 +1,155 @@
 extends layout
 
 block content
-  .row.bars
-    .bar-item
-      a 
-        .desktop.tablet.passive
-          | Reports
-          .line.white
-        .mobile
-          .arrow.left
-            a(href="#")#arrow-left
-              svg
-                use(xlink:href="#arrow_right")
-    .bar-item.active
-      a General
-      .line.desktop.tablet.mobile.blue
-    .bar-item
-      a 
-        .desktop.tablet.passive
-          | Updates
-          .line.white
-        .mobile
-          .arrow.right
-            a(href="#")#arrow-right
-              svg
-                use(xlink:href="#arrow_right")
-    //- p Welcome to #{title}
-  .row.wal.pwhite
-    .point.bottom.left
-    .point.bottom.right
-    .point.top.left
-    .point.top.right
-    .wallet
-      .top-part
-        .left-part
-          .label.general
-            | Your stakeholder ID
-          .label.numbers
-            | #{userID}
-          a(href="").label.link#logout
-              | Log Out
-        .right-part
-          .label.general
-            | Your investment / 
-            a.label.link#eth.switch_cur
-              | ETH
-            a.label.link#btc.switch_cur.hide
-              | BTC
-          .label.numbers#invest-amount
-            //- | 1 000 001.789 BTC
-            span#btc
-              | #{userInvestmentsBTC} BTC
-            span#eth.hide
-              | #{userInvestmentsETH} ETH
-          #nods-amount.pointer
-            .label.info
-              | ∽ #{userNods} Nods
-            .line.blue
-          #nods-tip.pointer.hidden
-            .point.bottom.left
-            .point.bottom.right
-            .point.top.left
-            .point.top.right
-            div.inner-tip
-              p(style="padding-top: 17px;") 
-                | For now it's #{userPercent}%
-                br
-                | from total 
-                b #{totalInvested} BTC
-              br
-              p Final part will be known at
-                b  November 30, 2016 00:00
-      .line(style="width: 100%;")
-      .bottom-part
-        .left-part
-          .label.general
-            | Wallet to put 
-            span#btc bitcoins
-            span#eth.hide ethereum
-          .label.code#code
-            span#btc
-              | #{userWalletBTC}
-            span#eth.hide
-              | #{userWalletETH}
-          .copy.pblue
-            .point.bottom.left
-            .point.bottom.right
-            .point.top.left
-            .point.top.right
-            a(href="#")#walcop.label.button
-              span.desktop
-                | Copy wallet number to clipboard
-              span.mobile.tablet
-                | Copy number
-        .right-part
-          .qr
-            .point.bottom.left
-            .point.bottom.right
-            .point.top.left
-            .point.top.right
-            a(href="bitcoin:#{userWalletBTC}")#btc
-              img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWalletBTC}&size=326x326&margin=18")
-            a(href="")#eth.hide
-              img(src="https://api.qrserver.com/v1/create-qr-code/?data=#{userWalletETH}&size=326x326&margin=18")
-  .row#history
-    a(href="https://blockchain.info/address/#{userWalletBTC}", target="_blank").stat_link#btc
-      | TRANSACTIONS HISTORY
-    a(href="https://etherscan.io/address/#{userWalletETH}", target="_blank").stat_link#eth.hide
-      | TRANSACTIONS HISTORY
-  textarea#wallet-number(style="position:absolute;top:0;left:-9999px;")
-    | #{userWalletBTC}
-  //- .history
-  //-   .hist-line
-  //-     .point.bottom.left
-  //-     .point.bottom.right
-  //-     .col.date
-  //-       .date-font
-  //-         | 6 Sep 2016
-  //-     .col.confirm
-  //-       .confirm-num
-  //-         span.num
-  //-           | 0
-  //-         | Confirmatons
-  //-     .col.amount
-  //-       .label.num
-  //-         | + 1 000 000 BTC
-  //-     .col.details
-  //-       .detail-arrow
-  //-         a(href="#")
-  //-   .hist-line
-  //-     .point.bottom.left
-  //-     .point.bottom.right
-  //-     .col.date
-  //-       .date-font
-  //-         | 25 Aug 2016
-  //-     .col.confirm
-  //-       .confirm-num
-  //-         span.num
-  //-           | 6+
-  //-         | Confirmatons
-  //-     .col.amount
-  //-       .label.num
-  //-         | + 1.789 BTC
-  //-     .col.details
-  //-       .detail-arrow
-  //-         a(href="#")
-  //-     //- .next-link
-  //-     //-   svg.full
-  //-     //-     use(xlink:href="#next")
+    .row.bars
+        .bar-item
+            a
+                .desktop.tablet.passive
+                    | Reports
+                    .line.white
+                .mobile
+                    .arrow.left
+                        a(href="#")#arrow-left
+                            svg
+                                use(xlink:href="#arrow_right")
+        .bar-item.active
+            a General
+            .line.desktop.tablet.mobile.blue
+        .bar-item
+            a
+                .desktop.tablet.passive
+                    | Updates
+                    .line.white
+                .mobile
+                    .arrow.right
+                        a(href="#")#arrow-right
+                            svg
+                                use(xlink:href="#arrow_right")
+        //- p Welcome to #{title}
+    .row.wal.pwhite
+        .point.bottom.left
+        .point.bottom.right
+        .point.top.left
+        .point.top.right
+        .wallet
+            .top-part
+                .left-part
+                    .label.general
+                        | Your stakeholder ID
+                    .label.numbers
+                        | #{userID}
+                    a(href="").label.link#logout
+                        | Log Out
+                .right-part
+                    .label.general
+                        | Your investment /
+                        a.label.link.eth.switch_cur
+                            | ETH
+                        a.label.link.btc.switch_cur.hide
+                            | BTC
+                    .label.numbers#invest-amount
+                        //- | 1 000 001.789 BTC
+                        span.btc
+                            | #{userInvestmentsBTC} BTC
+                        span.eth.hide
+                            | #{userInvestmentsETH} ETH
+                    #nods-amount.pointer
+                        .label.info
+                            | ∽ #{userNods} Nods
+                        .line.blue
+                    #nods-tip.pointer.hidden
+                        .point.bottom.left
+                        .point.bottom.right
+                        .point.top.left
+                        .point.top.right
+                        div.inner-tip
+                            p(style="padding-top: 17px;")
+                                | For now it's #{userPercent}%
+                                br
+                                | from total
+                                b #{totalInvested} BTC
+                            br
+                            p Final part will be known at
+                                b  November 30, 2016 00:00
+            .line(style="width: 100%;")
+            .bottom-part
+                .left-part
+                    .label.general
+                        | Wallet to put
+                        span.btc bitcoins
+                        span.eth.hide ethereum
+                    .label.code#code
+                        span.btc
+                            | #{userWalletBTC}
+                        span.eth.hide
+                            | #{userWalletETH}
+                    .copy.pblue
+                        .point.bottom.left
+                        .point.bottom.right
+                        .point.top.left
+                        .point.top.right
+                        a(href="#")#walcop.label.button
+                            span.desktop
+                                | Copy wallet number to clipboard
+                            span.mobile.tablet
+                                | Copy number
+                .right-part
+                    .qr
+                        .point.bottom.left
+                        .point.bottom.right
+                        .point.top.left
+                        .point.top.right
+                        a(href="bitcoin:#{userWalletBTC}").btc
+                            img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWalletBTC}&size=326x326&margin=18")
+                        a(href="").eth.hide
+                            img(src="https://api.qrserver.com/v1/create-qr-code/?data=#{userWalletETH}&size=326x326&margin=18")
+            a(onclick='shapeshift_click(this, event);', href='#')
+                img.ss-button(src='https://shapeshift.io/images/shifty/small_light_altcoins.png')
+
+    .row#history
+        a(href="https://blockchain.info/address/#{userWalletBTC}", target="_blank").stat_link.btc
+            | TRANSACTIONS HISTORY
+        a(href="https://etherscan.io/address/#{userWalletETH}", target="_blank").stat_link.eth.hide
+            | TRANSACTIONS HISTORY
+    textarea#wallet-number(style="position:absolute;top:0;left:-9999px;")
+        | #{userWalletBTC}
+    #userInvestments(style="display:none") #{userInvestments}
+
+    //- .history
+    //-   .hist-line
+    //-     .point.bottom.left
+    //-     .point.bottom.right
+    //-     .col.date
+    //-       .date-font
+    //-         | 6 Sep 2016
+    //-     .col.confirm
+    //-       .confirm-num
+    //-         span.num
+    //-           | 0
+    //-         | Confirmatons
+    //-     .col.amount
+    //-       .label.num
+    //-         | + 1 000 000 BTC
+    //-     .col.details
+    //-       .detail-arrow
+    //-         a(href="#")
+    //-   .hist-line
+    //-     .point.bottom.left
+    //-     .point.bottom.right
+    //-     .col.date
+    //-       .date-font
+    //-         | 25 Aug 2016
+    //-     .col.confirm
+    //-       .confirm-num
+    //-         span.num
+    //-           | 6+
+    //-         | Confirmatons
+    //-     .col.amount
+    //-       .label.num
+    //-         | + 1.789 BTC
+    //-     .col.details
+    //-       .detail-arrow
+    //-         a(href="#")
+    //-     //- .next-link
+    //-     //-   svg.full
+    //-     //-     use(xlink:href="#next")
