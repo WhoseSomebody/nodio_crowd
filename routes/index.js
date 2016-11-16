@@ -62,7 +62,8 @@ router.post('/signup', (req, res, next) => {
     user = new User({
         walletBTC: wallet["BTC"],
         walletETH: wallet["ETH"],
-        password: hash
+        password: hash,
+        wallet: wallet["BTC"]
     });
 
     user.generateId(function (err, name) {
