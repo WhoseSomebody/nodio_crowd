@@ -107,14 +107,14 @@ agenda.define('update all wallets', function (job, done) {
                             amountArr.unshift("0");
                     }
                     amountArr.splice(-18, 0, ".");
-                    console.log(amountArr);
+                    // console.log(amountArr);
                     balance = amountArr.slice(0, -14).join("");
                 }
 
-                console.log(balance);
+                // console.log(balance);
                 if (userMapETH[accounts[j].account] != balance) {
                     updateUser(accounts[j].account, balance, "ETH");
-                    console.log("Write " + balance + "ETH")
+                    // console.log("Write " + balance + "ETH")
                 }
 
                 summaryInvestedETH += balance != undefined ? balance : 0;
