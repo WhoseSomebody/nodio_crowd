@@ -118,7 +118,7 @@ agenda.define('update all wallets', function (job, done) {
                 }
 
                 summaryInvestedETH += balance != undefined ? balance : 0;
-
+                summaryInvestedETH = parseFloat(summaryInvestedETH);
             }
         }
 
