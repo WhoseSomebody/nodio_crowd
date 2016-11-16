@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
                     userInvestmentsETH: (user.investmentsETH == undefined || user.investmentsETH == 0) ? 0 : helpers.format_numb(user.investmentsETH),
                     userInvestments: (user.investments == undefined || user.investments == 0) ? 0 : helpers.format_numb(user.investments),
                     userNods: nods,
-                    userPercent: percent,
+                    userPercent: helpers.format_numb(percent),
                     totalInvestedBTC: (req.session.totalInvestedBTC == undefined || req.session.totalInvestedBTC == 0) ? 0 : helpers.format_numb(req.session.totalInvestedBTC),
                     totalInvestedETH: (req.session.totalInvestedETH == undefined || req.session.totalInvestedETH == 0) ? 0 : helpers.format_numb(req.session.totalInvestedETH),
                     totalInvested: (req.session.totalInvested == undefined || req.session.totalInvested == 0) ? req.session.totalInvestedBTC : helpers.format_numb(req.session.totalInvested)

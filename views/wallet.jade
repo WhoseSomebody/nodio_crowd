@@ -43,10 +43,10 @@ block content
                 .right-part
                     .label.general
                         | Your investment /
-                        a.label.link.eth.switch_cur
-                            | ETH
-                        a.label.link.btc.switch_cur.hide
-                            | BTC
+                        a.label.link.eth.switch_cur#eth
+                            |  ETH
+                        a.label.link.btc.switch_cur.hide#btc
+                            |  BTC
                     .label.numbers#invest-amount
                         //- | 1 000 001.789 BTC
                         span.btc
@@ -67,7 +67,7 @@ block content
                                 | For now it's #{userPercent}%
                                 br
                                 | from total
-                                b #{totalInvested} BTC
+                                b  #{totalInvested} BTC
                             br
                             p Final part will be known at
                                 b  November 30, 2016 00:00
@@ -76,8 +76,8 @@ block content
                 .left-part
                     .label.general
                         | Wallet to put
-                        span.btc bitcoins
-                        span.eth.hide ethereum
+                        span.btc  bitcoins
+                        span.eth.hide  ethereum
                     .label.code#code
                         span.btc
                             | #{userWalletBTC}
@@ -101,10 +101,10 @@ block content
                         .point.top.right
                         a(href="bitcoin:#{userWalletBTC}").btc
                             img(src="https://api.qrserver.com/v1/create-qr-code/?data=bitcoin:#{userWalletBTC}&size=326x326&margin=18")
-                        a(href="").eth.hide
+                        a(href="bitcoin:#{userWalletBTC}").eth.hide
                             img(src="https://api.qrserver.com/v1/create-qr-code/?data=#{userWalletETH}&size=326x326&margin=18")
-            a(onclick='shapeshift_click(this, event);', href='#')
-                img.ss-button(src='https://shapeshift.io/images/shifty/small_light_altcoins.png')
+                a(onclick='shapeshift_click(this, event);', href='#').shifty-button
+                    img.ss-button(src='https://shapeshift.io/images/shifty/large_dark_altcoins.png')
 
     .row#history
         a(href="https://blockchain.info/address/#{userWalletBTC}", target="_blank").stat_link.btc

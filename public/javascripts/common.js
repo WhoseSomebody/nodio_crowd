@@ -3,6 +3,7 @@ var step = 1;
 
 var count = [1, 1];
 
+
 $("#generator textarea").ready(function () {
     if ($("#generator textarea").length > 0)
         generateRandom();
@@ -36,6 +37,7 @@ $(document).ready(function () {
 
     $(".switch_cur").click(function (e) {
         $(".btc, .eth").toggleClass("hide");
+
         setTimeout(function () {
             $('#wallet-number').val($("#code span:not(.hide)").text())
                 .text($("#code span:not(.hide)").text())
@@ -235,7 +237,7 @@ $(document).ready(function () {
         $('#nods-amount .label.info').click(function () {
             swal({
                 title: "",
-                text: '<div id="tip"> <span class="h1"> Your investment is <br> <b>' + $("#userInvestments").text() + ' BTC</b></span>\
+                text: '<div id="tip"> <span class="h1"> Your investment is <br> <b> ' + $("#userInvestments").text() + ' BTC</b></span>\
                     <span class="h2"> ' + $('.inner-tip').html() + '\
                     </div>',
                 html: true,
@@ -276,7 +278,7 @@ $(document).ready(function () {
                         document.execCommand('copy');
                         window.getSelection().removeAllRanges();
                     });
-                window.location = $(".btc").hasClass("hide") ? "bitcoin:" + $('#wallet-number').val() : "" + $('#wallet-number').val();
+                window.location = "bitcoin:" + $("#code .btc").text();;
                 $('textarea').focus(function () {
                     $this = $(this);
                     $this.select();
@@ -304,7 +306,7 @@ $(document).ready(function () {
                     html: true,
                     confirmButtonText: 'OK'
                 });
-                window.location = "bitcoin:" + $('#wallet-number').val();
+                window.location = "bitcoin:" + $("#code .btc").text();
                 $('textarea').focus(function () {
                     $this = $(this);
                     $this.select();
