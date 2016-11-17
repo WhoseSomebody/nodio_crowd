@@ -23,7 +23,7 @@ agenda.define('update all wallets', function (job, done) {
     // console.log(Date.now());
     let summaryInvestedBTC = 0,
         summaryInvestedETH = 0,
-        summaryInvested = 46.2017,
+        summaryInvested = 53.9437,
         link = 'http://btc.blockr.io/api/v1/address/info/',
         linkETH = 'https://api.etherscan.io/api?module=account&action=balancemulti&address=',
         xmlHttp = new XMLHttpRequest(),
