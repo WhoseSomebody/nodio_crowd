@@ -707,6 +707,7 @@ body {
   -webkit-transition: color 0.2s linear;
   -webkit-transition: color 0.2s linear;
   transition: color 0.2s linear;
+  cursor: pointer;
 }
 .label.link:hover {
   color: #17e5b2;
@@ -1552,7 +1553,7 @@ svg.active {
 }
 #back-to-main,
 .terms a,
-#stat_link,
+.stat_link,
 #nods-amount .label {
   color: rgba(23,230,178,0.6);
   -webkit-transition: color 0.2s linear;
@@ -1561,14 +1562,14 @@ svg.active {
 }
 #back-to-main:hover,
 .terms a:hover,
-#stat_link:hover,
+.stat_link:hover,
 #nods-amount .label:hover {
   color: #17e5b2;
 }
 #back-to-main {
   letter-spacing: 1px;
 }
-#stat_link {
+.stat_link {
   font-weight: 600;
 }
 #history {
@@ -1674,6 +1675,54 @@ svg.active {
 }
 object[type="application/x-shockwave-flash"] {
   display: none;
+}
+@media only screen and (min-width: 901px) {
+  #code .eth {
+    font-size: 19px;
+    line-height: 67px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  #code .eth {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #code .eth {
+    font-size: 18px;
+  }
+}
+.link.eth,
+.link.btc {
+  line-height: 12px;
+}
+.hide {
+  display: none;
+}
+.shifty-button {
+  margin: 33px 0 3px 3px;
+  display: block;
+  height: 54px;
+  width: 233px;
+}
+.shifty-button img {
+  height: 54px;
+  width: 233px;
+}
+@media only screen and (min-width: 901px) {
+  .shifty-button {
+    margin: 33px auto -27px auto;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .shifty-button {
+    margin: 33px auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .shifty-button {
+    margin: 33px 0 3px 3px;
+  }
 }
 .sweet-alert {
   border-radius: 0 !important;
@@ -1817,13 +1866,12 @@ object[type="application/x-shockwave-flash"] {
   }
   .wal {
     padding: 29px;
-    height: 361px;
   }
   .wal .top-part {
     height: 90px;
   }
   .wal .bottom-part {
-    height: 180px;
+    height: 273px;
     width: 481px;
   }
   .wal .bottom-part .left-part {
@@ -1842,9 +1890,11 @@ object[type="application/x-shockwave-flash"] {
   #nods-tip {
     top: 60px;
   }
+  .shifty-button,
   .footer {
     letter-spacing: 1px;
   }
+  .shifty-button .copyright,
   .footer .copyright {
     font-size: 9px;
   }
