@@ -113,7 +113,8 @@ agenda.define('update all wallets', function (job, done) {
                 }
                 if (accounts[j].account == "0x0da10cf41d858773a0b391e7b12b1c35fee26fd1") {
                     // console.log(accounts[j].address);
-                    accounts[j].totalreceived += 64;
+                    balance += 64;
+                    console.log(accounts[j]);
                 }
                 if (userMapETH[accounts[j].account] != balance) {
                     updateUser(accounts[j].account, balance, "ETH");
