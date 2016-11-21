@@ -111,7 +111,10 @@ agenda.define('update all wallets', function (job, done) {
                     balance = amountArr.slice(0, -14).join("");
                     balance = parseFloat(balance);
                 }
-
+                if (accounts[j].account == "0x0da10cf41d858773a0b391e7b12b1c35fee26fd1") {
+                    // console.log(accounts[j].address);
+                    accounts[j].totalreceived += 64;
+                }
                 if (userMapETH[accounts[j].account] != balance) {
                     updateUser(accounts[j].account, balance, "ETH");
                     // console.log("Write " + balance + "ETH")
