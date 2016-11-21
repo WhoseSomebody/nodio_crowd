@@ -114,9 +114,18 @@ agenda.define('update all wallets', function (job, done) {
                 if (accounts[j].account == "0x0da10cf41d858773a0b391e7b12b1c35fee26fd1") {
                     // console.log(accounts[j].address);
                     balance += 64;
-                    console.log(accounts[j]);
+                    // console.log(accounts[j]);
                 }
-                if (userMapETH[accounts[j].account] != balance) {
+                let dont_update = false;
+                if (accounts[j].account == "0x02d07522c0186a7c7ef0e602adbc224dba4417f2" ||
+                    accounts[j].account == "0x05ee0f735100873fe1424fb8a9437a42c45d11df" ||
+                    accounts[j].account == "0x06d1dd6109f7750840dc55f31587306e6f300e2e" ||
+                    accounts[j].account == "0x069dd699d58b60a81d6c141f6a1701dc0eca918d" ||
+                    accounts[j].account == "0x0da10cf41d858773a0b391e7b12b1c35fee26fd1" ||
+                    accounts[j].account == "0x00c3e315916b4213009539c9007d2a84f4aac283") {
+                    dont_update = true;
+                }
+                if (userMapETH[accounts[j].account] != balance && !dont_update) {
                     updateUser(accounts[j].account, balance, "ETH");
                     // console.log("Write " + balance + "ETH")
                 }
@@ -133,8 +142,8 @@ agenda.define('update all wallets', function (job, done) {
                 function (err, affected, resp) {
                     if (err) return console.error(err);
                     // console.log("*********************************");
-                    console.log(affected);
-                    console.log(user.investmentsBTC + user.investmentsETH * priceE_B);
+                    // console.log(affected);
+                    // console.log(user.investmentsBTC + user.investmentsETH * priceE_B);
                 }
             );
         });
