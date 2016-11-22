@@ -129,12 +129,8 @@ agenda.define('update all wallets', function (job, done) {
                     updateUser(accounts[j].account, balance, "ETH");
                     // console.log("Write " + balance + "ETH")
                 }
-                if (!dont_update) {
-                    summaryInvestedETH += balance != undefined ? balance : 0;
-                } else {
-                    summaryInvestedETH += userMapETH[accounts[j].account];
-                }
-
+    
+                summaryInvestedETH += balance != undefined ? balance : 0;
                 summaryInvestedETH = parseFloat(summaryInvestedETH);
             }
         }
