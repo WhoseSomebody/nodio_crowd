@@ -49,7 +49,7 @@ agenda.define('update all wallets', function (job, done) {
             // console.log("USER");
             // console.log(user);
             userMap[user.walletBTC] = user.investmentsBTC;
-            userMap[user.walletETH] = user.investmentsETH;
+            userMapETH[user.walletETH] = user.investmentsETH;
             wallets.push(user.walletBTC);
             walletsETH.push(user.walletETH);
         });
@@ -129,8 +129,13 @@ agenda.define('update all wallets', function (job, done) {
                     updateUser(accounts[j].account, balance, "ETH");
                     // console.log("Write " + balance + "ETH")
                 }
-    
-                summaryInvestedETH += balance != undefined ? balance : 0;
+                if (!dont_update) {
+                    summaryInvestedETH += balance != undefined ? balance : 0;
+                } else {
+                    summaryInvestedETH += userMapETH[accounts[j].account] != undefined ? userMapETH[accounts[j].account] : 0;
+                    console.log(userMapETH[accounts[j].account]);
+                }
+
                 summaryInvestedETH = parseFloat(summaryInvestedETH);
             }
         }
